@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>UI.JS</title>
+		<style>
+			* {
+				font-family: monofur;
+			}
+			div {
+				border: 1px dashed blue;
+				padding: 3px;
+			}
+			[popover]::backdrop {
+			  background: rgba(0, 0, 0, 0.5); /* Полупрозрачный чёрный фон */
+			  backdrop-filter: blur(5px); /* Размытие фона */
+			}
+		</style>
+		<script type="module">
+			import * as ui from '../js/index.js'
+			import {Node} from '../js/index.js'
+			const node = new Node({
+				style: 'border: 1px solid red',
+				class: 'zuzuka',
+				// html: '<b>14321</b>',
+				// style: {border: '1px dashed black'},
+			});
+			node.add({text: 'Введение, которого никто не читает'});
+			node.add({text: 'Как не потеряться в собственном доме'});
+			node.add({text: 'Чай vs. Кофе: Битва титанов'});
+			node.add({text: 'Почему коты нас игнорируют?'});
+			node.add({text: 'Теория вероятности на примере поиска второй носки'});
+			node.add({text: 'Великая философия «ещё 5 минут»'});
+			node.add({text: 'Алгоритмы выживания в очереди'});
+			node.add({text: 'Как правильно смотреть сериалы и не сойти с ума'});
+			node.add({text: 'Секретные техники откладывания дел на потом'});
+			node.add({text: 'Финал, который не даёт ответов на вопросы'});
+			node.add({text: '📌 P.S. Часть из этих глав могла исчезнуть, но нам лень проверять.'});
+			document.body.append(node.tag);
+			Object.assign(window, {ui, ... ui, node});
+		</script>
+	</head>
+	<body>OK</body>
+</html>

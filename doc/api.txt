@@ -1,0 +1,117 @@
+
+Node.from(tag)
+Node.hasNode(tag)
+Node.is(node)
+Node.tag(node)
+
+node.tag
+node.tagName
+node.ownerDocument
+node.hidden
+node.class
+node.style
+node.dataset
+node.attrs
+node.text
+node.html
+node.ls
+node.all
+node.constructor(config)
+node.on(eventType, listener, options)
+node.off(eventType, listener, options)
+node.once(eventType, listener, options)
+node.emit(eventType)
+node.dispatch(event)
+node.click()
+node.blur()
+node.focus()
+node.animate(... args)
+node.show()
+node.hide()
+node.toggleDisplay()
+node.checkVisibility(options)
+node.matches(selector)
+node.contains(node)
+node.append(... nodes)
+node.prepend(... nodes)
+node.before(... nodes)
+node.after(... nodes)
+node.add(config)
+node.remove()
+node.replace(... args)
+
+node.ls.length
+node.ls.first
+node.ls.last
+node.ls.at(offset)
+node.ls.replace(... args)
+node.ls.clear()
+node.ls.slice(start, end)
+node.ls.splice(... args)
+node.ls.shift()
+node.ls.pop()
+node.ls.push(... args)
+node.ls.unshift(... args)
+node.ls.reverse()
+node.ls.sort(cb)
+node.ls.shuffle()
+
+config.document
+config.name
+config.tag
+config.class
+config.style
+config.hidden
+config.attrs
+config.on
+config.once
+config.text
+config.html
+config.ls
+
+
+NodeIterator.from(iterable)
+NodeIterator.of(... nodes)
+NodeIterator.fromTags(iterable)
+
+iterator.ls
+iterator.all
+iterator.drop(limit)
+iterator.every(cb)
+iterator.filter(cb)
+iterator.find(cb)
+iterator.flatMap(cb)
+iterator.forEach(cb)
+iterator.map(cb)
+iterator.reduce(cb, ... args)
+iterator.some(cb)
+iterator.take(limit)
+iterator.toArray()
+iterator.count()
+iterator.on(eventType, listener, options)
+iterator.off(eventType, listener, options)
+iterator.once(eventType, listener, options)
+iterator.emit(eventType)
+iterator.show()
+iterator.hide()
+iterator.toggleDisplay()
+iterator.css(name, value)
+iterator.removeCSS(name)
+iterator.addClass(... args)
+iterator.removeClass(... args)
+iterator.toggleClass(token, force)
+iterator.replaceClass(oldToken, newToken)
+iterator.attr(name, value)
+iterator.removeAttr(name)
+iterator.toggleAttr(name, force)
+iterator.text(text)
+iterator.html(html)
+iterator.add(config)
+iterator.remove()
+iterator.includes(value)
+iterator.contains(value)
+iterator.queryAll(selector)
+iterator.query(selector)
+iterator.filterClass(token)
+iterator.filterTag(... names)
+iterator.filterVisible()
