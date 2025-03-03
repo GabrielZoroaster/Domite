@@ -316,7 +316,9 @@ class Node {
 	}
 
 	add(config){
-		this.append(new Node(config));
+		const node = new Node(config);
+		this.append(node);
+		return node;
 	}
 
 	remove(){

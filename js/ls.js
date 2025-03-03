@@ -439,11 +439,11 @@ class NodeCollection extends NodeList {
 		return new NodeIterator(this.tag.querySelectorAll(selector).values().map(Node.from));
 	}
 
-	filterClass(tokens){
-		return new NodeIterator(this.tag.getElementsByClassName(token).values().map(Node.from));
+	filterClass(token){
+		return NodeIterator.fromTags(this.tag.getElementsByClassName(token));
 	}
 
 	filterTag(name){
-		return new NodeIterator(this.tag.getElementsByTagName(name).values().map(Node.from));
+		return NodeIterator.fromTags(this.tag.getElementsByTagName(name));
 	}
 }
