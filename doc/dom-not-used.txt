@@ -1,20 +1,10 @@
 
-Scroll
-
 scrollHeight
 scrollLeft
 scrollTop
 scrollWidth
 
-scroll()
-scrollBy()
-scrollTo()
-scrollIntoView()
-
-Offset
-
 offsetParent
-
 offsetHeight
 offsetLeft
 offsetTop
@@ -28,17 +18,13 @@ clientWidth
 getBoundingClientRect()
 getClientRects()
 
-Pointer
-
 hasPointerCapture()
 setPointerCapture()
 releasePointerCapture()
 requestPointerLock()
 
-Ect
-
+closest()
 currentCSSZoom
 getAnimations()
-closest()
 computedStyleMap()
 requestFullscreen()
