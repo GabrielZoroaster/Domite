@@ -7,6 +7,9 @@ Node.tag(node)
 node.tag
 node.tagName
 node.ownerDocument
+node.parentNode
+node.prevNode
+node.nextNode
 node.hidden
 node.class
 node.style
@@ -31,6 +34,8 @@ node.hide()
 node.toggleDisplay()
 node.checkVisibility(options)
 node.matches(selector)
+node.isEqual(node)
+node.isSame(node)
 node.contains(node)
 node.append(... nodes)
 node.prepend(... nodes)
@@ -88,6 +93,7 @@ iterator.some(cb)
 iterator.take(limit)
 iterator.toArray()
 iterator.count()
+iterator.depth()
 iterator.on(eventType, listener, options)
 iterator.off(eventType, listener, options)
 iterator.once(eventType, listener, options)

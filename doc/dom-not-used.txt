@@ -5,6 +5,7 @@ scrollHeight
 scrollLeft
 scrollTop
 scrollWidth
+
 scroll()
 scrollBy()
 scrollIntoView()
@@ -12,15 +13,18 @@ scrollTo()
 
 Offset
 
+offsetParent
+
 offsetHeight
 offsetLeft
-offsetParent
 offsetTop
 offsetWidth
+
 clientHeight
 clientLeft
 clientTop
 clientWidth
+
 getBoundingClientRect()
 getClientRects()
 
