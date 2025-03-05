@@ -8,8 +8,8 @@ scrollWidth
 
 scroll()
 scrollBy()
-scrollIntoView()
 scrollTo()
+scrollIntoView()
 
 Offset
 

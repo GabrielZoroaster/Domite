@@ -6,8 +6,8 @@ Node.tag(node)
 
 node.tag
 node.tagName
-node.ownerDocument
-node.parentNode
+node.document
+node.parent
 node.prevNode
 node.nextNode
 node.hidden
@@ -19,6 +19,8 @@ node.text
 node.html
 node.ls
 node.all
+node.prevAll
+node.nextAll
 node.constructor(config)
 node.on(eventType, listener, options)
 node.off(eventType, listener, options)
@@ -74,7 +76,6 @@ config.text
 config.html
 config.ls
 
-
 NodeIterator.from(iterable)
 NodeIterator.of(... nodes)
 NodeIterator.fromTags(iterable)
@@ -94,6 +95,8 @@ iterator.take(limit)
 iterator.toArray()
 iterator.count()
 iterator.depth()
+iterator.texts()
+iterator.htmls()
 iterator.on(eventType, listener, options)
 iterator.off(eventType, listener, options)
 iterator.once(eventType, listener, options)
@@ -107,6 +110,7 @@ iterator.addClass(... tokens)
 iterator.removeClass(... tokens)
 iterator.toggleClass(token, force)
 iterator.replaceClass(oldToken, newToken)
+iterator.classes()
 iterator.attr(name, value)
 iterator.removeAttr(name)
 iterator.toggleAttr(name, force)
@@ -114,6 +118,7 @@ iterator.text(text)
 iterator.html(html)
 iterator.add(config)
 iterator.remove()
+iterator.indexOf(value)
 iterator.includes(value)
 iterator.contains(value)
 iterator.queryAll(selector)
