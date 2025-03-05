@@ -1,20 +1,4 @@
 
-DOM
-
-isConnected
-getRootNode()
-parentNode
-parentElement
-nextSibling
-previousSibling
-nextElementSibling
-previousElementSibling
-cloneNode()
-compareDocumentPosition()
-insertBefore()
-isEqualNode()
-isSameNode()
-
 Scroll
 
 scrollHeight
