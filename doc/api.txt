@@ -13,6 +13,7 @@ node.nextNode
 node.hidden
 node.class
 node.style
+node.css
 node.dataset
 node.attrs
 node.text
@@ -21,11 +22,13 @@ node.ls
 node.all
 node.prevAll
 node.nextAll
-node.vr
-node.pr
-node.cr
-node.or
-node.sr
+
+node.vp
+node.abs
+node.rel
+node.box
+node.scr
+
 node.constructor(config)
 node.on(eventType, listener, options)
 node.off(eventType, listener, options)
@@ -44,6 +47,8 @@ node.scrollBy(... args)
 node.scrollTo(... args)
 node.scrollIntoView(... args)
 node.animate(... args)
+node.requestFullscreen()
+node.cssAll()
 node.matches(selector)
 node.isEqual(node)
 node.isSame(node)
@@ -72,17 +77,48 @@ node.ls.reverse()
 node.ls.sort(cb)
 node.ls.shuffle()
 
-rect.x
-rect.y
-rect.left
-rect.top
-rect.width
-rect.height
+node.vp.x
+node.vp.y
+node.vp.left
+node.vp.top
+node.vp.width
+node.vp.height
 
-scrollRect.maxX
-scrollRect.maxY
+node.abs.x
+node.abs.y
+node.abs.left
+node.abs.top
+node.abs.width
+node.abs.height
 
-offsetRect.parent
+node.rel.parent
+node.rel.x
+node.rel.y
+node.rel.left
+node.rel.top
+node.rel.width
+node.rel.height
+
+node.box.x
+node.box.y
+node.box.left
+node.box.top
+node.box.width
+node.box.height
+
+node.scr.x
+node.scr.y
+node.scr.left
+node.scr.top
+node.scr.width
+node.scr.height
+node.scr.hmax
+node.scr.vmax
+node.scr.tx
+node.scr.ty
+node.scr.to(... args)
+node.scr.by(... args)
+node.scr.intoView(... args)
 
 config.document
 config.name
@@ -126,15 +162,19 @@ iterator.show()
 iterator.hide()
 iterator.toggleDisplay()
 iterator.css(name, value)
+iterator.appendCSS(name, value)
 iterator.removeCSS(name)
+iterator.clearCSS(name)
 iterator.addClass(... tokens)
 iterator.removeClass(... tokens)
 iterator.toggleClass(token, force)
 iterator.replaceClass(oldToken, newToken)
+iterator.clearClasses()
 iterator.classes()
 iterator.attr(name, value)
 iterator.removeAttr(name)
 iterator.toggleAttr(name, force)
+iterator.clearAttrs()
 iterator.text(text)
 iterator.html(html)
 iterator.add(config)

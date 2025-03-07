@@ -5,8 +5,5 @@ releasePointerCapture()
 requestPointerLock()
 
 closest()
-currentCSSZoom
 getClientRects()
 getAnimations()
-computedStyleMap()
-requestFullscreen()
