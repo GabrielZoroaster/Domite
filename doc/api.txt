@@ -21,8 +21,8 @@ node.ls
 node.all
 node.prevAll
 node.nextAll
-node.wr
 node.vr
+node.pr
 node.cr
 node.or
 node.sr
