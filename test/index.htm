@@ -40,7 +40,12 @@
 			node.add({text: 'Секретные техники откладывания дел на потом'});
 			node.add({text: 'Финал, который не даёт ответов на вопросы'});
 			node.add({text: '📌 P.S. Часть из этих глав могла исчезнуть, но нам лень проверять.'});
-			node.ls.forEach(node => node.on('click', () => node.class.toggle('sel')));
+			node.ls.forEach(node => node.on('click', () => {
+				node.class.toggle('sel');
+				node.style.color = 'black';
+				node.prevAll.css('color', 'blue');
+				node.nextAll.css('color', 'red');
+			}));
 			document.body.append(node.tag);
 			Object.assign(window, {ui, ... ui, node});
 		</script>
