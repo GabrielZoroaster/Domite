@@ -21,6 +21,11 @@ node.ls
 node.all
 node.prevAll
 node.nextAll
+node.wr
+node.vr
+node.cr
+node.or
+node.sr
 node.constructor(config)
 node.on(eventType, listener, options)
 node.off(eventType, listener, options)
@@ -66,6 +71,18 @@ node.ls.unshift(... nodes)
 node.ls.reverse()
 node.ls.sort(cb)
 node.ls.shuffle()
+
+rect.x
+rect.y
+rect.left
+rect.top
+rect.width
+rect.height
+
+scrollRect.maxX
+scrollRect.maxY
+
+offsetRect.parent
 
 config.document
 config.name
