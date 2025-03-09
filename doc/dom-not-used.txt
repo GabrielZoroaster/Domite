@@ -3,7 +3,5 @@ hasPointerCapture()
 setPointerCapture()
 releasePointerCapture()
 requestPointerLock()
-
-closest()
 getClientRects()
 getAnimations()

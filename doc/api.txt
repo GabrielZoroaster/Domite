@@ -1,8 +1,13 @@
 
 Node.from(tag)
 Node.hasNode(tag)
+Node.wrap(tag)
 Node.is(node)
 Node.tag(node)
+Node.query(selector)
+Node.queryAll(selector)
+Node.LS(node)
+Node.Attrs(node)
 
 node.tag
 node.tagName
@@ -22,13 +27,11 @@ node.ls
 node.all
 node.prevAll
 node.nextAll
-
 node.vp
 node.abs
 node.rel
 node.box
 node.scr
-
 node.constructor(config)
 node.on(eventType, listener, options)
 node.off(eventType, listener, options)
@@ -51,6 +54,7 @@ node.animate(... args)
 node.requestFullscreen()
 node.cssAll()
 node.matches(selector)
+node.closest(selector)
 node.isEqual(node)
 node.isSame(node)
 node.contains(node)
