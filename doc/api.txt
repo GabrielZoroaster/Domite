@@ -192,3 +192,53 @@ iterator.query(selector)
 iterator.filterClass(token)
 iterator.filterTag(name)
 iterator.filterVisible()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Node.query(selector)
+Node.queryAll(selector)
+
+node.parent
+node.prevNode
+node.nextNode
+node.ls
+node.all
+node.prevAll
+node.nextAll
+node.isEqual(node)
+node.isSame(node)
+node.contains(node)
+node.append(... nodes)
+node.prepend(... nodes)
+node.before(... nodes)
+node.after(... nodes)
+node.add(config)
+node.replace(... nodes)
+
+node.ls.first
+node.ls.last
+node.ls.at(offset)
+node.ls.replace(... nodes)
+node.ls.slice(start, end)
+node.ls.splice(start, deleteCount, ... nodes)
+node.ls.shift()
+node.ls.pop()
+node.ls.push(... nodes)
+node.ls.unshift(... nodes)
+
+iterator.ls
+iterator.all
+iterator.indexOf(value)
+iterator.includes(value)
+iterator.contains(value)
