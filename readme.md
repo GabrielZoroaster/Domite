@@ -184,7 +184,7 @@ Returns the first `Node` within the given `Element` matching the specified tag. 
 - **null**: If no matching node is found.
 
 ### Node.hasNode()
-#### `Node.hasNode(tag)`
+**Node.hasNode(tag)**
 Checks if there is a `Node` within the given `Element` matching the specified tag. Returns `true` if a matching node is found, and `false` otherwise.
 #### Parameters:
 - `tag` (**Element**): The element in which to search for the node.
