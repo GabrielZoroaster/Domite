@@ -127,8 +127,8 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [iterator.toArray()](#iteratortoArray)
 	- [iterator.count()](#iteratorcount)
 	- [iterator.depth()](#iteratordepth)
-	- [iterator.texts()](#iteratortextstext)
-	- [iterator.htmls()](#iteratorhtmlshtml)
+	- [iterator.texts()](#iteratortexts)
+	- [iterator.htmls()](#iteratorhtmls)
 	- [iterator.on()](#iteratoroneventType-listener-options)
 	- [iterator.off()](#iteratoroffeventType-listener-options)
 	- [iterator.once()](#iteratoronceeventType-listener-options)
@@ -1331,6 +1331,39 @@ console.log(node.ls[2].text); // Logs the remaining node
 ```
 
 ## class NodeIterator
+**Description:**  
+`NodeIterator` is a class that provides an iterator for a sequence of nodes, allowing you to traverse them one by one and perform various operations on each. It helps to work with the DOM tree using methods similar to array iteration, such as `next()`, `prev()`, `slice()`, `splice()`, and others.
+
+If the found node is not an instance of `Node` or its subclass, it is automatically wrapped into a new `Node` object with the parameter `{ tag: element }`.
+---
+### Where it's used:
+- **Creation:**
+  - `Node.query(selector)` — finds and returns the first element that matches the selector.
+  - `Node.queryAll(selector)` — finds and returns all elements that match the selector.
+  - `NodeIterator.from(nodes)` — creates an iterator from the given nodes.
+  - `NodeIterator.of(...nodes)` — creates an iterator from the given nodes.
+  - `NodeIterator.wrap(...elements)` — wraps the provided DOM elements into an iterator.
+- **From a node:**
+  - `node.ls` — returns the child nodes of the current node.
+  - `node.all` — returns the current node and all its descendants.
+  - `node.parentAll` — returns all parent nodes of the current node.
+  - `node.prevAll` — returns all previous nodes.
+  - `node.nextAll` — returns all following nodes.
+- **From child elements:**
+  - `node.ls.slice(start, end)` — returns a new iterator with child nodes in the specified range.
+  - `node.ls.splice(start, deleteCount, ...nodes)` — modifies the list of child nodes by adding or removing nodes.
+- **From another node iterator:**
+  - `iter.ls` — child nodes of the current iterator.
+  - `iter.all` — all nodes of the iterator.
+  - `iter.filter(cb)` — filters nodes based on the provided function.
+  - `iter.drop(limit)` — skips the specified number of nodes.
+  - `iter.take(limit)` — takes the specified number of nodes.
+  - `iter.filterClass(token)` — filters nodes by class.
+  - `iter.filterTag(name)` — filters nodes by tag.
+  - `iter.filterVisible()` — filters only visible nodes.
+
+---
+
 ### NodeIterator.from()
 ### NodeIterator.of()
 ### NodeIterator.wrap()
@@ -1349,8 +1382,8 @@ console.log(node.ls[2].text); // Logs the remaining node
 ### iterator.toArray()
 ### iterator.count()
 ### iterator.depth()
-### iterator.texts(text)
-### iterator.htmls(html)
+### iterator.texts()
+### iterator.htmls()
 ### iterator.on(eventType, listener, options)
 ### iterator.off(eventType, listener, options)
 ### iterator.once(eventType, listener, options)
