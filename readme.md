@@ -223,7 +223,7 @@ Constructor for the class, initializing the object with a set of parameters to c
 - `once` (**Object**): Events with `once` binding. Defines events that will trigger only once.
 - `text` (**string**): The text content for the element.
 - `html` (**string**): The HTML content for the element.
-- `ls` (**any**): A property for storing additional data or values.
+- `ls` (**any**): Children Nodes. see [node.ls](#nodels)
 #### Example:
 ```javascript
 const myElement = new Node({
@@ -374,11 +374,80 @@ console.log(node.css.get("border"));  // Logs: "1px solid black"
 ```
 
 ### node.dataset
+
+Gets or sets custom data attributes.
+#### Type:
+- **Get:** `DOMStringMap` – A map of data attributes (`data-*`).
+- **Set:** Accepts an object where keys are attribute names (without `data-` prefix) and values are strings.
+#### Example:
+```javascript
+node.dataset.id = "123";
+console.log(node.dataset.id); // "123"
+
+node.dataset = { user: "admin", theme: "dark" };
+console.log(node.dataset.theme); // "dark"
+```
+
 ### node.attrs
+Gets or sets element attributes.
+#### Type:
+- **Get:** [`AttributeMap`](#class-AttributeMap) – A map of all attributes on the element.
+- **Set:** Accepts an object where keys are attribute names and values are their corresponding values.
+
+#### Example:
+```javascript
+node.attrs.id = "main";
+console.log(node.attrs.id); // "main"
+
+node.attrs = { role: "button", tabindex: "0" };
+console.log(node.attrs.role); // "button"
+
 ### node.text
+Gets or sets text content of node
+
 ### node.html
+Gets or sets html content of node
+
 ### node.ls
+Gets or sets the child node list (NodeLS).
+#### Type:
+- **Get:** `NodeLS` – A list of child nodes, represented by `NodeLS`.
+- **Set:** Accepts:
+  - **Iterator** – An iterable of child nodes.
+  - **`Node`** – A single child node to be added.
+  - **`Element`** – A single DOM element that can be wrapped into a `Node`.
+  - **Object** – An object that can be used to create a new `Node` (via `new Node(object)`).
+#### Example:
+```javascript
+// Get the list of child nodes
+let childNodes = node.ls;
+
+// Set a single child node
+node.ls = new Node({ name: "span" });
+
+// Set multiple child nodes
+node.ls = [new Node({ name: "div" }), new Node({ name: "p" })];
+
+// Set from a DOM element
+node.ls = document.createElement("section");
+```
+
 ### node.all
+Gets an iterator for all descendants of the node, including the node itself.
+#### Type:
+- **Get:** `NodeIterator` – An iterator that traverses the node and all its descendants.
+#### Description:
+- The iterator includes the node itself and all its descendants (children, grandchildren, etc.).
+- You can use it to loop over the node and all nested elements.
+#### Example:
+```javascript
+let iterator = node.all;
+
+for (let descendant of iterator) {
+  console.log(descendant);  // Logs each node in the hierarchy
+}
+```
+
 ### node.prevAll
 ### node.nextAll
 ### node.vp
@@ -419,17 +488,33 @@ console.log(node.css.get("border"));  // Logs: "1px solid black"
 ### node.remove()
 ### node.replace(... nodes)
 
-## class AttriibuteMap
-### node.attrs
+## class AttriibuteMaps
 ### node.attrs.length
+Gets count of attrubutes
+
 ### node.attrs.at(offset)
+Gets attrubutes value by position
+
 ### node.attrs.has(name)
+Check is attribute exists
+
 ### node.attrs.get(name)
+Gets attrubute value
+
 ### node.attrs.set(name, value)
+Sets attrubute value
+
 ### node.attrs.remove(name)
+Remove attribute
+
 ### node.attrs.toggle(name, force)
+Toggle attribute
+
 ### node.attrs.clear()
+Clear all attributes in node
+
 ### node.attrs.setAll(attrs)
+Replace all attributes in node. see [node.attrs](#nodeattrs)
 
 ## class NodeLS
 ### node.ls.length
