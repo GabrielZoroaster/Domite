@@ -226,6 +226,7 @@ const myElement = new Node({
     on: { click(){ console.log("Clicked!") }},
     once: { mousemove(){ console.log("Moved!") }},
 });
+```
 
 ### node.tag
 ### node.tagName
