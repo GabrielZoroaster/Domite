@@ -168,6 +168,7 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 ## Usage
 
 ```js
+	import {Node} from './path-to-lib/node.js'
 	// Menu
 	const node = new Node({name: 'nav'}); // create dom element
 	node.add({name: 'a', text: 'Link 1'}); // add child 1
@@ -205,12 +206,185 @@ Checks if there is a `Node` within the given `Element` matching the specified ta
 - **boolean**: `true` if a matching node is found, `false` otherwise.
 
 ### Node.wrap(tag)
+**Parameters:**
+- `tag` (String or Element): The tag name or an element to wrap.
+
+**Returns:**
+- `Node`: A new `Node` instance that wraps the provided tag or element.
+
+**Description:**
+The `wrap` method creates a new `Node` instance that wraps around an existing element or tag. If a tag name is provided, it creates a new element with that tag and wraps it. If an element is passed, the method wraps it into a `Node` instance.
+
+**Example:**
+```javascript
+// Wrap an existing DOM element
+const element = document.createElement('div');
+const node = Node.wrap(element);
+console.log(node instanceof Node); // true
+
+// Wrap a new tag
+const nodeFromTag = Node.wrap('span');
+console.log(nodeFromTag.tag); // 'span'
+```
+
 ### Node.is(node)
+**Parameters:**
+- `node` (Node or Element): The node or element to check.
+
+**Returns:**
+- `Boolean`: Returns `true` if the provided `node` is an instance of `Node`. Returns `false` otherwise.
+
 ### Node.tag(node)
+**Parameters:**
+- `node` (Node): The `Node` instance to retrieve the tag element from.
+
+**Returns:**
+- `Element`: Returns the `Element` associated with the `Node` if it exists.
+
+**Throws:**
+- `Error`: Throws an error if the provided `node` does not have a corresponding `Element`.
+
+**Description:**
+The `tag` method retrieves the underlying `Element` for a given `Node` instance. If the provided `Node` does not have an associated `Element`, it will throw an error.
+
 ### Node.query(selector)
+**Parameters:**
+- `selector` (string): The CSS selector to match the node.
+
+**Returns:**
+- `Node`: Returns the first `Node` that matches the selector. If no match is found, it returns `null`.
+
+**Description:**
+This static method allows you to search for the first node matching the given CSS selector. If the element is found but is not already wrapped in a `Node`, it will be automatically wrapped.
+
+**Example:**
+```javascript
+// Assume we have the following HTML structure
+// <div id="my-node">
+//   <span class="my-class">Hello</span>
+// </div>
+
+// Static method usage
+const matchedNode = Node.query('#my-node');
+console.log(matchedNode); // Node instance wrapping <div id="my-node">
+
+// Query for a non-existing element
+const noMatchNode = Node.query('.non-existing');
+console.log(noMatchNode); // null
+
+// Wrapping a found element
+const spanNode = Node.query('.my-class');
+console.log(spanNode instanceof Node); // true
+```
+
 ### Node.queryAll(selector)
+**Parameters:**
+- `selector` (string): The CSS selector to match the nodes.
+**Returns:**
+- `NodeIterator`: Returns a `NodeIterator` containing all nodes that match the selector. If no matches are found, it returns an empty iterator.
+**Description:**
+This static method searches for all nodes that match the given CSS selector. If the elements are not already wrapped in `Node` objects, they will be automatically wrapped. It returns an iterator that allows you to traverse through all the matching nodes.
+
+**Example:**
+```javascript
+// Assume we have the following HTML structure
+// <div id="container">
+//   <span class="item">Item 1</span>
+//   <span class="item">Item 2</span>
+//   <div class="item">Item 3</div>
+// </div>
+
+// Static method usage
+const nodes = Node.queryAll('.item');
+console.log(nodes instanceof NodeIterator); // true
+nodes.forEach(node => console.log(node)); // Logs each matching node
+
+// Query for a non-existing element
+const noMatchNodes = Node.queryAll('.non-existing');
+console.log(noMatchNodes.count()); // 0, no nodes matched
+```
+
 ### Node.LS(node)
+**Parameters:**
+- `node` (Node): The `Node` instance whose child nodes will be accessed.
+**Returns:**
+- `NodeLS`: A custom iterator for the child nodes (`ls`) of the provided `node`. This method can be overridden in subclasses to return a specialized iterator.
+
+**Description:**
+This static method is used to retrieve an iterator for the child nodes of a `Node`. However, this method is intended to be overridden in subclasses to provide a custom implementation of how child nodes are retrieved or handled. For example, a subclass can return a specialized iterator that adds extra functionality or different behaviors when iterating over child nodes.
+
+**Usage Example:**
+```javascript
+
+class MyNodeLS extends NodeIterator {
+
+  constructor(node) {
+    super(node);
+    // Custom behavior for MyNodeLS
+  }
+
+  // Additional custom methods for MyNodeLS
+
+  colorize(color){
+  	this.css('color', color);
+  }
+
+  log(){
+  	this.forEach(child => console.log(child.text));
+  }
+}
+
+class MyNode extends Node {
+  // Override LS to return a custom NodeIterator
+  static LS(node) {
+    return new MyNodeLS(node); // Custom iterator for MyNode
+  }
+}
+
+const myNode = new MyNode();
+myNode.append({ text: 'child 1' }, { text: 'child 2' });
+
+const node = MyNode.LS(myNode);
+console.log(node.ls instanceof MyNodeLS); // true
+node.ls.log(); // Logs "child 1", "child 2"
+node.ls.colorize('red'); // Colorize "child 1", "child 2
+```
+
 ### Node.Attrs(node)
+**Parameters:**
+- `node` (Node): The `Node` instance whose attributes will be accessed.
+**Returns:**
+- `NodeIterator`: A custom iterator for the attributes of the provided `node`. This method can be overridden in subclasses to return a specialized iterator for attributes.
+**Description:**
+This static method is used to retrieve an iterator for the attributes of a `Node`. Like `Node.LS`, this method is intended to be overridden in subclasses to provide a custom implementation of how attributes are retrieved or handled. Subclasses can return a specialized iterator that adds extra functionality or different behaviors when iterating over attributes.
+**Usage Example:**
+```javascript
+class MyNodeAttrs extends NodeIterator {
+  constructor(node) {
+    super(node);
+    // Custom behavior for MyNodeAttrs
+  }
+
+  // Additional custom methods for MyNodeAttrs
+
+  set title(title){
+  	this.set('title', title);
+  }
+}
+
+class MyNode extends Node {
+  // Override Attrs to return a custom NodeIterator for attributes
+  static Attrs(node) {
+    return new MyNodeAttrs(node); // Custom iterator for MyNode attributes
+  }
+}
+
+const myNode = new MyNode();
+myNode.attrs.set('data-custom', 'value');
+myNode.attrs.title = 'Sample Node';
+
+// Logs "data-custom value", "title Sample Node"
+```
 
 ### new Node(config)
 Constructor for the class, initializing the object with a set of parameters to create and configure a DOM element.
@@ -485,12 +659,182 @@ Gets an iterator for all following sibling nodes.
 ### node.rel
 ### node.box
 ### node.scr
+
 ### node.on(eventType, listener, options)
+**Parameters:**
+- `eventType` (string): The type of the event to listen for (e.g., `'click'`, `'mouseenter'`, etc.).
+- `listener` (function): The function to be called when the event is triggered.
+- `options` (optional, object): An optional object that specifies options for the event listener (e.g., `{ capture: true, once: true }`).
+**Returns:**
+- `this` (Node): The instance of the `Node` object for method chaining.
+**Description:**
+The `Node.on` method is a wrapper around the native `addEventListener` method that allows you to register event listeners on a `Node` instance. This method makes it easy to attach event listeners to nodes while supporting all the options that `addEventListener` provides.
+
+It is commonly used for handling events like clicks, mouse movements, key presses, etc.
+
+For further reference on the underlying functionality of `addEventListener`, you can check the [MDN documentation for `addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
+
+**Usage Example:**
+```javascript
+const node = new Node();
+
+// Adding a click event listener
+node.on('click', function() {
+  console.log('Node clicked!');
+});
+
+// Adding an event listener with options (e.g., capturing phase)
+node.on('click', function() {
+  console.log('Node clicked in capture phase!');
+}, { capture: true });
+
+// Adding an event listener that will fire only once
+node.on('click', function() {
+  console.log('This will only fire once');
+}, { once: true });
+```
 ### node.off(eventType, listener, options)
+**Parameters:**
+- `eventType` (string): The type of the event to remove the listener from (e.g., `'click'`, `'mouseenter'`, etc.).
+- `listener` (function): The function that was originally passed to the `on` method to handle the event.
+- `options` (optional, object): An optional object that specifies options for the event listener (e.g., `{ capture: true, once: true }`). If the listener was added with specific options, the same options must be passed here to successfully remove the listener.
+
+**Returns:**
+- `this` (Node): The instance of the `Node` object for method chaining.
+
+**Description:**
+The `Node.off` method is a wrapper around the native `removeEventListener` method that allows you to remove event listeners from a `Node` instance. It is used when you want to stop listening to an event on a node.
+
+It can be helpful to use this method for cleaning up event listeners to prevent memory leaks, especially when you no longer need to respond to a particular event.
+
+For further reference on the underlying functionality of `removeEventListener`, you can check the [MDN documentation for `removeEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener).
+
+**Usage Example:**
+```javascript
+const node = new Node();
+
+// Define a listener function
+function onClick() {
+  console.log('Node clicked!');
+}
+
+// Add the event listener
+node.on('click', onClick);
+
+// Remove the event listener
+node.off('click', onClick);
+```
+
 ### node.once(eventType, listener, options)
+**Parameters:**
+- `eventType` (string): The type of the event to listen for (e.g., `'click'`, `'mouseenter'`, etc.).
+- `listener` (function): The function to execute when the event is triggered. This function will only be called once for the specified event.
+- `options` (optional, object): An optional object specifying options for the event listener (e.g., `{ capture: true, once: true }`). The `once: true` option ensures the listener is called at most once after being added.
+
+**Returns:**
+- `this` (Node): The instance of the `Node` object for method chaining.
+
+**Description:**
+The `Node.once` method is a wrapper around `addEventListener` with the `once` option. It is used to attach an event listener that will automatically remove itself after being triggered once. This is useful for one-time event handling where you want to listen to an event only once and then stop listening to it.
+
+This method is similar to the native `addEventListener` but simplifies one-time event handling by automatically removing the listener after it's triggered once.
+
+For more details, refer to the [MDN documentation for `addEventListener`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
+
+**Usage Example:**
+```javascript
+const node = new Node();
+
+// Define a listener function
+function onClickOnce() {
+  console.log('Node clicked once!');
+}
+
+// Add the event listener that will trigger only once
+node.once('click', onClickOnce);
+
+// If clicked, the listener will be called and then automatically removed
+```
+
 ### node.emit(eventType)
+**Parameters:**
+- `eventType` (string): The type of the event to dispatch (e.g., `'click'`, `'mouseenter'`, etc.).
+
+**Returns:**
+- `this` (Node): The instance of the `Node` object for method chaining.
+
+**Description:**
+The `Node.emit` method is a wrapper around `dispatchEvent`. It dispatches an event of the specified type to the node, triggering any event listeners that are attached to that event. This method is useful for manually triggering events in the node, either programmatically or as part of an event-handling mechanism.
+
+This method creates a new `Event` object of the specified `eventType` and uses `dispatchEvent` to propagate the event to any registered listeners.
+
+For more details, refer to the [MDN documentation for `dispatchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent).
+
 ### node.dispatch(event)
+**Parameters:**
+- `event` (Event): The event object to dispatch to the node. This can be any `Event` object (such as `MouseEvent`, `CustomEvent`, etc.) that you want to trigger manually.
+
+**Returns:**
+- `this` (Node): The instance of the `Node` object for method chaining.
+
+**Description:**
+The `Node.dispatch` method allows you to dispatch an already created `Event` object directly on the node. Unlike `emit`, which creates a new event of a specific type, `dispatch` allows you to manually trigger an event that has been previously created or customized.
+
+It is useful when you want to dispatch complex or custom events that you have created, rather than relying on a simple event type string.
+
+For more details, refer to the [MDN documentation for `dispatchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent).
+
+**Usage Example:**
+```javascript
+const node = new Node();
+
+// Create a custom event
+const customEvent = new Event('customEvent');
+
+// Add a listener for the event
+node.on('customEvent', function() {
+  console.log('Custom event dispatched!');
+});
+
+// Dispatch the custom event
+node.dispatch(customEvent);  // This will log "Custom event dispatched!"
+```
+
 ### node.observe(options, listener)
+**Parameters:**
+- `options` (Object): An object that specifies the types of mutations to observe. The options typically include the following properties:
+  - `childList` (Boolean): Set to `true` to observe changes to the list of child nodes.
+  - `attributes` (Boolean): Set to `true` to observe changes to the attributes of the node.
+  - `subtree` (Boolean): Set to `true` to observe changes to the subtree of the node.
+  - `attributeFilter` (Array): An array of attribute names to observe. If specified, only changes to these attributes will be observed.
+  - `characterData` (Boolean): Set to `true` to observe changes to the text content of the node.
+  - `attributeOldValue` (Boolean): Set to `true` to observe the previous value of the changed attribute.
+  - `characterDataOldValue` (Boolean): Set to `true` to observe the previous value of the changed text content.
+  
+- `listener` (Function): The callback function that will be executed when a mutation is observed. The function receives a `MutationRecord` object, which provides information about the mutation.
+
+**Returns:**
+- `this` (Node): The instance of the `Node` object for method chaining.
+
+**Description:**
+The `Node.observe` method is a wrapper around `MutationObserver.observe`. It allows you to observe changes to a node's attributes, child nodes, or subtree, and receive notifications through a callback function whenever a specified mutation occurs. This is helpful for tracking dynamic changes in the DOM without manually checking for modifications.
+
+For more details, refer to the [MDN documentation for `MutationObserver`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver).
+
+**Usage Example:**
+```javascript
+const node = new Node();
+
+// Add a MutationObserver to watch for attribute changes
+node.observe({ attributes: true, attributeFilter: ['class'] }, function(mutations) {
+  mutations.forEach(mutation => {
+    console.log(`Attribute ${mutation.attributeName} changed!`);
+  });
+});
+
+// Trigger an attribute change
+node.attr('class', 'new-class'); // This will log "Attribute class changed!"
+```
 
 ### node.show()
 Makes the node visible by removing the `hidden` attribute and setting relevant styles.
@@ -922,7 +1266,7 @@ The `NodeLS` class is a specialized iterator for accessing child nodes of a `Nod
 #### Inheritance:
 - Inherits from: `NodeIterator`
 #### Constructor:
-`Node.NodeLS(node);`
+`Node.LS(node);`
 - **`node`**: The parent `Node` from which the child nodes will be iterated.
 #### Purpose:
 The `NodeLS` class is used for traversing and manipulating the child nodes of a parent `Node`. It provides an iterator that allows you to access all the child nodes of a given parent node.
@@ -1868,9 +2212,44 @@ console.log([...node.ls.filter(n => n.tag === 'p').htmls()]); // ["Hello <span>W
 ```
 
 ### iterator.on(eventType, listener, options)
+Adds an event listener to each element in the iterator. The listener will be invoked whenever the event type is triggered on the element.  
+- **Parameters**:
+  - `eventType`: The type of the event to listen for (e.g., `'click'`).
+  - `listener`: The function to execute when the event is triggered.
+  - `options`: Optional options for the event listener, such as `{capture: true}`.
+  
+Corresponds to [`node.on(eventType, listener, options)`](#nodeoneventType-listener-options).
+
+---
+
 ### iterator.off(eventType, listener, options)
+Removes an event listener from each element in the iterator. The listener will no longer be triggered when the event occurs on the element.  
+- **Parameters**:
+  - `eventType`: The type of the event to stop listening for.
+  - `listener`: The function that was previously added to the event.
+  - `options`: Optional options for the event listener.
+
+Corresponds to [`node.off(eventType, listener, options)`](#nodeoffeventType-listener-options).
+
+---
+
 ### iterator.once(eventType, listener, options)
+Adds an event listener to each element in the iterator, but it will only be triggered once. After the first execution, the listener is automatically removed.  
+- **Parameters**:
+  - `eventType`: The type of the event to listen for.
+  - `listener`: The function to execute when the event is triggered.
+  - `options`: Optional options for the event listener.
+
+Corresponds to [`node.once(eventType, listener, options)`](#nodeonceeventType-listener-options).
+
+---
+
 ### iterator.emit(eventType)
+Triggers the specified event on each element in the iterator, invoking any listeners that have been added for that event type.  
+- **Parameters**:
+  - `eventType`: The type of the event to emit (e.g., `'click'`).
+  
+Corresponds to [`node.emit(eventType)`](#nodeemiteventType).
 
 ### iterator.show()
 The `iterator.show()` method is used to reveal all elements in the iterator by setting their `hidden` attribute to `false`.
