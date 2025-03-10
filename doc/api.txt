@@ -66,6 +66,17 @@ node.add(config)
 node.remove()
 node.replace(... nodes)
 
+node.attrs
+node.attrs.length
+node.attrs.at(offset)
+node.attrs.has(name)
+node.attrs.get(name)
+node.attrs.set(name, value)
+node.attrs.remove(name)
+node.attrs.toggle(name, force)
+node.attrs.clear()
+node.attrs.setAll(attrs)
+
 NodeIterator.from(iterable)
 NodeIterator.of(... nodes)
 NodeIterator.wrap(tags)

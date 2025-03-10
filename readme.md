@@ -78,6 +78,18 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [node.remove()](#noderemove)
 	- [node.replace()](#nodereplace-nodes)
 
+- [class AttributeMap](#class-attributemap)
+	- [node.attrs](#nodeattrs)
+	- [node.attrs.length](#nodeattrslength)
+	- [node.attrs.at(offset)](#nodeattrsatoffset)
+	- [node.attrs.has(name)](#nodeattrshasname)
+	- [node.attrs.get(name)](#nodeattrsgetname)
+	- [node.attrs.set(name, value)](#nodeattrssetname-value)
+	- [node.attrs.remove(name)](#nodeattrsremovename)
+	- [node.attrs.toggle(name, force)](#nodeattrstogglename-force)
+	- [node.attrs.clear()](#nodeattrsclear)
+	- [node.attrs.setAll(attrs)](#nodeattrssetAllattrs)
+
 - [class NodeLS](#class-nodels)
 	- [node.ls.length](#nodelslength)
 	- [node.ls.first](#nodelsfirst)
@@ -406,6 +418,17 @@ console.log(node.css.get("border"));  // Logs: "1px solid black"
 ### node.add(config)
 ### node.remove()
 ### node.replace(... nodes)
+
+### node.attrs
+### node.attrs.length
+### node.attrs.at(offset)
+### node.attrs.has(name)
+### node.attrs.get(name)
+### node.attrs.set(name, value)
+### node.attrs.remove(name)
+### node.attrs.toggle(name, force)
+### node.attrs.clear()
+### node.attrs.setAll(attrs)
 
 ## class NodeLS
 ### node.ls.length
