@@ -107,6 +107,8 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [node.ls.sort()](#nodelssortcb)
 	- [node.ls.reverse()](#nodelsreverse)
 	- [node.ls.shuffle()](#nodelsshuffle)
+	- [node.ls.query(selector)](#nodelsqueryselector)
+	- [node.ls.queryAll(selector)](#nodelsqueryAllselector)
 	
 - [class NodeIterator](#class-nodeiterator)
 	- [NodeIterator.from()](#nodeiteratorfrom-nodes)
@@ -1332,6 +1334,50 @@ console.log(node.ls[2].text); // Logs the remaining node
 **Description:**  
 `NodeIterator` is a class that provides an iterator for a sequence of nodes, allowing you to traverse them one by one and perform various operations on each. It helps to work with the DOM tree using methods similar to array iteration, such as `slice()`, `splice()`, and others.
 
+### node.ls.query(selector)
+**Parameters:**
+- `selector` (String): A CSS selector used to find a matching descendant element.
+**Returns:**
+- `Node | null`: The first descendant element of the node that matches the specified selector, or `null` if no match is found.
+**Description:**
+The `query` method searches through all descendants of the node (not just direct children) and returns the first element that matches the specified CSS selector. It behaves similarly to `querySelector`, but it operates on all levels of descendants, not just immediate children.
+**Example:**
+```javascript
+const node = new Node();
+node.append({text: 'apple'});
+node.ls.append({text: 'banana'}); // A child of the first child
+node.ls.ls.append({text: 'cherry'}); // A child of the second child
+
+const firstMatch = node.ls.query('.banana');
+console.log(firstMatch.text); // Outputs: 'banana'
+```
+
+### node.ls.queryAll(selector)
+### `node.ls.queryAll(selector)`
+
+**Parameters:**
+- `selector` (String): A CSS selector used to find matching descendant elements.
+
+**Returns:**
+- `NodeIterator`: An iterator containing all descendant elements of the node that match the specified selector. If no matches are found, an empty iterator is returned.
+
+**Description:**
+The `queryAll` method searches through all descendants of the node (not just direct children) and returns an iterator for all elements that match the specified CSS selector. It behaves similarly to `querySelectorAll`, but it operates on all levels of descendants, not just immediate children.
+
+**Example:**
+```javascript
+const node = new Node();
+node.add({text: 'apple'});
+node.ls.add({text: 'banana'});
+node.ls.ls.add({text: 'cherry'});
+node.ls.ls.add({text: 'date'});
+
+const matchingElements = node.ls.queryAll('.banana, .cherry');
+matchingElements.toArray().forEach(element => {
+  console.log(element.text); // Outputs: 'banana', 'cherry'
+});
+```
+
 If the found node is not an instance of `Node` or its subclass, it is automatically wrapped into a new `Node` object with the parameter `{ tag: element }`.
 ---
 ### Where it's used:
@@ -1349,13 +1395,14 @@ If the found node is not an instance of `Node` or its subclass, it is automatica
 - **From child elements:**
   - `node.ls.slice(start, end)` — returns a new iterator with child nodes in the specified range.
   - `node.ls.splice(start, deleteCount, ...nodes)` — modifies the list of child nodes by adding or removing nodes.
+  - `node.ls.queryAll(selector)` — finds in children and returns all nodes that match the selector
 - **From another node iterator:**
   - `iter.ls` — child nodes of the current iterator.
   - `iter.all` — all nodes of the iterator.
   - `iter.filter(cb)` — filters nodes based on the provided function.
   - `iter.drop(limit)` — skips the specified number of nodes.
   - `iter.take(limit)` — takes the specified number of nodes.
-  - `iter.queryAll(selector)` — filters nodes that match the selector.
+  - `iter.matchAll(selector)` — filters nodes that match the selector.
   - `iter.filterClass(token)` — filters nodes by class.
   - `iter.filterTag(name)` — filters nodes by tag.
   - `iter.filterVisible()` — filters only visible nodes.
