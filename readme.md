@@ -104,8 +104,8 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [node.ls.pop()](#nodelspop)
 	- [node.ls.push()](#nodelspush-nodes)
 	- [node.ls.unshift()](#nodelsunshift-nodes)
-	- [node.ls.reverse()](#nodelsreverse)
 	- [node.ls.sort()](#nodelssortcb)
+	- [node.ls.reverse()](#nodelsreverse)
 	- [node.ls.shuffle()](#nodelsshuffle)
 	
 - [class NodeIterator](#class-nodeiterator)
@@ -549,8 +549,6 @@ Removes focus from the node.
 
 ### node.scroll()
 A shorthand for the native [`Element.scroll()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll) method.
-#### Returns:
-- **`void`** – This method does not return any value.
 #### Description:
 - Scrolls the node to the specified position.
 - Equivalent to calling `node.scrollTo(x, y)` where `x` and `y` are the horizontal and vertical scroll positions, respectively.
@@ -565,8 +563,6 @@ Scrolls the node by a specified amount relative to its current scroll position.
 #### Parameters:
 - **`x`**: The horizontal scroll amount (in pixels).
 - **`y`**: The vertical scroll amount (in pixels).
-#### Returns:
-- **`void`** – This method does not return any value.
 #### Description:
 - Scrolls the node by the given `x` and `y` values, relative to its current position.
 - This is similar to the native [`Element.scrollBy()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollBy) method.
@@ -576,8 +572,6 @@ Scrolls the node to a specific position.
 #### Parameters:
 - **`x`**: The horizontal scroll position (in pixels).
 - **`y`**: The vertical scroll position (in pixels).
-#### Returns:
-- **`void`** – This method does not return any value.
 #### Description:
 - Scrolls the node to the exact `x` and `y` coordinates.
 - Equivalent to the native [`Element.scrollTo()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo) method, which scrolls to the specified position within the element.
@@ -599,8 +593,6 @@ Scrolls the node into the visible area of the browser window.
     - `"center"` – aligns to the center of the window.
     - `"end"` – aligns to the right of the window.
     - `"nearest"` – aligns based on the nearest edge.
-#### Returns:
-- **`void`** – This method does not return any value.
 #### Description:
 - Scrolls the node into view, ensuring it is fully or partially visible within the viewport.
 - Equivalent to the native [`Element.scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method.
@@ -787,8 +779,6 @@ console.log(wrappedNode.contains(childNode)); // true, as parentNode contains ch
 Appends one or more nodes or objects (which will be converted into nodes) as children to the current node.
 #### Parameters:
 - **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
-#### Returns:
-- **`void`** – This method does not return any value.
 #### Description:
 - This method appends the provided nodes, elements, or objects (that are converted to `Node` instances) as children of the current node.
 - Multiple nodes or elements can be appended in the order they are provided.
@@ -813,15 +803,10 @@ console.log(wrappedNode.tag.childNodes); // [<p>, <span>, <a>]
 Prepends one or more nodes or objects (which will be converted into nodes) as children to the current node, inserting them at the beginning of the node's child list.
 #### Parameters:
 - **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
-#### Returns:
-- **`void`** – This method does not return any value.
-
 ### node.before(... nodes)
 Inserts one or more nodes or objects (which will be converted into nodes) before the current node, as siblings.
 #### Parameters:
 - **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
-#### Returns:
-- **`void`** – This method does not return any value.
 #### Description:
 - This method inserts the provided nodes, elements, or objects (that are converted to `Node` instances) before the current node in the DOM tree, as siblings.
 - Multiple nodes or elements can be inserted in the order they are provided.
@@ -831,8 +816,6 @@ Inserts one or more nodes or objects (which will be converted into nodes) before
 Inserts one or more nodes or objects (which will be converted into nodes) after the current node, as siblings.
 #### Parameters:
 - **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
-#### Returns:
-- **`void`** – This method does not return any value.
 #### Description:
 - This method inserts the provided nodes, elements, or objects (that are converted to `Node` instances) after the current node in the DOM tree, as siblings.
 - Multiple nodes or elements can be inserted in the order they are provided.
@@ -842,8 +825,6 @@ Inserts one or more nodes or objects (which will be converted into nodes) after 
 Replaces the current node with one or more nodes or objects (which will be converted into nodes).
 #### Parameters:
 - **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
-#### Returns:
-- **`void`** – This method does not return any value.
 #### Description:
 - This method replaces the current node with the provided nodes, elements, or objects (which are converted to `Node` instances).
 - Multiple nodes or elements can be passed and will replace the current node in the order they are provided.
@@ -853,17 +834,15 @@ Replaces the current node with one or more nodes or objects (which will be conve
 Adds a configuration or set of settings to the current node, modifying its properties or behavior.
 #### Parameters:
 - **`config`**: An `Object` containing configuration settings or properties to be added to the node. The structure of the `config` object may vary depending on the specific properties you wish to set for the node (e.g., attributes, styles, event listeners).
-#### Returns:
-- **`void`** – This method does not return any value.
 #### Description:
 - This method allows you to modify the node by passing a configuration object that can set various properties such as `class`, `style`, `attrs`, `text`, `html`, and more.
 - It provides a flexible way to dynamically apply a set of settings to the node in one call.
 - If `config` contains a property like `class`, it will add or modify the class of the node. Similarly, other properties like `style`, `attrs`, or event listeners can be applied based on the content of the `config`.
+#### Returns:
+- **`Node`**: The method returns the newly created or modified node based on the provided configuration.
 #### Example:
-
 ```javascript
 const parentNode = new Node();
-const childNode = new Node({ name: 'p' });
 
 const config = {
     class: 'highlighted',         // Add class to the node
@@ -874,8 +853,35 @@ const config = {
 };
 
 childNode.add(config);  // Apply the configuration to the node
-parentNode.add(childNode);  // Add the node to the parent
 console.log(parentNode.ls);  // Check if the node has been modified
+```
+#### Purpose:
+The `node.add(config)` method provides a way to add new children or modify the current node with customizable behavior based on the provided configuration. By using a configuration object, this method enables the creation of more complex node structures dynamically.
+```js
+class Menu extends Node {
+
+	constructor(){
+		super({name: 'nav'});
+	}
+
+	add(title, href) {
+		return super.add(new Link(title, href));  // Call the original `add()` method
+	}
+}
+
+class Link extends Node {
+
+	constructor(title, href){
+		super({name: 'a', text: title, attrs: {href}});
+	}
+}
+
+// Creating a new custom node
+const menu = new Menu();
+const link = customNode.add('Some Title', '/some/url');
+
+console.log(menu.html);
+// Returns <nav><a href="/some/url">Some Title</a></nav>
 ```
 
 ### node.remove()
@@ -910,21 +916,419 @@ Clear all attributes in node
 Replace all attributes in node. see [node.attrs](#nodeattrs)
 
 ## class NodeLS
+The `NodeLS` class is a specialized iterator for accessing child nodes of a `Node`. It is automatically created when you access the `ls` property of a `Node` instance. The class is designed to be extended in child classes by overriding the static `NodeLS` method.
+#### Inheritance:
+- Inherits from: `NodeIterator`
+#### Constructor:
+`Node.NodeLS(node);`
+- **`node`**: The parent `Node` from which the child nodes will be iterated.
+#### Purpose:
+The `NodeLS` class is used for traversing and manipulating the child nodes of a parent `Node`. It provides an iterator that allows you to access all the child nodes of a given parent node.
+#### How it works:
+The `NodeLS` class is automatically created when accessing the ls property of a `Node`. The class is designed to be extended in child classes via the static `NodeLS` method, enabling customization of the iteration behavior.
+#### Extending `NodeLS`:
+To extend the `NodeLS` class, you can override the static `NodeLS` method in your subclass. This allows you to customize the behavior of the child node iterator.
+#### Example of Extending:
+```js
+// Custom subclass of Node
+class CustomNode extends Node {
+  static NodeLS(node) {
+    // Override default NodeLS behavior
+    return new CustomNodeLS(node);
+  }
+}
+
+// Custom NodeLS iterator
+class CustomNodeLS extends NodeLS {
+  constructor(node) {
+    super(node);
+  }
+  
+  // Custom method for the iterator
+  customMethod() {
+    console.log('Custom method invoked');
+    for(const child of this)
+    	child.css('color', 'red');
+  }
+}
+
+const customNode = new CustomNode({ name: 'div' });
+const childNodesIterator = customNode.ls;
+
+for (let child of childNodesIterator) {
+  console.log(child); // Logs each child node of the customNode
+}
+
+customNode.ls.customMethod(); // Calls the custom method
+```
+
 ### node.ls.length
+The `length` property of the `NodeLS` class represents the total number of child `Element` nodes in the parent `Node`. It automatically ignores any non-`Element` nodes, such as text or comment nodes.
+#### Purpose:
+The `length` property allows you to quickly determine how many child `Element` nodes are available in the iterator, while ignoring non-element nodes. This is useful when you need to operate only on actual elements within a parent node.
+#### Usage:
+You can access the `length` property directly from the `NodeLS` iterator (which is available through the `ls` property of the `Node` instance). The iterator automatically filters out non-`Element` nodes.
+#### Notes:
+- The `length` property only counts `Element` nodes and ignores text, comment, and other non-element nodes.
+- This property is read-only and cannot be directly modified.
+- You can use `length` to quickly determine the number of valid child `Element` nodes and perform operations based on that.
+
+---
+
+### Example:
+
+```javascript
+const node = new Node({ name: 'div' });
+
+// Access the length of child elements directly
+console.log(node.ls.length); // Logs the number of child elements (ignores non-element nodes)
+```
+
 ### node.ls.first
+The `first` property of `NodeLS` returns the first child `Element` node of the parent `Node`. It automatically ignores non-`Element` nodes, such as text or comment nodes. If no child elements exist, it returns `null`. You can also set this property, which is equivalent to calling `node.prepend(node)`.
+#### Usage:
+- **Getter**: Access `node.ls.first` to quickly retrieve the first valid child element. If no child elements are present, it returns `null`.
+- **Setter**: Assign a value to `node.ls.first`, which is equivalent to prepending the specified `Node`, `Element`, or `object` to the list of child nodes.
+### Example:
+```javascript
+const node = new Node({ name: 'div' });
+
+// Get the first child element
+console.log(node.ls.first); // Logs the first child element or null if no child elements
+
+// Set the first child element (equivalent to node.prepend(node))
+node.ls.first = new Node({ name: 'span' });
+console.log(node.ls.first); // Logs the newly prepended child element
+```
+
 ### node.ls.last
+The `last` property of `NodeLS` returns the last child `Element` node of the parent `Node`. It automatically ignores non-`Element` nodes, such as text or comment nodes. If no child elements exist, it returns `null`. You can also set this property, which is equivalent to calling `node.append(node)`.
+#### Usage:
+- **Getter**: Access `node.ls.last` to quickly retrieve the last valid child element. If no child elements are present, it returns `null`.
+- **Setter**: Assign a value to `node.ls.last`, which is equivalent to appending the specified `Node`, `Element`, or `object` to the list of child nodes.
+### Example:
+```javascript
+const node = new Node({ name: 'div' });
+// Get the last child element
+console.log(node.ls.last); // Logs the last child element or null if no child elements
+// Set the last child element (equivalent to node.append(node))
+node.ls.last = new Node({ name: 'p' });
+console.log(node.ls.last); // Logs the newly appended child element
+```
+
 ### node.ls.at(offset)
+**Description:**
+The `at(offset)` property allows you to access a child `Element` node at a specific position in the list of child elements.
+**Parameters:**
+- `offset` (Integer): The index position (starting from 0) of the child element in the list of child nodes.
+**Returns:**
+- **Element** (or `null` if no element exists at the given position):
+  - If the specified `offset` corresponds to a valid position in the list, it returns the child element at that position.
+  - If the `offset` is out of range (either negative or larger than the number of elements), it returns `null`.
+**Notes:**
+- Only `Node` nodes are considered.
+- Non-`Node` nodes in the list are ignored.
+- The method does not support negative indices (i.e., it will not work like `Array.prototype.at` which allows negative values).
+---
+### Example:
+
+```javascript
+const node = new Node({ name: 'div' });
+
+// Access the first child element
+console.log(node.ls.at(0)); // Logs the first child element or null if no child elements exist
+
+// Access the second child element
+console.log(node.ls.at(1)); // Logs the second child element or null if no second element exists
+
+// Set a child element at the specified index
+node.ls.at(0) = new Node({ name: 'p' });
+console.log(node.ls.at(0)); // Logs the newly added 'p' element at index 0
+```
+
 ### node.ls.replace(... nodes)
+**Description:**  
+The `replace(...nodes)` method replaces the current child nodes at the specified positions in the list with the new provided nodes.
+**Parameters:**
+- `...nodes` (Node, Element, or Object): One or more nodes (in the form of `Node`, `Element`, or objects that will be converted into nodes) to replace the current child nodes at the specified positions.
+**Notes:**  
+- The nodes passed can be in the form of `Node`, `Element`, or even an object (which will be converted into a `Node` via `new Node(object)`).
+- The method will replace the entire list of child nodes, so be mindful that all previous children will be removed.
+- This method does not affect other parts of the DOM tree outside of the target node.
+---
+**Example:**
+
+```javascript
+const node = new Node({ name: 'div' });
+// Add some child nodes
+node.ls.append(new Node({ name: 'p' }), new Node({ name: 'span' }));
+// Replace the current child nodes with new ones
+node.ls.replace(new Node({ name: 'section' }), new Node({ name: 'article' }));
+console.log(node.ls); // Logs the node list after replacement
+```
+
 ### node.ls.clear()
+**Description:**  
+The `clear()` method removes all child nodes from the list associated with `node.ls`, unlike most other methods which typically affect individual nodes.
+**Notes:**  
+- This method **removes all child nodes** from `node.ls`, unlike most other methods that operate on individual nodes or groups of nodes.
+- It only affects the child nodes managed by `node.ls` and does not impact other parts of the DOM tree.
+
 ### node.ls.slice(start, end)
+**Description:**  
+The `slice()` method returns a new iterator containing a subset of child elements, based on the specified `start` and `end` indices. This method works similarly to JavaScript's `Array.slice()` method, with support for both positive and negative indices.
+**Parameters:**  
+- `start` (number): The index at which to begin the slice (inclusive). Positive values start from the beginning, and negative values count from the end. If omitted, it defaults to `0`.
+- `end` (number, optional): The index at which to end the slice (exclusive). Positive values start from the beginning, and negative values count from the end. If omitted, it defaults to the length of the list.
+**Returns:**  
+- **NodeIterator**: A new iterator of `Node` objects containing the sliced elements from the `node.ls` list.
+**Notes:**  
+- The `start` and `end` parameters support negative values, which allow selecting elements from the end of the list.
+- The method does not modify the original `node.ls` list; it creates a new iterator with the selected range of elements.
+---
+**Example:**
+```javascript
+const node = new Node({ name: 'div' });
+
+// Add some child nodes
+node.ls.append(new Node({ name: 'p' }), new Node({ name: 'span' }), new Node({ name: 'a' }));
+
+console.log(node.ls.length); // Logs the number of child nodes: 3
+
+// Use slice with positive indices to get the first two child nodes
+const sliced1 = node.ls.slice(0, 2);
+console.log(sliced1); // Logs the new iterator with the first two child nodes ('p' and 'span')
+
+// Use slice with negative indices to get the last two child nodes
+const sliced2 = node.ls.slice(-2, -1);
+console.log(sliced2); // Logs the new iterator with the last child node ('span')
+```
+
 ### node.ls.splice(start, deleteCount, ... nodes)
+**Description:**  
+The `splice()` method is used to modify the list of child nodes by removing or replacing nodes starting at the specified index `start`. It allows you to remove a certain number of elements (`deleteCount`) and optionally add new nodes in their place.
+**Parameters:**  
+- `start` (number): The index at which to begin modifying the list of child nodes. Positive values refer to positions from the start, while negative values count from the end. If omitted, it defaults to `0`.
+- `deleteCount` (number): The number of child nodes to remove starting from the `start` index. If set to `0`, no elements will be removed, but new nodes can still be added.
+- `...nodes` (Node | Element | object): The nodes to add at the specified `start` index. If no nodes are provided, it just removes the specified number of nodes. Each `node` can be a `Node`, an `Element`, or an `object` that will be converted into a `Node`.
+**Returns:**  
+- **NodeIterator**: An iterator over the removed `Node` objects, which were previously part of the `node.ls` list.
+**Notes:**  
+- The `start` and `deleteCount` parameters support both positive and negative values.
+- The `splice()` method modifies the original `node.ls` list in place by removing and/or adding child nodes.
+- If the `start` index exceeds the length of the list, the method does nothing, and if the `deleteCount` is greater than the number of nodes from `start` onward, it will only remove the available nodes.
+---
+**Example:**
+
+```javascript
+const node = new Node({ name: 'div' });
+
+// Add some child nodes
+node.ls.append(new Node({ name: 'p' }), new Node({ name: 'span' }), new Node({ name: 'a' }));
+
+console.log(node.ls.length); // Logs the number of child nodes: 3
+
+// Use splice to remove one node starting from index 1
+const removedIterator = node.ls.splice(1, 1);
+console.log([...removedIterator]); // Logs the removed node: 'span'
+console.log(node.ls.length); // Logs the number of child nodes: 2 (after removal)
+
+// Use splice to remove one node and add new ones in its place
+const replacedIterator = node.ls.splice
+```
 ### node.ls.shift()
+**Description:**  
+The `shift()` method removes the first child node from the `node.ls` list and returns it. This method modifies the `node.ls` list by shifting all the remaining child nodes one position to the left.
+
+**Parameters:**  
+- This method does not accept any parameters.
+
+**Returns:**  
+- **Node**: The removed child node, which is of type `Node`. If there are no child nodes, it returns `null`.
+
+**Notes:**  
+- The method modifies the original `node.ls` list by removing the first child node.
+- The remaining nodes are shifted one position forward in the list after the operation.
+
 ### node.ls.pop()
+### `node.ls.pop()` Method
+
+**Description:**  
+The `pop()` method removes the last child node from the `node.ls` list and returns it. This method modifies the `node.ls` list by reducing its length by one.
+
+**Parameters:**  
+- This method does not accept any parameters.
+
+**Returns:**  
+- **Node**: The removed child node, which is of type `Node`. If there are no child nodes, it returns `null`.
+
+**Notes:**  
+- The method modifies the original `node.ls` list by removing the last child node.
+- The list is shortened by one node after the operation.
+
 ### node.ls.push(... nodes)
+**Description:**  
+The `push()` method adds one or more nodes to the end of the `node.ls` list. This method modifies the `node.ls` list by increasing its length by the number of nodes added.
+**Parameters:**  
+- **`...nodes`**: One or more nodes to add to the end of the `node.ls` list. Each `node` can be of type `Node`, `Element`, or an object that can be converted into a `Node`.
+**Returns:**  
+- **Number**: The new length of the `node.ls` list after the nodes have been added.
+**Notes:**  
+- This method appends the nodes to the end of the list, effectively increasing its size.
+- If an object is passed, it will be converted into a `Node` using the `Node()` constructor.
+---
+**Example:**
+```javascript
+const node = new Node({ name: 'div' });
+
+// Create new nodes to add
+const pNode = new Node({ name: 'p' });
+const spanNode = new Node({ name: 'span' });
+
+// Use push to add nodes to the list
+node.ls.push(pNode, spanNode);
+
+console.log(node.ls.length); // Logs the new number of child nodes: 2
+console.log(node.ls[0] === pNode); // Logs true (pNode is now the first child)
+console.log(node.ls[1] === spanNode); // Logs true (spanNode is now the second child)
+```
+
 ### node.ls.unshift(... nodes)
-### node.ls.reverse()
+**Description:**  
+The `unshift()` method adds one or more nodes to the beginning of the `node.ls` list. This method modifies the `node.ls` list by increasing its length and placing the new nodes at the start of the list.
+**Parameters:**  
+- **`...nodes`**: One or more nodes to add to the beginning of the `node.ls` list. Each `node` can be of type `Node`, `Element`, or an object that can be converted into a `Node`.
+**Returns:**  
+- **Number**: The new length of the `node.ls` list after the nodes have been added.
+**Notes:**  
+- This method adds the nodes to the front of the list, shifting the existing elements.
+- If an object is passed, it will be converted into a `Node` using the `Node()` constructor.
+---
+**Example:**
+```javascript
+const node = new Node({ name: 'div' });
+
+// Create new nodes to add
+const pNode = new Node({ name: 'p' });
+const spanNode = new Node({ name: 'span' });
+
+// Use unshift to add nodes to the beginning
+node.ls.unshift(pNode, spanNode);
+
+console.log(node.ls.length); // Logs the new number of child nodes: 2
+console.log(node.ls[0] === pNode); // Logs true (pNode is now the first child)
+console.log(node.ls[1] === spanNode); // Logs true (spanNode is now the second child)
+```
+
 ### node.ls.sort(cb)
+**Description:**  
+The `sort()` method sorts the child nodes of the `node.ls` list. By default, it sorts the nodes based on their text content in ascending order. You can also provide a custom comparator function (`cb`) to sort the nodes in a specific order.
+**Parameters:**  
+- **`cb` (optional)**: A comparison function that defines the sort order. It takes two arguments (usually `a` and `b`), which represent nodes, and should return:
+  - A negative value if `a` should be sorted before `b`.
+  - A positive value if `b` should be sorted before `a`.
+  - Zero if `a` and `b` are equal in terms of sorting.
+**Returns:**  
+- **`node.ls`**: The sorted list of child nodes (same reference to `node.ls`).
+**Notes:**  
+- If no comparison function is provided, the nodes will be sorted based on their text content in lexicographical order.
+- This method sorts the nodes **in place**, meaning it modifies the `node.ls` list directly.
+
+---
+**Example:**
+```javascript
+const node = new Node({ name: 'div' });
+
+// Create child nodes with text content
+const nodeA = new Node({ name: 'p', text: 'apple' });
+const nodeB = new Node({ name: 'p', text: 'banana' });
+const nodeC = new Node({ name: 'p', text: 'cherry' });
+
+// Add nodes to the list
+node.ls.push(nodeA, nodeB, nodeC);
+
+// Sort nodes based on text content (default sorting)
+node.ls.sort();
+
+console.log(node.ls[0].text); // Logs 'apple'
+console.log(node.ls[1].text); // Logs 'banana'
+console.log(node.ls[2].text); // Logs 'cherry'
+
+// Custom sort function (descending order based on text content)
+node.ls.sort((a, b) => b.text.localeCompare(a.text));
+
+console.log(node.ls[0].text); // Logs 'cherry'
+console.log(node.ls[1].text); // Logs 'banana'
+console.log(node.ls[2].text); // Logs 'apple'
+```
+
+### node.ls.reverse()
+**Description:**  
+The `reverse()` method reverses the order of the child nodes in the `node.ls` list. It modifies the original `node.ls` list, making the last node the first and the first node the last, and so on.
+**Returns:**  
+- **`node.ls`**: The reversed list of child nodes (same reference to `node.ls`).
+**Notes:**  
+- This method modifies the `node.ls` list **in place**, meaning it does not return a new list but instead directly modifies the order of the nodes in `node.ls`.
+---
+**Example:**
+
+```javascript
+const node = new Node({ name: 'div' });
+
+// Create child nodes with text content
+const nodeA = new Node({ name: 'p', text: 'apple' });
+const nodeB = new Node({ name: 'p', text: 'banana' });
+const nodeC = new Node({ name: 'p', text: 'cherry' });
+
+// Add nodes to the list
+node.ls.push(nodeA, nodeB, nodeC);
+
+// Original order of nodes
+console.log(node.ls[0].text); // Logs 'apple'
+console.log(node.ls[1].text); // Logs 'banana'
+console.log(node.ls[2].text); // Logs 'cherry'
+
+// Reverse the order of the nodes
+node.ls.reverse();
+
+console.log(node.ls[0].text); // Logs 'cherry'
+console.log(node.ls[1].text); // Logs 'banana'
+console.log(node.ls[2].text); // Logs 'apple'
+```
+
 ### node.ls.shuffle()
+**Description:**  
+The `shuffle()` method randomizes the order of the child nodes in the `node.ls` list. It rearranges the nodes in a random order each time it is called.
+**Returns:**  
+- **`node.ls`**: The shuffled list of child nodes (same reference to `node.ls`).
+**Notes:**  
+- This method modifies the `node.ls` list **in place**, meaning it does not return a new list but instead shuffles the child nodes within the same list.
+---
+**Example:**
+```javascript
+const node = new Node({ name: 'div' });
+
+// Create child nodes with text content
+const nodeA = new Node({ name: 'p', text: 'apple' });
+const nodeB = new Node({ name: 'p', text: 'banana' });
+const nodeC = new Node({ name: 'p', text: 'cherry' });
+
+// Add nodes to the list
+node.ls.push(nodeA, nodeB, nodeC);
+
+// Original order of nodes
+console.log(node.ls[0].text); // Logs 'apple'
+console.log(node.ls[1].text); // Logs 'banana'
+console.log(node.ls[2].text); // Logs 'cherry'
+
+// Shuffle the nodes
+node.ls.shuffle();
+
+// Logs the shuffled order of nodes (output will vary)
+console.log(node.ls[0].text); // Logs one of 'apple', 'banana', or 'cherry'
+console.log(node.ls[1].text); // Logs one of the remaining nodes
+console.log(node.ls[2].text); // Logs the remaining node
+```
 
 ## class NodeIterator
 ### NodeIterator.from()
