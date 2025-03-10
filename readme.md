@@ -655,10 +655,110 @@ Gets an iterator for all following sibling nodes.
 - Does not include the node itself.
 
 ### node.vp
+The `vp` (ViewPort) property returns an object that manages the geometry of the node. It provides information similar to `element.getBoundingClientRect()`. The object contains properties like `x`, `y`, `top`, `left`, `width`, and `height`, representing the node's position and dimensions relative to the viewport.  
+- **Returned Object Properties**:
+  - `x`: The horizontal coordinate of the node relative to the viewport.
+  - `y`: The vertical coordinate of the node relative to the viewport.
+  - `top`: The top offset of the node relative to the viewport.
+  - `left`: The left offset of the node relative to the viewport.
+  - `width`: The width of the node.
+  - `height`: The height of the node.
+
+Example:
+```javascript
+const geometry = node.vp;
+console.log(geometry.x, geometry.y, geometry.width, geometry.height);
+```
+
 ### node.abs
+### `node.abs`
+The `abs` property returns an object similar to `node.vp`, but instead of providing geometry relative to the viewport, it provides the node's position and dimensions relative to the document (the entire webpage).  
+- **Returned Object Properties**:
+  - `x`: The horizontal coordinate of the node relative to the document.
+  - `y`: The vertical coordinate of the node relative to the document.
+  - `top`: The top offset of the node relative to the document.
+  - `left`: The left offset of the node relative to the document.
+  - `width`: The width of the node.
+  - `height`: The height of the node.
+
+Example:
+```javascript
+const geometry = node.abs;
+console.log(geometry.x, geometry.y, geometry.width, geometry.height);
+```
+
 ### node.rel
+The `rel` property provides the node's geometry relative to its nearest positioned ancestor element (i.e., the `offsetParent`), similar to `offsetTop`, `offsetLeft`, `offsetWidth`, and `offsetHeight`. It returns an object with the following properties:
+
+- **Returned Object Properties**:
+  - `x`: alias left
+  - `y`: alias top
+  - `top`: The vertical offset of the node relative to its `offsetParent`.
+  - `left`: The horizontal offset of the node relative to its `offsetParent`.
+  - `width`: The width of the node.
+  - `height`: The height of the node.
+  - `parent`: The `offsetParent` element, which is the closest ancestor of the node that has a position other than `static`.
+
+Example:
+```javascript
+const geometry = node.rel;
+console.log(geometry.top, geometry.left, geometry.width, geometry.height);
+console.log(geometry.parent); // The offsetParent (parent element).
+```
+
 ### node.box
+The `box` property provides the node's geometry relative to its **own offset container** (the element's own bounding box, similar to `clientTop`, `clientLeft`, `clientWidth`, and `clientHeight`). It returns an object with the following properties:
+
+- **Returned Object Properties**:
+  - `x`: alias left
+  - `y`: alias top
+  - `top`: The vertical distance from the top edge of the node’s own container to the top of the node.
+  - `left`: The horizontal distance from the left edge of the node’s own container to the left of the node.
+  - `width`: The width of the node relative to its own bounding box.
+  - `height`: The height of the node relative to its own bounding box.
+
+Example:
+```javascript
+const geometry = node.box;
+console.log(geometry.top, geometry.left, geometry.width, geometry.height);
+```
+
 ### node.scr
+**Scrolling Geometry**
+`node.scr` is an object that manages the geometry and state of an element's scrolling. It provides access to the current scroll values and can be used to read or write scroll bar positions, as well as information about the available scrollable area.
+
+- **`node.scr.x`** — Equivalent to the `left` property, returns the horizontal scroll position.
+- **`node.scr.y`** — Equivalent to the `top` property, returns the vertical scroll position.
+- **`node.scr.top`** — Reads or sets the vertical scroll position relative to the container.
+- **`node.scr.left`** — Reads or sets the horizontal scroll position relative to the container.
+- **`node.scr.width`** — Returns the width of the area available for scrolling (horizontal size).
+- **`node.scr.height`** — Returns the height of the area available for scrolling (vertical size).
+- **`node.scr.hmax`** — Maximum horizontal scroll position.
+- **`node.scr.vmax`** — Maximum vertical scroll position.
+- **`node.scr.tx`** — Horizontal scroll position in the range from 0 to 1, where 0 is the beginning and 1 is the end of the available scroll area.
+- **`node.scr.ty`** — Vertical scroll position in the range from 0 to 1, where 0 is the beginning and 1 is the end of the available scroll area.
+### Example:
+```javascript
+// Get the current scroll position
+console.log(node.scr.x); // Horizontal scroll position
+console.log(node.scr.y); // Vertical scroll position
+
+// Set a new scroll position
+node.scr.top = 100; // Set vertical scroll position
+node.scr.left = 50; // Set horizontal scroll position
+
+// Get the available scrollable area
+console.log(node.scr.width);  // Available width for scrolling
+console.log(node.scr.height); // Available height for scrolling
+
+// Get the maximum scroll positions
+console.log(node.scr.hmax);   // Maximum horizontal scroll position
+console.log(node.scr.vmax);   // Maximum vertical scroll position
+
+// Work with relative scroll positions in the range from 0 to 1
+node.scr.tx = 0.5;  // Horizontal scroll at 50%
+node.scr.ty = 0.5;  // Vertical scroll at 50%
+```
 
 ### node.on(eventType, listener, options)
 **Parameters:**
