@@ -1,6 +1,6 @@
 
 ## Contents
-- [Usage]
+- [Usage]()
 - [Node]()
 	- [Node.from()](#node-from)
 	- [Node.hasNode()](#node-hasnode)
@@ -67,50 +67,6 @@
 	- [node.add()]()
 	- [node.remove()]()
 	- [node.replace()]()
-
-- [ViewPortGeometry]()
-	- [node.vp.x]()
-	- [node.vp.y]()
-	- [node.vp.left]()
-	- [node.vp.top]()
-	- [node.vp.width]()
-	- [node.vp.height]()
-- [PageGeometry]()
-	- [node.abs.x]()
-	- [node.abs.y]()
-	- [node.abs.left]()
-	- [node.abs.top]()
-	- [node.abs.width]()
-	- [node.abs.height]()
-- [OffsetGeometry]()
-	- [node.rel.parent]()
-	- [node.rel.x]()
-	- [node.rel.y]()
-	- [node.rel.left]()
-	- [node.rel.top]()
-	- [node.rel.width]()
-	- [node.rel.height]()
-- [ClientGeometry]()
-	- [node.box.x]()
-	- [node.box.y]()
-	- [node.box.left]()
-	- [node.box.top]()
-	- [node.box.width]()
-	- [node.box.height]()
-- [ScrollGeometry]()
-	- [node.scr.x]()
-	- [node.scr.y]()
-	- [node.scr.left]()
-	- [node.scr.top]()
-	- [node.scr.width]()
-	- [node.scr.height]()
-	- [node.scr.hmax]()
-	- [node.scr.vmax]()
-	- [node.scr.tx]()
-	- [node.scr.ty]()
-	- [node.scr.to()]()
-	- [node.scr.by()]()
-	- [node.scr.intoView()]()
 
 - [NodeLS]()
 	- [node.ls.length]()
@@ -250,54 +206,6 @@
 ### node.add(config)
 ### node.remove()
 ### node.replace(... nodes)
-
-## class ViewPortGeometry
-### node.vp.x
-### node.vp.y
-### node.vp.left
-### node.vp.top
-### node.vp.width
-### node.vp.height
-
-## class PageGeometry
-### node.abs.x
-### node.abs.y
-### node.abs.left
-### node.abs.top
-### node.abs.width
-### node.abs.height
-
-## class OffsetGeometry
-### node.rel.parent
-### node.rel.x
-### node.rel.y
-### node.rel.left
-### node.rel.top
-### node.rel.width
-### node.rel.height
-
-## class ClientGeometry
-### node.box.x
-### node.box.y
-### node.box.left
-### node.box.top
-### node.box.width
-### node.box.height
-
-## class ScrollGeometry
-### node.scr.x
-### node.scr.y
-### node.scr.left
-### node.scr.top
-### node.scr.width
-### node.scr.height
-### node.scr.hmax
-### node.scr.vmax
-### node.scr.tx
-### node.scr.ty
-### node.scr.to(... args)
-### node.scr.by(... args)
-### node.scr.intoView(... args)
 
 ## class NodeLS
 ### node.ls.length
