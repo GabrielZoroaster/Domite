@@ -164,6 +164,7 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [iterator.filterClass()](#iteratorfilterClasstoken)
 	- [iterator.filterTag()](#iteratorfilterTagname)
 	- [iterator.filterVisible()](#iteratorfilterVisible)
+- [Methods Available through](#Methods-Available-through)
 
 ## Usage
 
@@ -2663,3 +2664,33 @@ This method filters the current iterator and returns a new iterator containing o
 
 **Description:**
 This method filters the current iterator and returns a new iterator containing only the visible nodes. It checks the nodes' `display` and `visibility` CSS properties to determine whether the node is visible. The returned iterator can be used for further operations on the visible elements.
+
+
+
+
+
+
+### Methods Available through
+Methods in the DOM that do not have direct analogs in the current library but are available through `node.tag.xxx()
+
+These methods are native to the DOM and can be accessed through `node.tag.xxx()` but do not have direct equivalents in the custom iterator-based methods.
+
+- **`node.tag.hasPointerCapture()`**  
+  Returns a boolean indicating if the element currently has pointer capture. Pointer capture allows the element to receive all pointer events, even if the pointer moves outside the element's bounds.
+
+- **`node.tag.setPointerCapture()`**  
+  Requests the capture of pointer events for the element, meaning the element will receive all pointer events, even if the pointer moves outside of it.
+
+- **`node.tag.releasePointerCapture()`**  
+  Releases pointer capture from the element, meaning it will no longer receive pointer events when the pointer moves outside of its bounds.
+
+- **`node.tag.requestPointerLock()`**  
+  Requests the browser to lock the pointer to the element, often used for immersive experiences like games, where the mouse cursor is hidden and locked to the element.
+
+- **`node.tag.getClientRects()`**  
+  Returns a collection of `DOMRect` objects that represent the bounding rectangles of the element relative to the viewport. This method accounts for multiple rectangles (for example, if the element is split into multiple lines or contains multiple parts).
+
+- **`node.tag.getAnimations()`**  
+  Returns a list of `Animation` objects that are currently associated with the element. This can be used to inspect the running animations on the element or control their behavior programmatically.
+
+These methods represent advanced DOM interactions typically related to pointer events, pointer capture, and element animations. While not directly included in the iterator-based methods, they are critical for handling complex interactions in certain web applications.

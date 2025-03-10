@@ -1,7 +1,0 @@
-
-hasPointerCapture()
-setPointerCapture()
-releasePointerCapture()
-requestPointerLock()
-getClientRects()
-getAnimations()
