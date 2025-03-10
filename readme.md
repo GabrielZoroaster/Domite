@@ -90,7 +90,7 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [node.attrs.remove(name)](#nodeattrsremovename)
 	- [node.attrs.toggle(name, force)](#nodeattrstogglename-force)
 	- [node.attrs.clear()](#nodeattrsclear)
-	- [node.attrs.setAll(attrs)](#nodeattrssetAllattrs)
+	- [node.attrs.replace(attrs)](#nodeattrsreplaceattrs)
 
 - [class NodeLS](#class-nodels)
 	- [node.ls.length](#nodelslength)
@@ -1383,7 +1383,7 @@ Toggle attribute
 ### node.attrs.clear()
 Clear all attributes in node
 
-### node.attrs.setAll(attrs)
+### node.attrs.replace(attrs)
 Replace all attributes in node. see [node.attrs](#nodeattrs)
 
 ## class NodeLS
