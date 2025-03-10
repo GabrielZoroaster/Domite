@@ -2093,8 +2093,47 @@ The `iterator.contains(node)` method checks if the specified node exists within 
 **Returns:**
 - `true` if the node is found in the iterator or among its descendants, otherwise `false`.
 
-### iterator.queryAll(selector)
-### iterator.query(selector)
+### iterator.match(selector)
+**Parameters:**
+- `selector` (string): A CSS selector to match nodes in the iterator.
+**Returns:**
+- `Node | null`: Returns the first node that matches the selector, or `null` if no matching node is found.
+**Description:**
+This method searches for the first node in the iterator that matches the specified selector. If a matching element is found, it returns a `Node` object. If no match is found, it returns `null`.
+
+### iterator.matchAll(selector)
+**Parameters:**
+- `selector` (string): A CSS selector used to filter nodes in the iterator.
+
+**Returns:**
+- `NodeIterator`: Returns a new iterator consisting of all nodes that match the specified selector.
+
+**Description:**
+This method filters the current iterator and returns a new iterator containing only the nodes that match the specified selector. The returned iterator can be used for further operations on the filtered elements.
+
 ### iterator.filterClass(token)
+**Parameters:**
+- `token` (string): The class name (or token) used to filter nodes in the iterator.
+
+**Returns:**
+- `NodeIterator`: A new iterator containing only the nodes that have the specified class.
+
+**Description:**
+This method filters the current iterator and returns a new iterator consisting only of nodes that have the specified class name. The returned iterator can be used for further operations on the filtered elements.
+
 ### iterator.filterTag(name)
+**Parameters:**
+- `name` (string): The tag name used to filter nodes in the iterator.
+
+**Returns:**
+- `NodeIterator`: A new iterator containing only the nodes with the specified tag name.
+
+**Description:**
+This method filters the current iterator and returns a new iterator containing only the nodes that have the specified tag name. The returned iterator can be used for further operations on the filtered elements.
+
 ### iterator.filterVisible()
+**Returns:**
+- `NodeIterator`: A new iterator containing only the nodes that are visible (i.e., those without `display: none` or `visibility: hidden`).
+
+**Description:**
+This method filters the current iterator and returns a new iterator containing only the visible nodes. It checks the nodes' `display` and `visibility` CSS properties to determine whether the node is visible. The returned iterator can be used for further operations on the visible elements.
