@@ -401,6 +401,7 @@ console.log(node.attrs.id); // "main"
 
 node.attrs = { role: "button", tabindex: "0" };
 console.log(node.attrs.role); // "button"
+```
 
 ### node.text
 Gets or sets text content of node
