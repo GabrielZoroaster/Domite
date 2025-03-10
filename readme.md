@@ -174,11 +174,17 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 
 Class of DOM Element Wrapper
 
-### Node.from()
+### Node.from(tag)	
 
-``` Node.from(tag) ```
+Returns the first `Node` within the given `Element` matching the specified tag. If no matching node is found, it returns `null`.
+#### Parameters:
+- `tag` (**Element**): The element in which to search for the node.
+#### Returns:
+- **Node**: The first matching node.
+- **null**: If no matching node is found.
 
-### Node.hasNode()
+### Node.hasNode(tag)
+
 ### Node.wrap()
 ### Node.is()
 ### Node.tag()
