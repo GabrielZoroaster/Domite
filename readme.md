@@ -1518,8 +1518,6 @@ filteredIterator.toArray(); // Returns an array with nodes that contain 'a': ['a
 ```
 
 ### iterator.find(cb)
-**iterator.find(cb)**
-
 The `iterator.find(cb)` method returns the first node in the iterator that satisfies the provided callback function. If no node satisfies the condition, `undefined` is returned.
 
 **Parameters:**
@@ -1548,44 +1546,553 @@ console.log(foundNode.text); // 'banana'
 ```
 
 ### iterator.flatMap(cb)
+The `iterator.flatMap(cb)` method applies the provided callback function to each element in the iterator and flattens the resulting values into a single iterator. The callback function should return an iterable object, which will be flattened into the final result.
+
+**Parameters:**
+- `cb` (function): A callback function that is applied to each element of the iterator. The function should return an iterable object (like an array or another iterator).
+  - The callback is invoked with the following arguments:
+    - `element` (any): The current element being processed.
+    - `index` (number): The index of the element in the iterator.
+
+**Returns:**
+- A new iterator that contains all the flattened values returned by the callback.
+
+**Notes:**
+- The original iterator is not modified.
+- The callback function should return an iterable, and the elements of the iterable are flattened into a single iterator.
+
+**Example Usage:**
+
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'});
+
+const textsIterator = node.ls.flatMap(n => [... n.text]);
+
+console.log([...textsIterator]); 
+// Output: ['a', 'p', 'l', 'e', 'b', 'a', 'n', 'a', 'n', 'a', 'c', 'h', 'e', 'r', 'r', 'y']
+```
+
 ### iterator.forEach(cb)
+The `iterator.forEach(cb)` method executes the provided callback function once for each element in the iterator. It does not return a value.  
+**Parameters:**  
+- `cb` (function): A callback function that is executed for each element in the iterator.  
+  - The function receives the following arguments:  
+    - `element` (any): The current element being processed.  
+    - `index` (number): The index of the element in the iterator.  
+**Returns:**  
+- `undefined` (no return value).  
+**Notes:**  
+- This method is useful for performing side effects such as logging or modifying elements.  
+- Unlike `map`, it does not create a new iterator or return values.  
+**Example Usage:**  
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'});
+
+node.ls.forEach(n => console.log(n.text));
+// Output:
+// apple
+// banana
+// cherry
+```
+
 ### iterator.map(cb)
+The `iterator.map(cb)` method creates a new iterator with the results of applying the provided callback function to each element in the original iterator.  
+
+**Parameters:**  
+- `cb` (function): A callback function that is executed for each element in the iterator.  
+  - The function receives the following arguments:  
+    - `element` (any): The current element being processed.  
+    - `index` (number): The index of the element in the iterator.  
+
+**Returns:**  
+- `Iterator` (a new iterator containing the transformed elements).  
+
+**Notes:**  
+- This method does not modify the original iterator.  
+- The returned iterator can be further processed or converted to an array.  
+
+**Example Usage:**  
+
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'});
+
+const upperCaseTexts = node.ls.map(n => n.text.toUpperCase());
+console.log([...upperCaseTexts]); // ['APPLE', 'BANANA', 'CHERRY']
+```
+
 ### iterator.reduce(cb, initValue)
+The `iterator.reduce(cb, initValue)` method applies a reducer function to each element of the iterator, accumulating the result into a single value.  
+
+**Parameters:**  
+- `cb` (function): A callback function executed for each element in the iterator.  
+  - The function receives the following arguments:  
+    - `accumulator` (any): The accumulated result of previous iterations.  
+    - `element` (any): The current element being processed.  
+    - `index` (number): The index of the element in the iterator.  
+- `initValue` (any): The initial value of the accumulator.  
+
+**Returns:**  
+- The final accumulated value.  
+
+**Notes:**  
+- The method does not modify the original iterator.  
+- If `initValue` is not provided, the first element of the iterator is used as the initial value, and iteration starts from the second element.  
+
+**Example Usage:**  
+
+```javascript
+const node = new Node();
+node.append({text: 'a'}, {text: 'b'}, {text: 'c'});
+
+const combinedText = node.ls.reduce((acc, n) => acc + n.text, '');
+console.log(combinedText); // 'abc'
+```
+
 ### iterator.some(cb)
+The `iterator.some(cb)` method checks if at least one element in the iterator satisfies the given callback function.  
+
+**Parameters:**  
+- `cb` (function): A callback function executed for each element in the iterator.  
+  - The function receives the following arguments:  
+    - `element` (any): The current element being processed.  
+    - `index` (number): The index of the element in the iterator.  
+- The iteration stops as soon as `cb` returns `true` for any element.  
+
+**Returns:**  
+- `true` if at least one element satisfies the condition, otherwise `false`.  
+
+**Notes:**  
+- This method does not modify the original iterator.  
+- Works similarly to `Array.prototype.some()`.  
+
+**Example Usage:**  
+
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'});
+
+const hasBanana = node.ls.some(n => n.text === 'banana');
+console.log(hasBanana); // true
+```
+
 ### iterator.take(limit)
+The `iterator.take(limit)` method returns a new iterator containing only the first `limit` elements from the original iterator.  
+
+**Parameters:**  
+- `limit` (number): The maximum number of elements to take from the iterator.  
+
+**Returns:**  
+- A new `NodeIterator` containing up to `limit` elements.  
+
+**Notes:**  
+- If `limit` is greater than the number of elements in the iterator, all elements are returned.  
+- Works similarly to `Array.prototype.slice(0, limit)`, but for iterators.  
+
+**Example Usage:**  
+
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'}, {text: 'date'});
+
+const firstTwo = node.ls.take(2);
+console.log(firstTwo.toArray().map(n => n.text)); // ['apple', 'banana']
+```
+
 ### iterator.toArray()
+The `iterator.toArray()` method converts the iterator into a standard JavaScript array.  
+
+**Returns:**  
+- An `Array` containing all elements from the iterator.  
+
+**Notes:**  
+- This method exhausts the iterator, meaning it collects all elements into an array at once.  
+- Useful when you need to work with standard array methods that are not available on iterators.  
+
+**Example Usage:**  
+
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'});
+
+const array = node.ls.toArray();
+console.log(array.map(n => n.text)); // ['apple', 'banana', 'cherry']
+```
+
 ### iterator.count()
+The `iterator.count()` method returns the number of elements in the iterator.  
+
+**Returns:**  
+- A `number` representing the count of elements.  
+
+**Notes:**  
+- This method iterates through all elements to determine the count.  
+- After calling `count()`, the iterator is exhausted and cannot be reused.  
+
+**Example Usage:**  
+
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'});
+
+console.log(node.ls.count()); // 3
+console.log(node.ls.filter(n => n.text.startsWith('b')).count()); // 1
+```
+
 ### iterator.depth()
+The `iterator.depth()` method returns the maximum depth of nested child elements within the iterator.  
+
+**Returns:**  
+- A `number` representing the depth of nesting:  
+  - `0` if the iterator is empty.  
+  - `1` if all elements have no children.  
+  - Higher values represent the deepest level of child elements.  
+
+**Notes:**  
+- This method traverses all elements in the iterator to determine the maximum depth.  
+- An element without children contributes `1` to the depth.  
+- If an element has children, the depth is calculated recursively.  
+
+**Example Usage:**  
+
+```javascript
+const node = new Node();
+node.append(
+  { tag: 'div', ls: [{ tag: 'span' }] },
+  { tag: 'p' },
+  { tag: 'section', ls: [{ tag: 'article', ls: [{ tag: 'a' }] }] }
+);
+
+console.log(node.ls.depth()); // 3
+console.log(node.ls.filter(n => n.tag === 'p').depth()); // 1
+console.log(node.ls.filter(n => n.tag === 'div').depth()); // 2
+```
+
 ### iterator.texts()
+The `iterator.texts()` method returns a standard JavaScript iterator that yields all text contents from the elements in the iterator.  
+
+**Returns:**  
+- A `JavaScript Iterator<string>` containing text content from each node in order.  
+
+**Notes:**  
+- Only text content is extracted, ignoring child elements and attributes.  
+- Empty elements return empty strings.  
+- The method does not modify the original elements.  
+
+**Example Usage:**  
+
+```javascript
+const node = new Node();
+node.append(
+  { tag: 'div', text: 'Hello' },
+  { tag: 'p', text: 'World' },
+  { tag: 'span', children: [{ tag: 'b', text: 'Bold' }, { tag: 'i', text: 'Italic' }] }
+);
+
+console.log([...node.ls.texts()]); // ["Hello", "World", "Bold", "Italic"]
+console.log([...node.ls.filter(n => n.tag === 'p').texts()]); // ["World"]
+```
+
 ### iterator.htmls()
+The `iterator.htmls()` method returns a standard JavaScript iterator that yields the inner HTML content of each node in the iterator.  
+
+**Returns:**  
+- A `JavaScript Iterator<string>` containing the inner HTML of each node in order.  
+
+**Notes:**  
+- Extracts the `innerHTML` of each element.  
+- If an element has no children, it returns an empty string.  
+- The method does not modify the original elements.  
+
+**Example Usage:**  
+
+```javascript
+const node = new Node();
+node.append(
+  { tag: 'div', html: '<b>Bold</b> and <i>Italic</i>' },
+  { tag: 'p', html: 'Hello <span>World</span>' },
+  { tag: 'span', text: 'Text only' }
+);
+
+console.log([...node.ls.htmls()]); // ["<b>Bold</b> and <i>Italic</i>", "Hello <span>World</span>", ""]
+console.log([...node.ls.filter(n => n.tag === 'p').htmls()]); // ["Hello <span>World</span>"]
+```
+
 ### iterator.on(eventType, listener, options)
 ### iterator.off(eventType, listener, options)
 ### iterator.once(eventType, listener, options)
 ### iterator.emit(eventType)
+
 ### iterator.show()
+The `iterator.show()` method is used to reveal all elements in the iterator by setting their `hidden` attribute to `false`.
+
 ### iterator.hide()
+The `iterator.hide()` method is used to hide all elements in the iterator by setting their `hidden` attribute to `true`.
+
 ### iterator.toggleDisplay()
+The `iterator.toggleDisplay()` method toggles the `hidden` attribute of all elements in the iterator. If an element is visible (i.e., the `hidden` attribute is not set), it will be hidden. If it is already hidden, it will be made visible again.
+
 ### iterator.css(name, value)
+The `iterator.css(name, value)` method is used to set the specified CSS property for all elements in the iterator.
+
+**Parameters:**
+- `name`: The name of the CSS property (e.g., `'color'`, `'background-color'`, `'font-size'`, etc.).
+- `value`: The value to set for the specified CSS property (e.g., `'red'`, `'16px'`, `'none'`, etc.).
+
+**Notes:**
+- The CSS property is applied directly to the inline styles of the elements.
+
+**Example Usage:**
+
+```javascript
+const node = new Node();
+node.append(
+  { tag: 'div', text: 'First' },
+  { tag: 'div', text: 'Second' },
+  { tag: 'div', text: 'Third' }
+);
+
+// Set the CSS color property to red for all elements in the iterator
+node.ls.css('color', 'red');
+
+// Set the background color for all elements
+node.ls.css('background-color', 'blue');
+```
+
 ### iterator.appendCSS(name, value)
+The `iterator.appendCSS(name, value)` method is used to append a new CSS rule to an element's existing inline style for properties that accept multiple values. This is particularly useful for properties like `box-shadow`, `background`, `font-family`, etc., where multiple values can be combined.
+
+**Parameters:**
+- `name`: The name of the CSS property (e.g., `'box-shadow'`, `'background'`, `'font-family'`, etc.).
+- `value`: The value of the CSS property to be appended (e.g., `'2px 2px 5px rgba(0,0,0,0.3)'`).
+
+**Notes:**
+- This method appends a new value to the existing property if the property allows multiple values. It does not overwrite the current values.
+- For other properties (like `color`, `font-size`, etc.), use the regular `css()` method instead, as this is meant for properties that accept single values.
+
+**Example Usage:**
+
+```javascript
+const node = new Node();
+node.append(
+  { tag: 'div', text: 'First' },
+  { tag: 'div', text: 'Second' },
+  { tag: 'div', text: 'Third' }
+);
+
+// Append a new box-shadow value
+node.ls.appendCSS('box-shadow', '2px 2px 5px rgba(0,0,0,0.3)');
+
+// Append a new background-image to the existing background property
+node.ls.appendCSS('background', 'url(image.png)');
+
+// Append a new font-family to the existing font-family
+node.ls.appendCSS('font-family', 'Arial, sans-serif');
+```
+
 ### iterator.removeCSS(name)
+The `iterator.removeCSS(name)` method is used to remove a specific CSS property from the inline styles of all elements in the iterator.
+
+**Parameters:**
+- `name`: The name of the CSS property to be removed (e.g., `'box-shadow'`, `'background'`, `'color'`, etc.).
+
+**Notes:**
+- This method only removes the specified CSS property if it exists. If the property is not set, it has no effect.
+- It does not remove the property from any external stylesheets or inherited styles; it only removes inline styles.
+
 ### iterator.clearCSS()
+The `iterator.clearCSS()` method removes all inline CSS styles from all elements in the iterator.
+
+**Notes:**
+- This method removes all inline styles applied to the elements, effectively resetting their appearance to the default styles (or inherited styles).
+- It does not affect any external stylesheets or inherited styles; only the inline styles are cleared.
+
 ### iterator.addClass(... tokens)
+The `iterator.addClass(...tokens)` method adds one or more CSS class names to all elements in the iterator.
+
+**Parameters:**
+- `...tokens`: One or more class names to be added. The class names are provided as separate arguments or in a single array.
+
+**Notes:**
+- If the class name already exists on an element, it will not be added again (no duplicates).
+- This method is often used for styling elements dynamically.
+
+
 ### iterator.removeClass(... tokens)
+The `iterator.removeClass(...tokens)` method removes one or more CSS class names from all elements in the iterator.
+
+**Parameters:**
+- `...tokens`: One or more class names to be removed. The class names are provided as separate arguments or in a single array.
+
+**Notes:**
+- If the class name doesn't exist on an element, it will not throw an error and simply do nothing.
+- This method helps in dynamically removing styling from elements.
+
 ### iterator.toggleClass(token, force)
+The `iterator.toggleClass(token, force)` method toggles a CSS class on all elements in the iterator. If the class is present, it will be removed; if it's absent, it will be added. The `force` parameter can be used to explicitly control the toggling behavior.
+
+**Parameters:**
+- `token`: The class name to be toggled.
+- `force` (optional): A boolean that forces the class to be added (`true`) or removed (`false`). If not provided, it will toggle the class based on its current state.
+
+**Notes:**
+- If `force` is not specified, it checks whether the class is already present:
+  - If the class is present, it is removed.
+  - If the class is absent, it is added.
+- If `force` is specified, the class will be added if `force` is `true`, or removed if `force` is `false`.
+
 ### iterator.replaceClass(oldToken, newToken)
+The `iterator.replaceClass(oldToken, newToken)` method replaces an existing CSS class with a new one on all elements in the iterator.
+
+**Parameters:**
+- `oldToken`: The class name to be replaced.
+- `newToken`: The class name to replace `oldToken` with.
+
+**Notes:**
+- This method will search for elements with the `oldToken` class and replace it with the `newToken` class.
+- If the `oldToken` class is not present on an element, no changes will be made to that element.
+- The replacement happens in all the elements contained in the iterator.
+
 ### iterator.clearClasses()
+The `iterator.clearClasses()` method removes all CSS classes from the elements in the iterator.
+
+**Notes:**
+- This method will clear all classes (i.e., the `class` attribute) from each element in the iterator.
+- It does not modify other attributes of the element.
+- After using this method, the elements will have no classes.
+
 ### iterator.classes()
+The `iterator.classes()` method returns an iterator for the class names of the elements in the iterator.
+**Notes:**
+- The iterator returned by `iterator.classes()` provides each class name for each element in the iterator, one by one.
+- If an element has multiple classes, each class name is returned separately in the iterator.
+
 ### iterator.attr(name, value)
+The `iterator.attr(name, value)` method sets the value of an attribute for each element in the iterator.
+
+**Parameters:**
+- `name` (string): The name of the attribute to modify.
+- `value` (string): The value to set for the attribute.
+
+**Notes:**
+- This method sets the attribute for each element in the iterator. If the attribute already exists, its value is updated; if it doesn't, the attribute is added with the specified value.
+- If the `value` parameter is omitted, the method returns the current value of the specified attribute for the first element in the iterator.
+- This method is commonly used for modifying attributes like `id`, `class`, `src`, `href`, etc.
+
+### Example:
+```javascript
+const iterator = Node.queryAll('img');
+
+// Set the 'alt' attribute for all img elements
+iterator.attr('alt', 'Image description');
+
+// Get the 'alt' attribute of the first img element
+console.log(iterator.attr('alt'));  // Output: "Image description"
+```
+
 ### iterator.removeAttr(name)
+The `iterator.removeAttr(name)` method removes a specified attribute from each element in the iterator.
+
+**Parameters:**
+- `name` (string): The name of the attribute to remove.
+
+**Notes:**
+- This method will remove the given attribute from all elements in the iterator.
+- If the specified attribute doesn't exist on an element, no changes are made to that element.
+- Commonly used for removing attributes like `disabled`, `readonly`, `checked`, etc.
+
 ### iterator.toggleAttr(name, force)
+The `iterator.toggleAttr(name, force)` method toggles the presence of a specified attribute for each element in the iterator. If the attribute exists, it is removed; if it does not exist, it is added. The behavior can be controlled using the `force` argument.
+
+**Parameters:**
+- `name` (string): The name of the attribute to toggle.
+- `force` (boolean, optional): 
+  - `true`: The attribute will be added if it doesn't exist, and removed if it does.
+  - `false`: The attribute will only be removed if it exists. 
+  - If `force` is not provided, the attribute will be toggled (added if missing, removed if present).
+
+**Notes:**
+- This method is useful for toggling attributes like `disabled`, `checked`, `readonly`, etc.
+- If the `force` parameter is not passed, it defaults to toggling the attribute.
+
 ### iterator.clearAttrs()
+The `iterator.clearAttrs()` method removes all attributes from each element in the iterator.
+**Notes:**
+- This method clears all attributes (including `class`, `id`, `src`, `alt`, etc.) from the elements in the iterator.
+- Use this method when you need to completely remove attributes from the selected elements.
+
 ### iterator.text(text)
+The `iterator.text(text)` method sets the text content for all elements in the iterator. The argument `text` can either be a string to set the text or a function that returns the new text value, taking the current text as an argument.
+
+**Parameters:**
+- `text` (string | function): 
+  - If a string is provided, it will replace the existing text content of the selected elements.
+  - If a function is provided, it will be called for each element in the iterator, receiving the current text as an argument, and the function should return the new text value.
+
+**Examples:**
+
+```javascript
+Node.query('#my').ls.text("New text content");
+Node.queryAll('a').text((currentText) => currentText.toUpperCase());
+```
+
 ### iterator.html(html)
+The `iterator.html(html)` method sets the HTML content for all elements in the iterator. The argument `html` can either be a string to set the HTML content or a function that returns the new HTML content, taking the current HTML as an argument.
+
+**Parameters:**
+- `html` (string | function): 
+  - If a string is provided, it will replace the existing HTML content of the selected elements.
+  - If a function is provided, it will be called for each element in the iterator, receiving the current HTML as an argument, and the function should return the new HTML content.
+
+**Examples:**
+
+**Set HTML content for all elements in the iterator:**
+```javascript
+node.ls.html("<div><p>New HTML content</p></div>");
+node.ls.html((currentHtml) => `<div><span>${currentHtml}</span></div>`);
+```
+
 ### iterator.add(config)
+The `iterator.add(config)` method adds a child element to each element in the iterator using the `node.add(config)` method. The `config` argument is typically an object or an instance of a `Node`, which will be appended as a child to the nodes in the iterator.
+
+**Parameters:**
+- `config` (object | Node): The configuration or node to be added. This could either be:
+  - An object containing properties to define the new child element (e.g., `tag`, `text`, `attributes`), or
+  - An existing `Node` instance to be added as a child.
+**Examples:**
+
+```javascript
+node.ls.add({ tag: 'div', text: 'New child element' });
+```
+
 ### iterator.remove()
+The `iterator.remove()` method removes all the nodes in the iterator from the DOM tree. This operation will detach the nodes from their parent elements, effectively deleting them from the document.
+
 ### iterator.indexOf(node)
+The `iterator.indexOf(node)` method returns the index of the specified node within the iterator. If the node is not found, it returns `-1`.
+
+**Parameters:**
+- `node` (Node): The node whose index within the iterator is to be found.
+
+**Returns:**
+- A number representing the index of the node in the iterator, or `-1` if the node is not found.
+
 ### iterator.includes(node)
+The `iterator.includes(node)` method checks if the specified node exists within the iterator.
+**Parameters:**
+- `node` (Node): The node to check for existence within the iterator.
+**Returns:**
+- `true` if the node is found in the iterator, otherwise `false`.
+
 ### iterator.contains(node)
+The `iterator.contains(node)` method checks if the specified node exists within the iterator or among its descendants.
+**Parameters:**
+- `node` (Node): The node to check for existence in the iterator or its children.
+**Returns:**
+- `true` if the node is found in the iterator or among its descendants, otherwise `false`.
+
 ### iterator.queryAll(selector)
 ### iterator.query(selector)
 ### iterator.filterClass(token)
