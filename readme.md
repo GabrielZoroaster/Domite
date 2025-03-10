@@ -38,7 +38,7 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [node.html](#nodehtml)
 	- [node.ls](#nodels)
 	- [node.all](#nodeall)
-	- [node.parentAll](#nodeprevAll)
+	- [node.parentAll](#nodeparentAll)
 	- [node.prevAll](#nodeprevAll)
 	- [node.nextAll](#nodenextAll)
 	- [node.vp](#nodevp)
@@ -75,9 +75,9 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [node.prepend()](#nodeprepend-nodes)
 	- [node.before()](#nodebefore-nodes)
 	- [node.after()](#nodeafter-nodes)
+	- [node.replace()](#nodereplace-nodes)
 	- [node.add()](#nodeaddconfig)
 	- [node.remove()](#noderemove)
-	- [node.replace()](#nodereplace-nodes)
 
 - [class AttributeMap](#class-attributemap)
 	- [node.attrs](#nodeattrs)
@@ -817,10 +817,69 @@ Prepends one or more nodes or objects (which will be converted into nodes) as ch
 - **`void`** – This method does not return any value.
 
 ### node.before(... nodes)
+Inserts one or more nodes or objects (which will be converted into nodes) before the current node, as siblings.
+#### Parameters:
+- **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
+#### Returns:
+- **`void`** – This method does not return any value.
+#### Description:
+- This method inserts the provided nodes, elements, or objects (that are converted to `Node` instances) before the current node in the DOM tree, as siblings.
+- Multiple nodes or elements can be inserted in the order they are provided.
+- If an `Object` is passed, it will be automatically wrapped in a `Node` instance.
+
 ### node.after(... nodes)
-### node.add(config)
-### node.remove()
+Inserts one or more nodes or objects (which will be converted into nodes) after the current node, as siblings.
+#### Parameters:
+- **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
+#### Returns:
+- **`void`** – This method does not return any value.
+#### Description:
+- This method inserts the provided nodes, elements, or objects (that are converted to `Node` instances) after the current node in the DOM tree, as siblings.
+- Multiple nodes or elements can be inserted in the order they are provided.
+- If an `Object` is passed, it will be automatically wrapped in a `Node` instance.
+
 ### node.replace(... nodes)
+Replaces the current node with one or more nodes or objects (which will be converted into nodes).
+#### Parameters:
+- **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
+#### Returns:
+- **`void`** – This method does not return any value.
+#### Description:
+- This method replaces the current node with the provided nodes, elements, or objects (which are converted to `Node` instances).
+- Multiple nodes or elements can be passed and will replace the current node in the order they are provided.
+- If an `Object` is passed, it will be automatically wrapped in a `Node` instance.
+
+### node.add(config)
+Adds a configuration or set of settings to the current node, modifying its properties or behavior.
+#### Parameters:
+- **`config`**: An `Object` containing configuration settings or properties to be added to the node. The structure of the `config` object may vary depending on the specific properties you wish to set for the node (e.g., attributes, styles, event listeners).
+#### Returns:
+- **`void`** – This method does not return any value.
+#### Description:
+- This method allows you to modify the node by passing a configuration object that can set various properties such as `class`, `style`, `attrs`, `text`, `html`, and more.
+- It provides a flexible way to dynamically apply a set of settings to the node in one call.
+- If `config` contains a property like `class`, it will add or modify the class of the node. Similarly, other properties like `style`, `attrs`, or event listeners can be applied based on the content of the `config`.
+#### Example:
+
+```javascript
+const parentNode = new Node();
+const childNode = new Node({ name: 'p' });
+
+const config = {
+    class: 'highlighted',         // Add class to the node
+    style: 'color: red;',         // Apply style to the node
+    attrs: { id: 'unique-id' },   // Set an attribute
+    text: 'Hello, world!',        // Set text content
+    on: { click: () => alert('Clicked!') }  // Add an event listener
+};
+
+childNode.add(config);  // Apply the configuration to the node
+parentNode.add(childNode);  // Add the node to the parent
+console.log(parentNode.ls);  // Check if the node has been modified
+```
+
+### node.remove()
+Removes the current node from its parent in the DOM.
 
 ## class AttriibuteMaps
 ### node.attrs.length
