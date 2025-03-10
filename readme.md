@@ -396,11 +396,11 @@ Gets or sets element attributes.
 
 #### Example:
 ```javascript
-node.attrs.id = "main";
-console.log(node.attrs.id); // "main"
+node.attrs.set('id') = "main";
+console.log(node.attrs.get('id')); // "main"
 
 node.attrs = { role: "button", tabindex: "0" };
-console.log(node.attrs.role); // "button"
+console.log(node.attrs.get('role')); // "button"
 ```
 
 ### node.text
