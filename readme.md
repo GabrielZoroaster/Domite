@@ -197,6 +197,36 @@ Checks if there is a `Node` within the given `Element` matching the specified ta
 ### Node.LS(node)
 ### Node.Attrs(node)
 ### new Node(config)
+
+Constructor for the class, initializing the object with a set of parameters to create and configure a DOM element.
+
+#### Parameters:
+- `document` (**Document**): The document object, defaults to `window.document`.
+- `name` (**string**): The tag name of the element, defaults to `"div"`.
+- `tag` (**Element**): An existing DOM element to be used instead of creating a new one. By default, a new element with the tag `name` is created.
+- `class` (**string**): The classes to be added to the element.
+- `style` (**string**): The style for the element.
+- `attrs` (**Object**): Attributes for the element.
+- `hidden` (**boolean**): If set to `true`, the element will be hidden.
+- `on` (**Object**): Events to be bound to the element. The passed object should contain events and their corresponding handlers.
+- `once` (**Object**): Events with `once` binding. Defines events that will trigger only once.
+- `text` (**string**): The text content for the element.
+- `html` (**string**): The HTML content for the element.
+- `ls` (**any**): A property for storing additional data or values.
+
+#### Example:
+```javascript
+const myElement = new Node({
+    document: document,
+    name: "div",
+    class: "my-class",
+    style: {color: "red"},
+    attrs: {id: "my-element"},
+    text: "Hello, World!",
+    on: { click(){ console.log("Clicked!") }},
+    once: { mousemove(){ console.log("Moved!") }},
+});
+
 ### node.tag
 ### node.tagName
 ### node.document
