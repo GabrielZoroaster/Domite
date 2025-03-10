@@ -419,6 +419,7 @@ console.log(node.css.get("border"));  // Logs: "1px solid black"
 ### node.remove()
 ### node.replace(... nodes)
 
+## class AttriibuteMap
 ### node.attrs
 ### node.attrs.length
 ### node.attrs.at(offset)
