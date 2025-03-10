@@ -257,19 +257,110 @@ Gets or sets the parent `Node` instance of the current node.
   - **Element** – Wraps the given DOM element in a `Node` instance and sets it as the parent.
   - **object** – Creates a new `Node` from the provided configuration object and sets it as the parent.
   - **null** – Removes the current node from its parent.
-#### Description:
-The `node.parent` property allows getting the current parent `Node` or setting a new parent.  
-- If assigned a `Node`, it becomes the new parent.
-- If assigned a DOM `Element`, it is wrapped in a `Node` and set as the parent.
-- If assigned a configuration object, a new `Node` is created and set as the parent.
-- If assigned `null`, the node is detached from its current parent.
 
 ### node.prevNode
+Gets or sets the previous sibling `Node` of the current node.
+- **Get:** `Node | null` – The previous sibling `Node` or `null` if there is no previous sibling.
+- **Set:** Accepts one of the following:
+  - **Node** – Sets the given `Node` as the previous sibling.
+  - **Element** – Wraps the given DOM element in a `Node` instance and sets it as the previous sibling.
+  - **object** – Creates a new `Node` from the provided configuration object and sets it as the previous sibling.
+
 ### node.nextNode
+Gets or sets the next sibling `Node` of the current node.
+- **Get:** `Node | null` – The next sibling `Node` or `null` if there is no next sibling.
+- **Set:** Accepts one of the following:
+  - **Node** – Sets the given `Node` as the next sibling.
+  - **Element** – Wraps the given DOM element in a `Node` instance and sets it as the next sibling.
+  - **object** – Creates a new `Node` from the provided configuration object and sets it as the next sibling.
+
 ### node.hidden
+Gets or sets the visibility state of the node.
+#### Type:
+- **Get:** `boolean` – `true` if the node is hidden, `false` otherwise.
+- **Set:** Accepts a `boolean` value:
+  - `true` – Hides the node by setting the `hidden` attribute.
+  - `false` – Makes the node visible by removing the `hidden` attribute.
 ### node.class
+Gets or sets the class list of the node.
+#### Type:
+- **Get:** `DOMTokenList` – A live `DOMTokenList` representing the class list of the node.
+- **Set:** Accepts one of the following:
+  - **DOMTokenList** – Directly assigns an existing `DOMTokenList`.
+  - **Iterable (Array, Set, etc.)** – Iterates over the provided values and updates the class list.
+  - **String** – Splits the string by whitespace and updates the class list accordingly.
+#### Description:
+- Getting `node.class` returns the live `DOMTokenList`, which can be modified directly.
+- Setting `node.class` updates the class list based on the provided value.
+- Assigning a `DOMTokenList` transfers its contents to the node.
+- Assigning an iterable (e.g., array, set) applies all values as separate class names.
+- Assigning a string splits it by whitespace and applies each segment as a class.
+
+#### Example:
+
+```javascript
+let node = new Node({ name: "div" });
+
+node.class.add("red");
+console.log(node.class.value);  // Logs: "red"
+
+node.class = "blue bold";
+console.log(node.class.value);  // Logs: "blue bold"
+
+node.class = ["large", "rounded"];
+console.log(node.class.value);  // Logs: "large rounded"
+```
+
 ### node.style
+Gets or sets the inline styles of the node.
+#### Type:
+- **Get:** `CSSStyleDeclaration` – A live `CSSStyleDeclaration` object representing the node's inline styles.
+- **Set:** Accepts one of the following:
+  - **CSSStyleDeclaration** – Directly assigns an existing `CSSStyleDeclaration`.
+  - **StylePropertyMap** – Directly assigns an existing `StylePropertyMap`.
+  - **Object** – An object where keys are CSS properties (camelCase or kebab-case) and values are their corresponding styles.
+  - **String** – A valid CSS string applied as inline styles.
+#### Description:
+- Getting `node.style` returns a `CSSStyleDeclaration`, which allows modifying styles directly.
+- Setting `node.style` with an object applies styles dynamically.
+- Setting `node.style` with a string assigns it as `style.cssText`.
+#### Example:
+```js
+let node = new Node({ name: "div" });
+
+// Modify style directly
+node.style.color = "red";
+console.log(node.style.color);  // Logs: "red"
+
+// Assigning a CSS string
+node.style = "font-size: 16px; background-color: blue;";
+console.log(node.style.fontSize);  // Logs: "16px"
+
+// Assigning an object
+node.style = { border: "1px solid black", padding: "10px" };
+console.log(node.style.border);  // Logs: "1px solid black"
+```
+
 ### node.css
+Gets or sets the computed styles of the node.
+#### Type:
+- **Get:** `StylePropertyMap` – A `StylePropertyMap` representing the computed styles of the node.
+- **Set:** Accepts the same types as [`node.style`](#node-style):
+
+#### Example:
+
+```javascript
+let node = new Node({ name: "div" });
+
+// Assigning a CSS string
+node.css = "font-size: 16px; background-color: blue;";
+console.log(node.css.get("font-size"));  // Logs: "16px"
+
+// Assigning an object
+node.css = { border: "1px solid black", padding: "10px" };
+console.log(node.css.get("border"));  // Logs: "1px solid black"
+```
+
 ### node.dataset
 ### node.attrs
 ### node.text
