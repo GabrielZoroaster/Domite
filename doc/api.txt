@@ -25,6 +25,7 @@ node.text
 node.html
 node.ls
 node.all
+node.parentAll
 node.prevAll
 node.nextAll
 node.vp

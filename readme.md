@@ -38,6 +38,7 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [node.html](#nodehtml)
 	- [node.ls](#nodels)
 	- [node.all](#nodeall)
+	- [node.parentAll](#nodeprevAll)
 	- [node.prevAll](#nodeprevAll)
 	- [node.nextAll](#nodenextAll)
 	- [node.vp](#nodevp)
@@ -490,10 +491,44 @@ Gets an iterator for all following sibling nodes.
 ### node.observe(options, listener)
 
 ### node.show()
+Makes the node visible by removing the `hidden` attribute and setting relevant styles.
+
 ### node.hide()
+Hides the node by setting the `hidden` attribute.
+
 ### node.toggleDisplay()
+Toggles the visibility of the node by switching its `display` style between `none` and its previous value.
+#### Returns:
+- **`boolean`** – `true` if the node is now visible, `false` if it is hidden.
+#### Example:
+
+```javascript
+if (node.toggleDisplay()) {
+  console.log("Node is now visible");
+} else {
+  console.log("Node is now hidden");
+}
+```
 
 ### node.checkVisibility()
+Checks if the node is visible in the document.
+#### Returns:
+- **`boolean`** – `true` if the node is visible, `false` otherwise.
+#### Description:
+- A shorthand for the native [`Element.checkVisibility()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/checkVisibility) method.
+- Considers CSS properties like `display: none`, `visibility: hidden`, and `opacity: 0`.
+- Also checks if the element is in the viewport and not covered by other elements.
+
+#### Example:
+
+```javascript
+if (node.checkVisibility()) {
+  console.log("Node is visible");
+} else {
+  console.log("Node is hidden");
+}
+```
+
 ### node.click()
 ### node.blur()
 ### node.focus()
