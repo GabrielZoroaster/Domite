@@ -304,7 +304,7 @@ This static method finds an element in the DOM matching the provided selector an
   } else {
     console.log('Node not found');
   }
-```
+	```
 
 ### Node.wrapAll(selector)
 This static method finds all elements in the DOM matching the provided selector and wraps them with the specified class. It returns a `NodeIterator` containing the wrapped elements.
