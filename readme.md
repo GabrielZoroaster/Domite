@@ -1151,8 +1151,6 @@ The `shift()` method removes the first child node from the `node.ls` list and re
 - The remaining nodes are shifted one position forward in the list after the operation.
 
 ### node.ls.pop()
-### `node.ls.pop()` Method
-
 **Description:**  
 The `pop()` method removes the last child node from the `node.ls` list and returns it. This method modifies the `node.ls` list by reducing its length by one.
 
@@ -1332,14 +1330,13 @@ console.log(node.ls[2].text); // Logs the remaining node
 
 ## class NodeIterator
 **Description:**  
-`NodeIterator` is a class that provides an iterator for a sequence of nodes, allowing you to traverse them one by one and perform various operations on each. It helps to work with the DOM tree using methods similar to array iteration, such as `next()`, `prev()`, `slice()`, `splice()`, and others.
+`NodeIterator` is a class that provides an iterator for a sequence of nodes, allowing you to traverse them one by one and perform various operations on each. It helps to work with the DOM tree using methods similar to array iteration, such as `slice()`, `splice()`, and others.
 
 If the found node is not an instance of `Node` or its subclass, it is automatically wrapped into a new `Node` object with the parameter `{ tag: element }`.
 ---
 ### Where it's used:
 - **Creation:**
-  - `Node.query(selector)` — finds and returns the first element that matches the selector.
-  - `Node.queryAll(selector)` — finds and returns all elements that match the selector.
+  - `Node.queryAll(selector)` — finds and returns all nodes that match the selector.
   - `NodeIterator.from(nodes)` — creates an iterator from the given nodes.
   - `NodeIterator.of(...nodes)` — creates an iterator from the given nodes.
   - `NodeIterator.wrap(...elements)` — wraps the provided DOM elements into an iterator.
@@ -1358,21 +1355,198 @@ If the found node is not an instance of `Node` or its subclass, it is automatica
   - `iter.filter(cb)` — filters nodes based on the provided function.
   - `iter.drop(limit)` — skips the specified number of nodes.
   - `iter.take(limit)` — takes the specified number of nodes.
+  - `iter.queryAll(selector)` — filters nodes that match the selector.
   - `iter.filterClass(token)` — filters nodes by class.
   - `iter.filterTag(name)` — filters nodes by tag.
   - `iter.filterVisible()` — filters only visible nodes.
 
 ---
+**Example:**
+```js
+const node = new Node();
+node.parent = Node.query('parent-element');
 
-### NodeIterator.from()
-### NodeIterator.of()
-### NodeIterator.wrap()
+// Example 1: Appending child nodes and converting to array
+node.append({text: 'banana'}, {name: 'p', text: 'orange'});
+const childrenArray = node.ls.toArray();  // All child nodes as an array
+console.log(childrenArray); // Outputs an array of child nodes
+
+// Example 2: Converting all nodes (including the current one) to an array
+const allNodesArray = node.all.toArray();
+console.log(allNodesArray); // Outputs an array including the node itself and all descendants
+
+// Example 3: Accessing children of the children (grandchildren)
+const grandchildrenIterator = node.ls.ls;
+console.log(grandchildrenIterator); // Outputs an iterator of the children of the child nodes
+
+// Example 4: Filtering visible nodes and applying CSS
+node.ls.filterVisible().ls.css('border', '1px dashed blue');
+
+// Example 5: Querying specific elements and limiting results
+const queryResult = node.all.queryAll('div.my-class').take(10);
+console.log(queryResult); // Outputs the first 10 elements that match the query
+
+// Example 6: Manipulating sibling nodes (hiding previous siblings)
+node.prevAll.ls.hide();
+
+// Example 7: Counting parent elements
+const parentCount = node.parentAll.count();
+console.log(parentCount); // Outputs the number of parent elements
+
+// Example 8: Querying all divs, getting their classes, and converting to array
+const divClasses = Node.queryAll('div').classes().toArray();
+console.log(divClasses); // Outputs an array of classes from all divs
+```
+
+### NodeIterator.from(nodes)
+The `NodeIterator.from(nodes)` method creates a new instance of `NodeIterator` from an array or iterable of `Node` elements. This method is useful when you want to wrap a list of nodes into an iterator to take advantage of all the iterator methods, such as `filter`, `take`, `drop`, etc.
+
+#### NodeIterator.of(... nodes)
+The `NodeIterator.of(...nodes)` method creates a new instance of `NodeIterator` from a list of `Node` elements passed as individual arguments. This method is ideal when you have multiple `Node` objects and want to create an iterator from them without the need to put them into an array first.
+
+#### NodeIterator.wrap(tags)
+The `NodeIterator.wrap(tags)` method creates a new instance of `NodeIterator` by wrapping a list of `tags` (HTML elements or `Node` objects). This method is helpful when you need to wrap existing elements into a `NodeIterator` to take advantage of the iterator's chainable methods.
+
+#### Example Usage:
+```javascript
+// Select some elements from the DOM
+const div = document.querySelector('div');
+const p = document.querySelector('p');
+const span = document.querySelector('span');
+
+// Wrap the selected elements into a NodeIterator
+const nodeIterator = NodeIterator.wrap([div, p, span]);
+
+// Use iterator methods to process the wrapped nodes
+const filteredNodes = nodeIterator.filter(node => node.tag === 'p')
+                                  .toArray();  // Convert filtered result to array
+
+console.log(filteredNodes);  // Output: [p]
+```
+
 ### iterator.ls
-### iterator.all
+The `iterator.ls` property provides access to the child nodes (or descendants) of the current node within the `NodeIterator` instance. It returns a new `NodeIterator` instance containing all the child nodes of the current node.
+#### Description:
+- Returns an iterator that allows you to traverse all the child nodes of the current node.
+- The returned iterator can be chained with various methods for further manipulation (e.g., `filter`, `toArray`, `css`, etc.).
+- This is a direct way to access the children of a node within an iterator, and can be combined with other iterators or queries to select subsets of the node tree.
+#### Notes:
+- This property is often used to iterate over the child nodes and apply actions or conditions, such as filtering visible elements, modifying their properties, or performing other operations.
+
+#### iterator.all
+The `iterator.all` property provides access to all descendants of the current node, including the node itself. It returns a `NodeIterator` instance containing the current node and all its descendant nodes.
+#### Description:
+- Returns an iterator that includes the current node and all its descendant nodes.
+- The returned iterator allows traversal and manipulation of the entire subtree starting from the current node.
+- It can be used to query or modify all descendants, including the current node, in one operation.
+#### Notes:
+- This property is useful when you need to access the entire set of nodes under the current node, including the node itself.
+- Like `iterator.ls`, this property can be chained with various methods for additional manipulation or filtering.
+
 ### iterator.drop(limit)
+The `node.drop(limit)` method creates a new iterator that skips the first `limit` elements from the original iterator. This is useful when you want to ignore a specific number of nodes at the beginning of the collection.
+**Description:**
+- **Parameters:**
+  - `limit` (number): The number of elements to skip from the beginning of the iterator.
+- **Returns:**
+  - A new `NodeIterator` instance that skips the first `limit` elements and continues iterating over the remaining nodes.
+- The resulting iterator contains all elements except for the first `limit` elements in the original iterator.
+**Notes**:
+- The `limit` value must be a non-negative integer.
+- If `limit` is greater than the number of available elements in the iterator, the result will be an empty iterator.
+- This method is chainable with other iterator methods like `.filter()`, `.take()`, etc., to refine the result further.
+**Example Usage:**
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'}, {text: 'date'});
+
+const iterator = node.ls;
+const droppedIterator = iterator.drop(2);
+
+droppedIterator.toArray(); // Returns an array of nodes, skipping the first 2: ['cherry', 'date']
+```
+
 ### iterator.every(cb)
+**node.drop(limit)**
+The `node.drop(limit)` method creates a new iterator that skips the first `limit` elements from the original iterator. This is useful when you want to ignore a specific number of nodes at the beginning of the collection.
+**Parameters:**
+- `limit` (number): The number of elements to skip from the beginning of the iterator.
+**Returns:**
+- A new `NodeIterator` instance that skips the first `limit` elements and continues iterating over the remaining nodes.
+The resulting iterator contains all elements except for the first `limit` elements in the original iterator.
+**Notes:**
+- The `limit` value must be a non-negative integer.
+- If `limit` is greater than the number of available elements in the iterator, the result will be an empty iterator.
+- This method is chainable with other iterator methods like `.filter()`, `.take()`, etc., to refine the result further.
+**Example Usage:**
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'}, {text: 'date'});
+
+const iterator = node.ls;
+const droppedIterator = iterator.drop(2);
+
+droppedIterator.toArray(); // Returns an array of nodes, skipping the first 2: ['cherry', 'date']
+```
+
 ### iterator.filter(cb)
+The `iterator.filter(cb)` method returns a new iterator that includes only the nodes for which the callback function `cb` returns `true`. This is useful for filtering nodes based on custom conditions.
+
+**Parameters:**
+- `cb` (function): A callback function that is executed for each node. The callback function should return a boolean value (`true` or `false`).
+  - The function is called with the following arguments:
+    - `node` (Node): The current node being evaluated.
+    - `index` (number): The index of the node in the iterator.
+
+**Returns:**
+- A new `NodeIterator` instance that includes only the nodes for which the callback function returns `true`.
+
+**Notes:**
+- The `filter` method does not modify the original iterator; it returns a new iterator.
+- The `callback` function should return `true` if the node should be included in the result.
+
+**Example Usage:**
+
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'}, {text: 'date'});
+
+const iterator = node.ls;
+const filteredIterator = iterator.filter(node => node.text.includes('a'));
+
+filteredIterator.toArray(); // Returns an array with nodes that contain 'a': ['apple', 'banana', 'date']
+```
+
 ### iterator.find(cb)
+**iterator.find(cb)**
+
+The `iterator.find(cb)` method returns the first node in the iterator that satisfies the provided callback function. If no node satisfies the condition, `undefined` is returned.
+
+**Parameters:**
+- `cb` (function): A callback function that is executed for each node in the iterator. The callback function should return `true` for the node you want to find.
+  - The function is called with the following arguments:
+    - `node` (Node): The current node being evaluated.
+    - `index` (number): The index of the node in the iterator.
+
+**Returns:**
+- The first `Node` that matches the condition, or `undefined` if no matching node is found.
+
+**Notes:**
+- The `find` method does not modify the original iterator.
+- Only the first matching node is returned. The iterator stops once a matching node is found.
+
+**Example Usage:**
+
+```javascript
+const node = new Node();
+node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'}, {text: 'date'});
+
+const iterator = node.ls;
+const foundNode = iterator.find(node => node.text === 'banana');
+
+console.log(foundNode.text); // 'banana'
+```
+
 ### iterator.flatMap(cb)
 ### iterator.forEach(cb)
 ### iterator.map(cb)
