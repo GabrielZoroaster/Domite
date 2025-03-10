@@ -196,24 +196,22 @@ Checks if there is a `Node` within the given `Element` matching the specified ta
 ### Node.queryAll(selector)
 ### Node.LS(node)
 ### Node.Attrs(node)
+
 ### new Node(config)
-
 Constructor for the class, initializing the object with a set of parameters to create and configure a DOM element.
-
 #### Parameters:
 - `document` (**Document**): The document object, defaults to `window.document`.
 - `name` (**string**): The tag name of the element, defaults to `"div"`.
 - `tag` (**Element**): An existing DOM element to be used instead of creating a new one. By default, a new element with the tag `name` is created.
-- `class`(#nodeclass) (**string**): The classes to be added to the element. see [node.class]
-- `style` (**string**): The style for the element.
-- `attrs` (**Object**): Attributes for the element.
+- `class`(#nodeclass) (**string**): The classes to be added to the element. see [node.class](#nodeclass).
+- `style` (**string**): The style for the element. see [node.style](#nodestyle).
+- `attrs` (**Object**): Attributes for the element. see [node.class](#nodeclass).
 - `hidden` (**boolean**): If set to `true`, the element will be hidden.
 - `on` (**Object**): Events to be bound to the element. The passed object should contain events and their corresponding handlers.
 - `once` (**Object**): Events with `once` binding. Defines events that will trigger only once.
 - `text` (**string**): The text content for the element.
 - `html` (**string**): The HTML content for the element.
 - `ls` (**any**): A property for storing additional data or values.
-
 #### Example:
 ```javascript
 const myElement = new Node({
@@ -229,9 +227,43 @@ const myElement = new Node({
 ```
 
 ### node.tag
+Represents the tag of the DOM element associated with the `Node` instance.
+#### Type:
+- **Element**: The DOM element that this `Node` instance wraps.
+#### Description:
+The `node.tag` property provides direct access to the DOM element associated with the `Node` object. It allows interaction with the element’s properties, attributes, and methods.
+#### Example:
+```javascript
+let node = new Node({ name: "div" });
+console.log(node.tag);  // Logs the DOM element <div> associated with this Node instance.
+```
+
 ### node.tagName
+Returns the tag name of the DOM element associated with the `Node` instance, in uppercase.
+#### Type:
+- **string**: The tag name of the element (e.g., `"DIV"`, `"SPAN"`, etc.).
+
 ### node.document
+Returns the document object that the `Node` instance is associated with.
+#### Type:
+- **Document**: The `Document` object containing the DOM element.
+
 ### node.parent
+Gets or sets the parent `Node` instance of the current node.
+#### Type:
+- **Get:** `Node | null` – The parent `Node` instance or `null` if there is no parent.
+- **Set:** Accepts one of the following:
+  - **Node** – Sets the given `Node` as the parent.
+  - **Element** – Wraps the given DOM element in a `Node` instance and sets it as the parent.
+  - **object** – Creates a new `Node` from the provided configuration object and sets it as the parent.
+  - **null** – Removes the current node from its parent.
+#### Description:
+The `node.parent` property allows getting the current parent `Node` or setting a new parent.  
+- If assigned a `Node`, it becomes the new parent.
+- If assigned a DOM `Element`, it is wrapped in a `Node` and set as the parent.
+- If assigned a configuration object, a new `Node` is created and set as the parent.
+- If assigned `null`, the node is detached from its current parent.
+
 ### node.prevNode
 ### node.nextNode
 ### node.hidden
