@@ -530,22 +530,292 @@ if (node.checkVisibility()) {
 ```
 
 ### node.click()
-### node.blur()
+Simulates a user click on the node.
+#### Description:
+- Calls the native [`Element.click()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/click) method.
+- Triggers any click event listeners attached to the node.
+
 ### node.focus()
+Moves the focus to the node.
+#### Description:
+- Calls the native [`Element.focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) method.
+- If the node is focusable, it receives keyboard input and other focus-related events.
+
+### node.blur()
+Removes focus from the node.
+#### Description:
+- Calls the native [`Element.blur()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/blur) method.
+- If the node currently has focus, it will lose it, and any related events (like `onblur`) will be triggered.
+
 ### node.scroll()
+A shorthand for the native [`Element.scroll()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll) method.
+#### Returns:
+- **`void`** – This method does not return any value.
+#### Description:
+- Scrolls the node to the specified position.
+- Equivalent to calling `node.scrollTo(x, y)` where `x` and `y` are the horizontal and vertical scroll positions, respectively.
+#### Example:
+```javascript
+node.scroll(0, 100); // Scrolls the node to 100px vertically
+node.scroll(); // Scrolls the node to the top-left corner (0, 0)
+```
+
 ### node.scrollBy()
+Scrolls the node by a specified amount relative to its current scroll position.
+#### Parameters:
+- **`x`**: The horizontal scroll amount (in pixels).
+- **`y`**: The vertical scroll amount (in pixels).
+#### Returns:
+- **`void`** – This method does not return any value.
+#### Description:
+- Scrolls the node by the given `x` and `y` values, relative to its current position.
+- This is similar to the native [`Element.scrollBy()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollBy) method.
+
 ### node.scrollTo()
+Scrolls the node to a specific position.
+#### Parameters:
+- **`x`**: The horizontal scroll position (in pixels).
+- **`y`**: The vertical scroll position (in pixels).
+#### Returns:
+- **`void`** – This method does not return any value.
+#### Description:
+- Scrolls the node to the exact `x` and `y` coordinates.
+- Equivalent to the native [`Element.scrollTo()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo) method, which scrolls to the specified position within the element.
+
 ### node.scrollIntoView()
+Scrolls the node into the visible area of the browser window.
+#### Parameters (optional):
+- **`options`**: An optional object that specifies scroll behavior and alignment.
+  - **`behavior`**: Defines the transition behavior (default is `auto`).
+    - `"auto"` – immediate jump to the position.
+    - `"smooth"` – smooth scrolling to the position.
+  - **`block`**: Defines vertical alignment (default is `start`).
+    - `"start"` – aligns to the top of the window.
+    - `"center"` – aligns the node to the center of the window.
+    - `"end"` – aligns to the bottom of the window.
+    - `"nearest"` – aligns based on the nearest edge.
+  - **`inline`**: Defines horizontal alignment (default is `start`).
+    - `"start"` – aligns to the left of the window.
+    - `"center"` – aligns to the center of the window.
+    - `"end"` – aligns to the right of the window.
+    - `"nearest"` – aligns based on the nearest edge.
+#### Returns:
+- **`void`** – This method does not return any value.
+#### Description:
+- Scrolls the node into view, ensuring it is fully or partially visible within the viewport.
+- Equivalent to the native [`Element.scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method.
+#### Example:
+```javascript
+node.scrollIntoView(); // Scrolls the node into view
+node.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Smoothly scrolls the node into the center of the viewport
+```
+
 ### node.animate()
+Animates the node according to the provided keyframes and options.
+#### Parameters:
+- **`keyframes`**: An array of keyframe objects that define the style changes over time.
+- **`options`** (optional): An object specifying options for the animation:
+  - **`duration`**: The duration of the animation in milliseconds (default is `0`).
+  - **`easing`**: The timing function for the animation (e.g., `linear`, `ease-in`, `ease-out`).
+  - **`delay`**: The delay before the animation starts (in milliseconds).
+  - **`iterations`**: The number of times the animation should repeat. Can be a specific number or `Infinity` for infinite repetition.
+  - **`direction`**: The direction of the animation (e.g., `normal`, `reverse`, `alternate`).
+  - **`fill`**: Specifies what styles to apply after the animation ends (`"forwards"`, `"backwards"`, `"both"`, or `"none"`).
+#### Returns:
+- **`Animation`** – A new `Animation` object that can be used to control the animation.
+#### Description:
+- Starts an animation on the node based on the specified keyframes and options.
+- Equivalent to the native [`Element.animate()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate) method.
+#### Example:
+```javascript
+node.animate([
+  { transform: 'scale(1)' }, 
+  { transform: 'scale(1.5)' }
+], { 
+  duration: 500, 
+  easing: 'ease-in-out' 
+}); // Animates the node, scaling it from 1 to 1.5
+```
+
 ### node.requestFullscreen()
+Requests the browser to display the node in fullscreen mode.
+#### Returns:
+- **`Promise`** – A promise that resolves when the fullscreen request is successfully initiated, or rejects if the request fails.
+#### Description:
+- Requests the browser to make the specified node (typically an element like a video or image) take up the entire screen.
+- Equivalent to the native [`Element.requestFullscreen()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullscreen) method.
+- May be restricted to user interactions (e.g., click or key press) due to browser security policies.
+#### Example:
+```javascript
+node.requestFullscreen().then(() => {
+  console.log('Node is now in fullscreen mode');
+}).catch((error) => {
+  console.error('Failed to enter fullscreen:', error);
+}); // Requests the node to enter fullscreen mode
+```
+
 ### node.cssAll()
+Returns a `StylePropertyMap` object containing all the computed CSS properties of the node.
+#### Returns:
+- **`StylePropertyMap`** – A map of all the computed CSS properties and their values for the node.
+#### Description:
+- This method is a shorthand for accessing all the computed styles of the node, similar to the native [`Element.computedStyleMap()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/computedStyleMap) method.
+- Provides access to all of the CSS properties applied to the element, including those inherited from parent elements.
+#### Example:
+```javascript
+const computedStyles = node.cssAll();
+console.log(computedStyles.get('color')); // Logs the computed color of the node
+```
+
 ### node.matches(selector)
+Checks if the node matches the specified CSS selector.
+#### Parameters:
+- **`selector`**: A string representing a valid CSS selector to match against the node.
+#### Returns:
+- **`boolean`** – `true` if the node matches the selector, otherwise `false`.
+#### Description:
+- This method checks whether the node matches the provided CSS selector.
+- Equivalent to the native [`Element.matches()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/matches) method.
+- Useful for determining if a node meets certain criteria without needing to query the DOM again.
+#### Example:
+
+```javascript
+if (node.matches('.my-class')) {
+  console.log('Node has the class "my-class"');
+}
+
+if (node.matches('div#unique-element')) {
+  console.log('Node is a div with the ID "unique-element"');
+}
+```
+
 ### node.closest(selector)
+Returns the closest ancestor of the node (including itself) that matches the specified CSS selector, wrapped in a `Node` instance.
+#### Parameters:
+- **`selector`**: A string representing a valid CSS selector to match against the node or its ancestors.
+#### Returns:
+- **`Node | null`** – The closest ancestor node (including the node itself) wrapped in a `Node` instance that matches the selector, or `null` if no matching ancestor is found.
+#### Description:
+- This method searches for the closest ancestor of the node (or the node itself) that matches the given CSS selector.
+- It travels up the DOM tree, starting from the node, and stops at the first match it encounters.
+- Equivalent to the native [`Element.closest()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/closest) method, but returns the result wrapped in a `Node` instance.
+#### Example:
+```javascript
+const closestNode = node.closest('.my-class');
+if (closestNode) {
+  console.log('Found the closest ancestor with class "my-class"');
+} else {
+  console.log('No matching ancestor found');
+}
+
+const closestDivNode = node.closest('div');
+if (closestDivNode) {
+  console.log('Found the closest div element wrapped in Node');
+}
+```
+
 ### node.isEqual(node)
+Compares the current node with another node (either a `Node` or a DOM `Element`) to check if they are identical.
+#### Parameters:
+- **`nodeToCompare`**: A `Node` or `Element` instance to compare with the current node.
+#### Returns:
+- **`boolean`** – `true` if the nodes are equal, otherwise `false`.
+#### Description:
+- This method checks if the current node is identical to another node or element by comparing their properties, including structure, attributes, and contents.
+- The comparison takes into account both `Node` and `Element` types, making it flexible for various use cases.
+- Equivalent to the native [`Node.isEqualNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/isEqualNode) method.
+#### Example:
+```javascript
+const node1 = document.createElement('div');
+const node2 = document.createElement('div');
+const node3 = node1;
+
+console.log(node1.isEqual(node2)); // false, as the elements are different
+console.log(node1.isEqual(node3)); // true, as they are the same element
+
+const node4 = new Node({ tag: document.createElement('div') });
+console.log(node4.isEqual(node1)); // false, assuming node4 is a different instance
+```
+
 ### node.isSame(node)
+Compares if the current node is the exact same instance as the provided node.
+#### Parameters:
+- **`nodeToCompare`**: A `Node` or `Element` instance to compare with the current node.
+#### Returns:
+- **`boolean`** – `true` if both nodes refer to the exact same object in memory, otherwise `false`.
+#### Description:
+- This method checks if the current node and the provided node are the exact same object, meaning they refer to the same instance in memory.
+- Unlike `isEqual()`, which compares the contents and properties of nodes, `isSame()` compares the identity of the node instances.
+- It is useful when you need to confirm whether two variables reference the same node, not just equivalent nodes.
+#### Example:
+```javascript
+const node1 = document.createElement('div');
+const node2 = document.createElement('div');
+const node3 = node1;
+
+console.log(node1.isSame(node2)); // false, as they are different instances
+console.log(node1.isSame(node3)); // true, as they are the exact same instance
+
+const node4 = new Node({ tag: document.createElement('div') });
+console.log(node4.isSame(node1)); // false, assuming node4 is a different instance
+```
+
 ### node.contains(node)
+Checks if the current node contains the specified node (i.e., if the provided node is a descendant of the current node).
+#### Parameters:
+- **`nodeToCheck`**: A `Node` or `Element` instance to check if it is contained within the current node.
+#### Returns:
+- **`boolean`** – `true` if the current node contains the specified node as a descendant (including the node itself), otherwise `false`.
+#### Description:
+- This method determines if the current node is an ancestor of the specified node, either directly or indirectly.
+- It traverses the DOM tree starting from the current node and checks if the `nodeToCheck` is a descendant.
+- The method is similar to the native `Node.contains()` method in JavaScript, but can also accept `Node` or `Element` instances wrapped in a custom `Node` object.
+#### Example:
+```javascript
+const parentNode = document.createElement('div');
+const childNode = document.createElement('p');
+parentNode.appendChild(childNode);
+
+console.log(parentNode.contains(childNode)); // true, as parentNode contains childNode
+console.log(childNode.contains(parentNode)); // false, as childNode does not contain parentNode
+
+const wrappedNode = new Node({ tag: parentNode });
+console.log(wrappedNode.contains(childNode)); // true, as parentNode contains childNode
+```
+
 ### node.append(... nodes)
+Appends one or more nodes or objects (which will be converted into nodes) as children to the current node.
+#### Parameters:
+- **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
+#### Returns:
+- **`void`** – This method does not return any value.
+#### Description:
+- This method appends the provided nodes, elements, or objects (that are converted to `Node` instances) as children of the current node.
+- Multiple nodes or elements can be appended in the order they are provided.
+- If an `Object` is passed, it will be automatically wrapped in a `Node` instance.
+#### Example:
+```javascript
+const parentNode = new Node();
+const childNode1 = document.createElement('p');
+const childNode2 = { name: 'span' }; // Example of an object
+const childNode3 = new Node({ tag: document.createElement('a') }); // Wrapped node
+
+parentNode.append(childNode1, childNode2, childNode3);
+console.log(parentNode.childNodes); // [<p>, <span>, <a>], all nodes have been appended
+
+// Using wrapped Node instances
+const wrappedNode = new Node({ tag: parentNode });
+wrappedNode.append(childNode1, childNode2, childNode3);
+console.log(wrappedNode.tag.childNodes); // [<p>, <span>, <a>]
+```
+
 ### node.prepend(... nodes)
+Prepends one or more nodes or objects (which will be converted into nodes) as children to the current node, inserting them at the beginning of the node's child list.
+#### Parameters:
+- **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
+#### Returns:
+- **`void`** – This method does not return any value.
+
 ### node.before(... nodes)
 ### node.after(... nodes)
 ### node.add(config)
