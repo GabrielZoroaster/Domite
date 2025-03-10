@@ -12,8 +12,8 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 ## Contents
 - [Usage]()	
 - [Node]()
-	- [Node.from()](#node-from)
-	- [Node.hasNode()](#node-hasnode)
+	- [Node.from()](#node.from)
+	- [Node.hasNode()](#node.hasnode)
 	- [Node.wrap()]()
 	- [Node.is()]()
 	- [Node.tag()]()
