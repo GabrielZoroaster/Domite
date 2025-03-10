@@ -330,6 +330,7 @@ This static method finds all elements in the DOM matching the provided selector 
 ### Node.LS(node)
 **Parameters:**
 - `node` (Node): The `Node` instance whose child nodes will be accessed.
+
 **Returns:**
 - `NodeLS`: A custom iterator for the child nodes (`ls`) of the provided `node`. This method can be overridden in subclasses to return a specialized iterator.
 
@@ -376,6 +377,7 @@ node.ls.colorize('red'); // Colorize "child 1", "child 2
 ### Node.Attrs(node)
 **Parameters:**
 - `node` (Node): The `Node` instance whose attributes will be accessed.
+
 **Returns:**
 - `NodeIterator`: A custom iterator for the attributes of the provided `node`. This method can be overridden in subclasses to return a specialized iterator for attributes.
 **Description:**
