@@ -204,7 +204,7 @@ Constructor for the class, initializing the object with a set of parameters to c
 - `document` (**Document**): The document object, defaults to `window.document`.
 - `name` (**string**): The tag name of the element, defaults to `"div"`.
 - `tag` (**Element**): An existing DOM element to be used instead of creating a new one. By default, a new element with the tag `name` is created.
-- [`class`](#nodeclass) (**string**): The classes to be added to the element.
+- `class`(#nodeclass) (**string**): The classes to be added to the element. see [node.class]
 - `style` (**string**): The style for the element.
 - `attrs` (**Object**): Attributes for the element.
 - `hidden` (**boolean**): If set to `true`, the element will be hidden.
