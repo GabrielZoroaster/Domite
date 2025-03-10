@@ -1,13 +1,13 @@
-# LookUI — Библиотека для работы с DOM-элементами
+# Domite — A Library for DOM Element Manipulation
 
-`LookUI` — это библиотека для удобной работы с DOM-элементами, основанная на итераторах и агрегации действий. Она предоставляет мощные инструменты для работы с коллекциями элементов, включая выбор дочерних элементов, всех потомков, элементов слева/справа и родителей. Библиотека поддерживает фильтрацию и выборку по CSS-селекторам, а также позволяет эффективно агрегировать и выполнять действия над множеством элементов.
+`Domite` is a library designed for efficient DOM element manipulation using iterators and action aggregation. It provides powerful tools for working with collections of elements, including selection of child elements, all descendants, elements to the left/right, and parent elements. The library supports filtering and querying using CSS selectors, and allows you to efficiently aggregate and perform actions on multiple elements at once.
 
-Ключевые особенности:
-- **Итераторы** для работы с элементами: `node.ls` — дочерние элементы, `node.all` — все потомки, `node.prevAll` — элементы слева, `node.nextAll` — элементы справа, `node.parentAll` — все родительские элементы.
-- **Фильтрация и поиск** с использованием CSS-селекторов.
-- **Агрегация действий**: возможность применить операции или стили ко всей коллекции элементов сразу.
+Key features:
+- **Iterators** for navigating elements: `node.ls` — child elements, `node.all` — all descendants, `node.prevAll` — elements to the left, `node.nextAll` — elements to the right, `node.parentAll` — all parent elements.
+- **Filtering and searching** using CSS selectors.
+- **Action aggregation**: the ability to apply operations or styles to an entire collection of elements at once.
 
-Эти возможности делают библиотеку идеальной для работы с динамическими интерфейсами и сложными DOM-структурами.
+These features make the library perfect for dynamic interfaces and complex DOM structures.
 
 ## Contents
 - [Usage]()	
