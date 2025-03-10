@@ -2,8 +2,8 @@
 ## Contents
 - [Usage]
 - [Node]()
-	- [Node.from()]()
-	- [Node.hasNode()]()
+	- [Node.from()](#node-from)
+	- [Node.hasNode()](#node-hasnode)
 	- [Node.wrap()]()
 	- [Node.is()]()
 	- [Node.tag()]()
