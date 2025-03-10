@@ -150,8 +150,34 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [iterator.filterTag()](#iteratorfilterTag)
 	- [iterator.filterVisible()](#iteratorfilterVisible)
 
+## Usage
+
+```js
+	// Menu
+	const node = new Node({name: 'nav'}); // create dom element
+	node.add({name: 'a', text: 'Link 1'}); // add child 1
+	node.add({name: 'a', text: 'Link 2'}); // add child 2
+	...
+	node.ls.css('color', 'red'); // add style to children
+	node.ls.attr('href', '/'); // set attr to childrren
+	node.ls.clear(); // remove childern
+```
+
+```js
+	// Body
+	const body = Node.query('body'); // get body element
+	body.all.count(); // count all elements in body with body
+	body.ls.query('.my-class').toArray(); // get all elements in body with class
+```
+
 ## class Node
+
+Class of DOM Element Wrapper
+
 ### Node.from()
+
+``` Node.from(tag) ```
+
 ### Node.hasNode()
 ### Node.wrap()
 ### Node.is()
