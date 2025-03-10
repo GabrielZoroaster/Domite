@@ -431,6 +431,9 @@ node.ls = [new Node({ name: "div" }), new Node({ name: "p" })];
 
 // Set from a DOM element
 node.ls = document.createElement("section");
+
+// Set from an object
+node.ls = {name: "div", text: "Some text"};
 ```
 
 ### node.all
@@ -449,8 +452,31 @@ for (let descendant of iterator) {
 }
 ```
 
+### node.parentAll
+Gets an iterator for all ancestor nodes.
+#### Type:
+- **Get:** `NodeIterator` – An iterator that traverses all parent nodes up to the root.
+
+#### Description:
+- Returns an iterator that starts from the node’s direct parent and moves up the hierarchy.
+- The root node (without a parent) is the last in the sequence.
+
 ### node.prevAll
+Gets an iterator for all preceding sibling nodes.
+#### Type:
+- **Get:** `NodeIterator` – An iterator that traverses all previous siblings in order.
+#### Description:
+- Returns an iterator that starts from the node’s previous sibling and moves left (toward the first sibling).
+- Does not include the node itself.
+
 ### node.nextAll
+Gets an iterator for all following sibling nodes.
+#### Type:
+- **Get:** `NodeIterator` – An iterator that traverses all next siblings in order.
+#### Description:
+- Returns an iterator that starts from the node’s next sibling and moves right (toward the last sibling).
+- Does not include the node itself.
+
 ### node.vp
 ### node.abs
 ### node.rel
@@ -462,9 +488,11 @@ for (let descendant of iterator) {
 ### node.emit(eventType)
 ### node.dispatch(event)
 ### node.observe(options, listener)
+
 ### node.show()
 ### node.hide()
 ### node.toggleDisplay()
+
 ### node.checkVisibility()
 ### node.click()
 ### node.blur()
