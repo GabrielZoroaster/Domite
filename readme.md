@@ -1948,7 +1948,7 @@ The `iterator.ls` property provides access to the child nodes (or descendants) o
 #### Notes:
 - This property is often used to iterate over the child nodes and apply actions or conditions, such as filtering visible elements, modifying their properties, or performing other operations.
 
-#### iterator.all
+### iterator.all
 The `iterator.all` property provides access to all descendants of the current node, including the node itself. It returns a `NodeIterator` instance containing the current node and all its descendant nodes.
 #### Description:
 - Returns an iterator that includes the current node and all its descendant nodes.
