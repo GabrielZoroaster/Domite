@@ -23,7 +23,7 @@
 		</style>
 		<script type="module">
 			import * as ui from '../lib/node.js'
-			import {Node} from '../lib/node.js'
+			import {Node, $} from '../lib/node.js'
 			const node = new Node({
 				style: 'border: 1px solid red',
 				class: 'zuzuka',
@@ -52,7 +52,8 @@
 				}));
 			}
 			exp(node);
-			document.body.append(node.tag);
+			node.parent = document.body;
+			[node.parent] = $('body');
 			Object.assign(window, {ui, ... ui, node});
 		</script>
 	</head>
