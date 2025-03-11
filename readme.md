@@ -209,9 +209,10 @@ A flexible function that selects, wraps, or creates nodes and returns a `NodeIte
 const nodes1 = $(".items", ".else"); // Selects elements matching ".items" and ".else"
 const nodes2 = $(document.getElementById("header")); // Wraps an existing element
 const nodes3 = $(new Node("div")); // Uses an existing Node instance
-const nodes4 = $([document.body, "#footer", new Node("span")]); // Mixed input
-const nodes5 = $(new MyNode("section")); // Uses a custom subclass
+const nodes4 = $(document.body, "#footer", new Node({name: "span"})); // Mixed input
 const nodes5 = $({name: 'div'}); // new node
+const nodes4 = $([{text: 'Apple'}, "#header", document.getElementById("footer")]); // iterator
+const nodes5 = $(new MyNode("section")); // Uses a custom subclass
 ```
 
 ## class Node
