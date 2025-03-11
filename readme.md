@@ -13,7 +13,7 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 ## Contents
 - [Usage](#usage)
 - [class Node](#class-node)
-	- [Node.from()](#nodefromtag)
+	- [Node.of()](#nodeoftag)
 	- [Node.hasNode()](#nodehasnodetag)
 	- [Node.is()](#Nodeisnode)
 	- [Node.tag()](#Nodetagnode)
@@ -193,7 +193,7 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 
 Class of DOM Element Wrapper
 
-### Node.from(tag)
+### Node.of(tag)
 Returns the first `Node` within the given `Element` matching the specified tag. If no matching node is found, it returns `null`.
 #### Parameters:
 - `tag` (**Element**): The element in which to search for the node.
@@ -214,7 +214,7 @@ Checks if there is a `Node` within the given `Element` matching the specified ta
 
 ### Node.is(node)
 **Parameters:**
-- `node` (Node or Element): The node or element to check.
+- `node`: The node to check.
 
 **Returns:**
 - `Boolean`: Returns `true` if the provided `node` is an instance of `Node`. Returns `false` otherwise.
