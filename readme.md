@@ -12,6 +12,7 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 ---
 ## Contents
 - [Usage](#usage)
+- [function $()](#args)
 - [class Node](#class-node)
 	- [Node.of()](#nodeoftag)
 	- [Node.hasNode()](#nodehasnodetag)
@@ -187,6 +188,30 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	const body = Node.query('body'); // get body element
 	body.all.count(); // count all elements in body with body
 	body.ls.query('.my-class').toArray(); // get all elements in body with class
+```
+### $(...args)
+
+A flexible function that selects, wraps, or creates nodes and returns a `NodeIterator`. Each argument can be a reference to an existing node, a selector string, or an object that will be converted into a new node.
+
+#### Parameters
+- `...args` **(Node | Element | string | Iterable<Node | Element | string | object> | object)** — One or more arguments, each of which can be:
+  - A **`Node`** instance.
+  - A **DOM `Element`**.
+  - A **CSS selector** (string) to find matching elements in the document.
+  - An **object**, which will be wrapped as a new node using `new Node(arg)`.
+  - An **iterable collection** (e.g., `NodeList`, `Array`, `Set`), where each element follows the same rules.
+
+#### Returns
+- **`NodeIterator`** — An iterator containing `Node` instances corresponding to the provided arguments.
+
+#### Example
+```js
+const nodes1 = $(".items", ".else"); // Selects elements matching ".items" and ".else"
+const nodes2 = $(document.getElementById("header")); // Wraps an existing element
+const nodes3 = $(new Node("div")); // Uses an existing Node instance
+const nodes4 = $([document.body, "#footer", new Node("span")]); // Mixed input
+const nodes5 = $(new MyNode("section")); // Uses a custom subclass
+const nodes5 = $({name: 'div'}); // new node
 ```
 
 ## class Node
