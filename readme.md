@@ -2526,7 +2526,7 @@ node.append(
   { tag: 'span', text: 'Text only' }
 );
 
-console.log([...node.ls.htmls()]); // ["<b>Bold</b> and <i>Italic</i>", "Hello <span>World</span>", ""]
+console.log([...node.ls.htmls()]); // ["<b>Bold</b> and <i>Italic</i>", "Hello <span>World</span>", "Text only"]
 console.log([...node.ls.filter(n => n.tag === 'p').htmls()]); // ["Hello <span>World</span>"]
 ```
 
@@ -2757,7 +2757,7 @@ const iterator = Node.queryAll('img');
 iterator.attr('alt', 'Image description');
 
 // Get the 'alt' attribute of the first img element
-console.log(iterator.attr('alt'));  // Output: "Image description"
+console.log(iterator.map(node => node.attrs.get('alt')).toArray());  // Output: ["Image description", ... ]
 ```
 
 ---
@@ -2867,8 +2867,10 @@ The `iterator.indexOf(node)` method returns the index of the specified node with
 
 ### iterator.includes(node)
 The `iterator.includes(node)` method checks if the specified node exists within the iterator.
+
 **Parameters:**
 - `node` (Node): The node to check for existence within the iterator.
+
 **Returns:**
 - `true` if the node is found in the iterator, otherwise `false`.
 
@@ -2876,16 +2878,20 @@ The `iterator.includes(node)` method checks if the specified node exists within 
 
 ### iterator.contains(node)
 The `iterator.contains(node)` method checks if the specified node exists within the iterator or among its descendants.
+
 **Parameters:**
 - `node` (Node): The node to check for existence in the iterator or its children.
+
 **Returns:**
 - `true` if the node is found in the iterator or among its descendants, otherwise `false`.
 
 ---
 
 ### iterator.match(selector)
+
 **Parameters:**
 - `selector` (string): A CSS selector to match nodes in the iterator.
+
 **Returns:**
 - `Node | null`: Returns the first node that matches the selector, or `null` if no matching node is found.
 **Description:**
@@ -2894,6 +2900,7 @@ This method searches for the first node in the iterator that matches the specifi
 ---
 
 ### iterator.matchAll(selector)
+
 **Parameters:**
 - `selector` (string): A CSS selector used to filter nodes in the iterator.
 
