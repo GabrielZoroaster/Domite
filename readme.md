@@ -1916,10 +1916,10 @@ console.log(divClasses); // Outputs an array of classes from all divs
 ### NodeIterator.from(nodes)
 The `NodeIterator.from(nodes)` method creates a new instance of `NodeIterator` from an array or iterable of `Node` elements. This method is useful when you want to wrap a list of nodes into an iterator to take advantage of all the iterator methods, such as `filter`, `take`, `drop`, etc.
 
-#### NodeIterator.of(... nodes)
+### NodeIterator.of(... nodes)
 The `NodeIterator.of(...nodes)` method creates a new instance of `NodeIterator` from a list of `Node` elements passed as individual arguments. This method is ideal when you have multiple `Node` objects and want to create an iterator from them without the need to put them into an array first.
 
-#### NodeIterator.wrap(tags)
+### NodeIterator.wrap(tags)
 The `NodeIterator.wrap(tags)` method creates a new instance of `NodeIterator` by wrapping a list of `tags` (HTML elements or `Node` objects). This method is helpful when you need to wrap existing elements into a `NodeIterator` to take advantage of the iterator's chainable methods.
 
 #### Example Usage:
