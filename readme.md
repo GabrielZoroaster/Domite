@@ -2157,26 +2157,20 @@ droppedIterator.toArray(); // Returns an array of nodes, skipping the first 2: [
 ---
 
 ### iterator.every(cb)
-**node.drop(limit)**
-The `node.drop(limit)` method creates a new iterator that skips the first `limit` elements from the original iterator. This is useful when you want to ignore a specific number of nodes at the beginning of the collection.
-**Parameters:**
-- `limit` (number): The number of elements to skip from the beginning of the iterator.
-**Returns:**
-- A new `NodeIterator` instance that skips the first `limit` elements and continues iterating over the remaining nodes.
-The resulting iterator contains all elements except for the first `limit` elements in the original iterator.
-**Notes:**
-- The `limit` value must be a non-negative integer.
-- If `limit` is greater than the number of available elements in the iterator, the result will be an empty iterator.
-- This method is chainable with other iterator methods like `.filter()`, `.take()`, etc., to refine the result further.
-**Example Usage:**
-```javascript
-const node = new Node();
-node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'}, {text: 'date'});
+Checks whether **all nodes** in the iterator satisfy the given condition.
 
-const iterator = node.ls;
-const droppedIterator = iterator.drop(2);
+- **`cb`** (function): A callback function that receives a node as an argument and returns a boolean.
 
-droppedIterator.toArray(); // Returns an array of nodes, skipping the first 2: ['cherry', 'date']
+#### Returns
+- `true` if **all nodes** satisfy the condition, otherwise `false`.
+
+#### Example Usage
+```js
+// Example: Check if all nodes are visible
+const allVisible = iterator.every(node => !node.hidden);
+
+// Example: Check if all nodes have the class 'active'
+const allActive = iterator.every(node => node.classList.contains('active'));
 ```
 
 ---
