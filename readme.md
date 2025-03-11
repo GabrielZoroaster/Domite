@@ -201,6 +201,8 @@ Returns the first `Node` within the given `Element` matching the specified tag. 
 - **Node**: The first matching node.
 - **null**: If no matching node is found.
 
+---
+
 ### Node.hasNode(tag)
 Checks if there is a `Node` within the given `Element` matching the specified tag. Returns `true` if a matching node is found, and `false` otherwise.
 #### Parameters:
@@ -208,12 +210,16 @@ Checks if there is a `Node` within the given `Element` matching the specified ta
 #### Returns:
 - **boolean**: `true` if a matching node is found, `false` otherwise.
 
+---
+
 ### Node.is(node)
 **Parameters:**
 - `node` (Node or Element): The node or element to check.
 
 **Returns:**
 - `Boolean`: Returns `true` if the provided `node` is an instance of `Node`. Returns `false` otherwise.
+
+---
 
 ### Node.tag(node)
 **Parameters:**
@@ -227,6 +233,8 @@ Checks if there is a `Node` within the given `Element` matching the specified ta
 
 **Description:**
 The `tag` method retrieves the underlying `Element` for a given `Node` instance. If the provided `Node` does not have an associated `Element`, it will throw an error.
+
+---
 
 ### Node.query(selector)
 **Parameters:**
@@ -258,6 +266,8 @@ const spanNode = Node.query('.my-class');
 console.log(spanNode instanceof Node); // true
 ```
 
+---
+
 ### Node.queryAll(selector)
 **Parameters:**
 - `selector` (string): The CSS selector to match the nodes.
@@ -285,6 +295,8 @@ const noMatchNodes = Node.queryAll('.non-existing');
 console.log(noMatchNodes.count()); // 0, no nodes matched
 ```
 
+---
+
 ### Node.wrap(selector)
 This static method finds an element in the DOM matching the provided selector and wraps it with the specified class. If the element exists, it returns the wrapped element, otherwise, it returns `null`.
 
@@ -307,6 +319,8 @@ This static method finds an element in the DOM matching the provided selector an
   }
 	```
 
+---
+
 ### Node.wrapAll(selector)
 This static method finds all elements in the DOM matching the provided selector and wraps them with the specified class. It returns a `NodeIterator` containing the wrapped elements.
 
@@ -327,6 +341,8 @@ This static method finds all elements in the DOM matching the provided selector 
 	  console.log('Wrapped node:', node);
 	});
 	```
+
+---
 
 ### Node.LS(node)
 **Parameters:**
@@ -375,6 +391,8 @@ node.ls.log(); // Logs "child 1", "child 2"
 node.ls.colorize('red'); // Colorize "child 1", "child 2
 ```
 
+---
+
 ### Node.Attrs(node)
 **Parameters:**
 - `node` (Node): The `Node` instance whose attributes will be accessed.
@@ -411,6 +429,8 @@ myNode.attrs.title = 'Sample Node';
 
 // Logs "data-custom value", "title Sample Node"
 ```
+
+---
 
 ### new Node(config)
 Constructor for the class, initializing the object with a set of parameters to create and configure a DOM element.
@@ -453,15 +473,21 @@ let node = new Node({ name: "div" });
 console.log(node.tag);  // Logs the DOM element <div> associated with this Node instance.
 ```
 
+---
+
 ### node.tagName
 Returns the tag name of the DOM element associated with the `Node` instance, in uppercase.
 #### Type:
 - **string**: The tag name of the element (e.g., `"DIV"`, `"SPAN"`, etc.).
 
+---
+
 ### node.document
 Returns the document object that the `Node` instance is associated with.
 #### Type:
 - **Document**: The `Document` object containing the DOM element.
+
+---
 
 ### node.parent
 Gets or sets the parent `Node` instance of the current node.
@@ -473,6 +499,8 @@ Gets or sets the parent `Node` instance of the current node.
   - **object** – Creates a new `Node` from the provided configuration object and sets it as the parent.
   - **null** – Removes the current node from its parent.
 
+---
+
 ### node.prevNode
 Gets or sets the previous sibling `Node` of the current node.
 - **Get:** `Node | null` – The previous sibling `Node` or `null` if there is no previous sibling.
@@ -480,6 +508,8 @@ Gets or sets the previous sibling `Node` of the current node.
   - **Node** – Sets the given `Node` as the previous sibling.
   - **Element** – Wraps the given DOM element in a `Node` instance and sets it as the previous sibling.
   - **object** – Creates a new `Node` from the provided configuration object and sets it as the previous sibling.
+
+---
 
 ### node.nextNode
 Gets or sets the next sibling `Node` of the current node.
@@ -489,8 +519,15 @@ Gets or sets the next sibling `Node` of the current node.
   - **Element** – Wraps the given DOM element in a `Node` instance and sets it as the next sibling.
   - **object** – Creates a new `Node` from the provided configuration object and sets it as the next sibling.
 
+---
+
 ### node.hidden
 Gets or sets the visibility state of the node.
+
+---
+
+### node.class
+Gets or sets the class list of the node.
 #### Type:
 - **Get:** `boolean` – `true` if the node is hidden, `false` otherwise.
 - **Set:** Accepts a `boolean` value:
@@ -526,6 +563,8 @@ node.class = ["large", "rounded"];
 console.log(node.class.value);  // Logs: "large rounded"
 ```
 
+---
+
 ### node.style
 Gets or sets the inline styles of the node.
 #### Type:
@@ -556,8 +595,10 @@ node.style = { border: "1px solid black", padding: "10px" };
 console.log(node.style.border);  // Logs: "1px solid black"
 ```
 
+---
+
 ### node.css
-Gets or sets the computed styles of the node.
+Gets or sets the styles of the node.
 #### Type:
 - **Get:** `StylePropertyMap` – A `StylePropertyMap` representing the computed styles of the node.
 - **Set:** Accepts the same types as [`node.style`](#node-style):
@@ -576,6 +617,8 @@ node.css = { border: "1px solid black", padding: "10px" };
 console.log(node.css.get("border"));  // Logs: "1px solid black"
 ```
 
+---
+
 ### node.dataset
 
 Gets or sets custom data attributes.
@@ -590,6 +633,8 @@ console.log(node.dataset.id); // "123"
 node.dataset = { user: "admin", theme: "dark" };
 console.log(node.dataset.theme); // "dark"
 ```
+
+---
 
 ### node.attrs
 Gets or sets element attributes.
@@ -606,11 +651,17 @@ node.attrs = { role: "button", tabindex: "0" };
 console.log(node.attrs.get('role')); // "button"
 ```
 
+---
+
 ### node.text
 Gets or sets text content of node
 
+---
+
 ### node.html
 Gets or sets html content of node
+
+---
 
 ### node.ls
 Gets or sets the child node list (NodeLS).
@@ -639,6 +690,8 @@ node.ls = document.createElement("section");
 node.ls = {name: "div", text: "Some text"};
 ```
 
+---
+
 ### node.all
 Gets an iterator for all descendants of the node, including the node itself.
 #### Type:
@@ -655,6 +708,8 @@ for (let descendant of iterator) {
 }
 ```
 
+---
+
 ### node.parentAll
 Gets an iterator for all ancestor nodes.
 #### Type:
@@ -664,6 +719,8 @@ Gets an iterator for all ancestor nodes.
 - Returns an iterator that starts from the node’s direct parent and moves up the hierarchy.
 - The root node (without a parent) is the last in the sequence.
 
+---
+
 ### node.prevAll
 Gets an iterator for all preceding sibling nodes.
 #### Type:
@@ -672,6 +729,8 @@ Gets an iterator for all preceding sibling nodes.
 - Returns an iterator that starts from the node’s previous sibling and moves left (toward the first sibling).
 - Does not include the node itself.
 
+---
+
 ### node.nextAll
 Gets an iterator for all following sibling nodes.
 #### Type:
@@ -679,6 +738,8 @@ Gets an iterator for all following sibling nodes.
 #### Description:
 - Returns an iterator that starts from the node’s next sibling and moves right (toward the last sibling).
 - Does not include the node itself.
+
+---
 
 ### node.vp
 The `vp` (ViewPort) property returns an object that manages the geometry of the node. It provides information similar to `element.getBoundingClientRect()`. The object contains properties like `x`, `y`, `top`, `left`, `width`, and `height`, representing the node's position and dimensions relative to the viewport.  
@@ -696,6 +757,8 @@ const geometry = node.vp;
 console.log(geometry.x, geometry.y, geometry.width, geometry.height);
 ```
 
+---
+
 ### node.abs
 ### `node.abs`
 The `abs` property returns an object similar to `node.vp`, but instead of providing geometry relative to the viewport, it provides the node's position and dimensions relative to the document (the entire webpage).  
@@ -712,6 +775,8 @@ Example:
 const geometry = node.abs;
 console.log(geometry.x, geometry.y, geometry.width, geometry.height);
 ```
+
+---
 
 ### node.rel
 The `rel` property provides the node's geometry relative to its nearest positioned ancestor element (i.e., the `offsetParent`), similar to `offsetTop`, `offsetLeft`, `offsetWidth`, and `offsetHeight`. It returns an object with the following properties:
@@ -732,6 +797,8 @@ console.log(geometry.top, geometry.left, geometry.width, geometry.height);
 console.log(geometry.parent); // The offsetParent (parent element).
 ```
 
+---
+
 ### node.box
 The `box` property provides the node's geometry relative to its **own offset container** (the element's own bounding box, similar to `clientTop`, `clientLeft`, `clientWidth`, and `clientHeight`). It returns an object with the following properties:
 
@@ -748,6 +815,8 @@ Example:
 const geometry = node.box;
 console.log(geometry.top, geometry.left, geometry.width, geometry.height);
 ```
+
+---
 
 ### node.scr
 **Scrolling Geometry**
@@ -786,6 +855,8 @@ node.scr.tx = 0.5;  // Horizontal scroll at 50%
 node.scr.ty = 0.5;  // Vertical scroll at 50%
 ```
 
+---
+
 ### node.on(eventType, listener, options)
 **Parameters:**
 - `eventType` (string): The type of the event to listen for (e.g., `'click'`, `'mouseenter'`, etc.).
@@ -819,6 +890,9 @@ node.on('click', function() {
   console.log('This will only fire once');
 }, { once: true });
 ```
+
+---
+
 ### node.off(eventType, listener, options)
 **Parameters:**
 - `eventType` (string): The type of the event to remove the listener from (e.g., `'click'`, `'mouseenter'`, etc.).
@@ -851,6 +925,8 @@ node.on('click', onClick);
 node.off('click', onClick);
 ```
 
+---
+
 ### node.once(eventType, listener, options)
 **Parameters:**
 - `eventType` (string): The type of the event to listen for (e.g., `'click'`, `'mouseenter'`, etc.).
@@ -882,6 +958,8 @@ node.once('click', onClickOnce);
 // If clicked, the listener will be called and then automatically removed
 ```
 
+---
+
 ### node.emit(eventType)
 **Parameters:**
 - `eventType` (string): The type of the event to dispatch (e.g., `'click'`, `'mouseenter'`, etc.).
@@ -895,6 +973,8 @@ The `Node.emit` method is a wrapper around `dispatchEvent`. It dispatches an eve
 This method creates a new `Event` object of the specified `eventType` and uses `dispatchEvent` to propagate the event to any registered listeners.
 
 For more details, refer to the [MDN documentation for `dispatchEvent`](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent).
+
+---
 
 ### node.dispatch(event)
 **Parameters:**
@@ -925,6 +1005,8 @@ node.on('customEvent', function() {
 // Dispatch the custom event
 node.dispatch(customEvent);  // This will log "Custom event dispatched!"
 ```
+
+---
 
 ### node.observe(options, listener)
 **Parameters:**
@@ -959,14 +1041,20 @@ node.observe({ attributes: true, attributeFilter: ['class'] }, function(mutation
 });
 
 // Trigger an attribute change
-node.attr('class', 'new-class'); // This will log "Attribute class changed!"
+node.attrs.set('class', 'new-class'); // This will log "Attribute class changed!"
 ```
+
+---
 
 ### node.show()
 Makes the node visible by removing the `hidden` attribute and setting relevant styles.
 
+---
+
 ### node.hide()
 Hides the node by setting the `hidden` attribute.
+
+---
 
 ### node.toggleDisplay()
 Toggles the visibility of the node by switching its `display` style between `none` and its previous value.
@@ -981,6 +1069,8 @@ if (node.toggleDisplay()) {
   console.log("Node is now hidden");
 }
 ```
+
+---
 
 ### node.checkVisibility()
 Checks if the node is visible in the document.
@@ -1001,11 +1091,15 @@ if (node.checkVisibility()) {
 }
 ```
 
+---
+
 ### node.click()
 Simulates a user click on the node.
 #### Description:
 - Calls the native [`Element.click()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/click) method.
 - Triggers any click event listeners attached to the node.
+
+---
 
 ### node.focus()
 Moves the focus to the node.
@@ -1013,11 +1107,15 @@ Moves the focus to the node.
 - Calls the native [`Element.focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) method.
 - If the node is focusable, it receives keyboard input and other focus-related events.
 
+---
+
 ### node.blur()
 Removes focus from the node.
 #### Description:
 - Calls the native [`Element.blur()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/blur) method.
 - If the node currently has focus, it will lose it, and any related events (like `onblur`) will be triggered.
+
+---
 
 ### node.scroll()
 A shorthand for the native [`Element.scroll()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll) method.
@@ -1030,6 +1128,8 @@ node.scroll(0, 100); // Scrolls the node to 100px vertically
 node.scroll(); // Scrolls the node to the top-left corner (0, 0)
 ```
 
+---
+
 ### node.scrollBy()
 Scrolls the node by a specified amount relative to its current scroll position.
 #### Parameters:
@@ -1039,6 +1139,8 @@ Scrolls the node by a specified amount relative to its current scroll position.
 - Scrolls the node by the given `x` and `y` values, relative to its current position.
 - This is similar to the native [`Element.scrollBy()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollBy) method.
 
+---
+
 ### node.scrollTo()
 Scrolls the node to a specific position.
 #### Parameters:
@@ -1047,6 +1149,8 @@ Scrolls the node to a specific position.
 #### Description:
 - Scrolls the node to the exact `x` and `y` coordinates.
 - Equivalent to the native [`Element.scrollTo()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTo) method, which scrolls to the specified position within the element.
+
+---
 
 ### node.scrollIntoView()
 Scrolls the node into the visible area of the browser window.
@@ -1073,6 +1177,8 @@ Scrolls the node into the visible area of the browser window.
 node.scrollIntoView(); // Scrolls the node into view
 node.scrollIntoView({ behavior: 'smooth', block: 'center' }); // Smoothly scrolls the node into the center of the viewport
 ```
+
+---
 
 ### node.animate()
 Animates the node according to the provided keyframes and options.
@@ -1101,6 +1207,8 @@ node.animate([
 }); // Animates the node, scaling it from 1 to 1.5
 ```
 
+---
+
 ### node.requestFullscreen()
 Requests the browser to display the node in fullscreen mode.
 #### Returns:
@@ -1118,6 +1226,8 @@ node.requestFullscreen().then(() => {
 }); // Requests the node to enter fullscreen mode
 ```
 
+---
+
 ### node.cssAll()
 Returns a `StylePropertyMap` object containing all the computed CSS properties of the node.
 #### Returns:
@@ -1130,6 +1240,8 @@ Returns a `StylePropertyMap` object containing all the computed CSS properties o
 const computedStyles = node.cssAll();
 console.log(computedStyles.get('color')); // Logs the computed color of the node
 ```
+
+---
 
 ### node.matches(selector)
 Checks if the node matches the specified CSS selector.
@@ -1152,6 +1264,8 @@ if (node.matches('div#unique-element')) {
   console.log('Node is a div with the ID "unique-element"');
 }
 ```
+
+---
 
 ### node.closest(selector)
 Returns the closest ancestor of the node (including itself) that matches the specified CSS selector, wrapped in a `Node` instance.
@@ -1178,6 +1292,8 @@ if (closestDivNode) {
 }
 ```
 
+---
+
 ### node.isEqual(node)
 Compares the current node with another node (either a `Node` or a DOM `Element`) to check if they are identical.
 #### Parameters:
@@ -1200,6 +1316,8 @@ console.log(node1.isEqual(node3)); // true, as they are the same element
 const node4 = new Node({ tag: document.createElement('div') });
 console.log(node4.isEqual(node1)); // false, assuming node4 is a different instance
 ```
+
+---
 
 ### node.isSame(node)
 Compares if the current node is the exact same instance as the provided node.
@@ -1224,6 +1342,8 @@ const node4 = new Node({ tag: document.createElement('div') });
 console.log(node4.isSame(node1)); // false, assuming node4 is a different instance
 ```
 
+---
+
 ### node.contains(node)
 Checks if the current node contains the specified node (i.e., if the provided node is a descendant of the current node).
 #### Parameters:
@@ -1246,6 +1366,8 @@ console.log(childNode.contains(parentNode)); // false, as childNode does not con
 const wrappedNode = new Node({ tag: parentNode });
 console.log(wrappedNode.contains(childNode)); // true, as parentNode contains childNode
 ```
+
+---
 
 ### node.append(... nodes)
 Appends one or more nodes or objects (which will be converted into nodes) as children to the current node.
@@ -1271,10 +1393,15 @@ wrappedNode.append(childNode1, childNode2, childNode3);
 console.log(wrappedNode.tag.childNodes); // [<p>, <span>, <a>]
 ```
 
+---
+
 ### node.prepend(... nodes)
 Prepends one or more nodes or objects (which will be converted into nodes) as children to the current node, inserting them at the beginning of the node's child list.
 #### Parameters:
 - **`...nodes`**: One or more `Node`, `Element`, or `Object` instances. If an `Object` is provided, it will be converted into a `Node` using `new Node(object)`.
+
+---
+
 ### node.before(... nodes)
 Inserts one or more nodes or objects (which will be converted into nodes) before the current node, as siblings.
 #### Parameters:
@@ -1284,6 +1411,8 @@ Inserts one or more nodes or objects (which will be converted into nodes) before
 - Multiple nodes or elements can be inserted in the order they are provided.
 - If an `Object` is passed, it will be automatically wrapped in a `Node` instance.
 
+---
+
 ### node.after(... nodes)
 Inserts one or more nodes or objects (which will be converted into nodes) after the current node, as siblings.
 #### Parameters:
@@ -1292,6 +1421,8 @@ Inserts one or more nodes or objects (which will be converted into nodes) after 
 - This method inserts the provided nodes, elements, or objects (that are converted to `Node` instances) after the current node in the DOM tree, as siblings.
 - Multiple nodes or elements can be inserted in the order they are provided.
 - If an `Object` is passed, it will be automatically wrapped in a `Node` instance.
+
+---
 
 ### node.replace(... nodes)
 Replaces the current node with one or more nodes or objects (which will be converted into nodes).
@@ -1356,6 +1487,8 @@ console.log(menu.html);
 // Returns <nav><a href="/some/url">Some Title</a></nav>
 ```
 
+---
+
 ### node.remove()
 Removes the current node from its parent in the DOM.
 
@@ -1386,6 +1519,8 @@ Clear all attributes in node
 
 ### node.attrs.replace(attrs)
 Replace all attributes in node. see [node.attrs](#nodeattrs)
+
+---
 
 ## class NodeLS
 The `NodeLS` class is a specialized iterator for accessing child nodes of a `Node`. It is automatically created when you access the `ls` property of a `Node` instance. The class is designed to be extended in child classes by overriding the static `NodeLS` method.
@@ -1456,6 +1591,8 @@ const node = new Node({ name: 'div' });
 console.log(node.ls.length); // Logs the number of child elements (ignores non-element nodes)
 ```
 
+---
+
 ### node.ls.first
 The `first` property of `NodeLS` returns the first child `Element` node of the parent `Node`. It automatically ignores non-`Element` nodes, such as text or comment nodes. If no child elements exist, it returns `null`. You can also set this property, which is equivalent to calling `node.prepend(node)`.
 #### Usage:
@@ -1473,6 +1610,8 @@ node.ls.first = new Node({ name: 'span' });
 console.log(node.ls.first); // Logs the newly prepended child element
 ```
 
+---
+
 ### node.ls.last
 The `last` property of `NodeLS` returns the last child `Element` node of the parent `Node`. It automatically ignores non-`Element` nodes, such as text or comment nodes. If no child elements exist, it returns `null`. You can also set this property, which is equivalent to calling `node.append(node)`.
 #### Usage:
@@ -1487,6 +1626,8 @@ console.log(node.ls.last); // Logs the last child element or null if no child el
 node.ls.last = new Node({ name: 'p' });
 console.log(node.ls.last); // Logs the newly appended child element
 ```
+
+---
 
 ### node.ls.at(offset)
 **Description:**
@@ -1518,6 +1659,8 @@ node.ls.at(0) = new Node({ name: 'p' });
 console.log(node.ls.at(0)); // Logs the newly added 'p' element at index 0
 ```
 
+---
+
 ### node.ls.replace(... nodes)
 **Description:**  
 The `replace(...nodes)` method replaces the current child nodes at the specified positions in the list with the new provided nodes.
@@ -1539,12 +1682,16 @@ node.ls.replace(new Node({ name: 'section' }), new Node({ name: 'article' }));
 console.log(node.ls); // Logs the node list after replacement
 ```
 
+---
+
 ### node.ls.clear()
 **Description:**  
 The `clear()` method removes all child nodes from the list associated with `node.ls`, unlike most other methods which typically affect individual nodes.
 **Notes:**  
 - This method **removes all child nodes** from `node.ls`, unlike most other methods that operate on individual nodes or groups of nodes.
 - It only affects the child nodes managed by `node.ls` and does not impact other parts of the DOM tree.
+
+---
 
 ### node.ls.slice(start, end)
 **Description:**  
@@ -1575,6 +1722,8 @@ console.log(sliced1); // Logs the new iterator with the first two child nodes ('
 const sliced2 = node.ls.slice(-2, -1);
 console.log(sliced2); // Logs the new iterator with the last child node ('span')
 ```
+
+---
 
 ### node.ls.splice(start, deleteCount, ... nodes)
 **Description:**  
@@ -1608,6 +1757,9 @@ console.log(node.ls.length); // Logs the number of child nodes: 2 (after removal
 // Use splice to remove one node and add new ones in its place
 const replacedIterator = node.ls.splice
 ```
+
+---
+
 ### node.ls.shift()
 **Description:**  
 The `shift()` method removes the first child node from the `node.ls` list and returns it. This method modifies the `node.ls` list by shifting all the remaining child nodes one position to the left.
@@ -1622,6 +1774,8 @@ The `shift()` method removes the first child node from the `node.ls` list and re
 - The method modifies the original `node.ls` list by removing the first child node.
 - The remaining nodes are shifted one position forward in the list after the operation.
 
+---
+
 ### node.ls.pop()
 **Description:**  
 The `pop()` method removes the last child node from the `node.ls` list and returns it. This method modifies the `node.ls` list by reducing its length by one.
@@ -1635,6 +1789,8 @@ The `pop()` method removes the last child node from the `node.ls` list and retur
 **Notes:**  
 - The method modifies the original `node.ls` list by removing the last child node.
 - The list is shortened by one node after the operation.
+
+---
 
 ### node.ls.push(... nodes)
 **Description:**  
@@ -1663,6 +1819,8 @@ console.log(node.ls[0] === pNode); // Logs true (pNode is now the first child)
 console.log(node.ls[1] === spanNode); // Logs true (spanNode is now the second child)
 ```
 
+---
+
 ### node.ls.unshift(... nodes)
 **Description:**  
 The `unshift()` method adds one or more nodes to the beginning of the `node.ls` list. This method modifies the `node.ls` list by increasing its length and placing the new nodes at the start of the list.
@@ -1689,6 +1847,8 @@ console.log(node.ls.length); // Logs the new number of child nodes: 2
 console.log(node.ls[0] === pNode); // Logs true (pNode is now the first child)
 console.log(node.ls[1] === spanNode); // Logs true (spanNode is now the second child)
 ```
+
+---
 
 ### node.ls.sort(cb)
 **Description:**  
@@ -1732,6 +1892,8 @@ console.log(node.ls[1].text); // Logs 'banana'
 console.log(node.ls[2].text); // Logs 'apple'
 ```
 
+---
+
 ### node.ls.reverse()
 **Description:**  
 The `reverse()` method reverses the order of the child nodes in the `node.ls` list. It modifies the original `node.ls` list, making the last node the first and the first node the last, and so on.
@@ -1765,6 +1927,8 @@ console.log(node.ls[0].text); // Logs 'cherry'
 console.log(node.ls[1].text); // Logs 'banana'
 console.log(node.ls[2].text); // Logs 'apple'
 ```
+
+---
 
 ### node.ls.shuffle()
 **Description:**  
@@ -1800,6 +1964,8 @@ console.log(node.ls[1].text); // Logs one of the remaining nodes
 console.log(node.ls[2].text); // Logs the remaining node
 ```
 
+---
+
 ### node.ls.query(selector)
 **Parameters:**
 - `selector` (String): A CSS selector used to find a matching descendant element.
@@ -1817,6 +1983,8 @@ node.ls.ls.append({text: 'cherry'}); // A child of the second child
 const firstMatch = node.ls.query('.banana');
 console.log(firstMatch.text); // Outputs: 'banana'
 ```
+
+---
 
 ### node.ls.queryAll(selector)
 **Parameters:**
@@ -1841,6 +2009,8 @@ matchingElements.toArray().forEach(element => {
   console.log(element.text); // Outputs: 'banana', 'cherry'
 });
 ```
+
+---
 
 ## class NodeIterator
 **Description:**  
@@ -1914,11 +2084,17 @@ const divClasses = Node.queryAll('div').classes().toArray();
 console.log(divClasses); // Outputs an array of classes from all divs
 ```
 
+---
+
 ### NodeIterator.from(nodes)
 The `NodeIterator.from(nodes)` method creates a new instance of `NodeIterator` from an array or iterable of `Node` elements. This method is useful when you want to wrap a list of nodes into an iterator to take advantage of all the iterator methods, such as `filter`, `take`, `drop`, etc.
 
+---
+
 ### NodeIterator.of(... nodes)
 The `NodeIterator.of(...nodes)` method creates a new instance of `NodeIterator` from a list of `Node` elements passed as individual arguments. This method is ideal when you have multiple `Node` objects and want to create an iterator from them without the need to put them into an array first.
+
+---
 
 ### NodeIterator.wrap(tags)
 The `NodeIterator.wrap(tags)` method creates a new instance of `NodeIterator` by wrapping a list of `tags` (HTML elements or `Node` objects). This method is helpful when you need to wrap existing elements into a `NodeIterator` to take advantage of the iterator's chainable methods.
@@ -1959,6 +2135,8 @@ The `iterator.all` property provides access to all descendants of the current no
 - This property is useful when you need to access the entire set of nodes under the current node, including the node itself.
 - Like `iterator.ls`, this property can be chained with various methods for additional manipulation or filtering.
 
+---
+
 ### iterator.drop(limit)
 The `node.drop(limit)` method creates a new iterator that skips the first `limit` elements from the original iterator. This is useful when you want to ignore a specific number of nodes at the beginning of the collection.
 **Description:**
@@ -1982,6 +2160,8 @@ const droppedIterator = iterator.drop(2);
 droppedIterator.toArray(); // Returns an array of nodes, skipping the first 2: ['cherry', 'date']
 ```
 
+---
+
 ### iterator.every(cb)
 **node.drop(limit)**
 The `node.drop(limit)` method creates a new iterator that skips the first `limit` elements from the original iterator. This is useful when you want to ignore a specific number of nodes at the beginning of the collection.
@@ -2004,6 +2184,8 @@ const droppedIterator = iterator.drop(2);
 
 droppedIterator.toArray(); // Returns an array of nodes, skipping the first 2: ['cherry', 'date']
 ```
+
+---
 
 ### iterator.filter(cb)
 The `iterator.filter(cb)` method returns a new iterator that includes only the nodes for which the callback function `cb` returns `true`. This is useful for filtering nodes based on custom conditions.
@@ -2033,6 +2215,8 @@ const filteredIterator = iterator.filter(node => node.text.includes('a'));
 filteredIterator.toArray(); // Returns an array with nodes that contain 'a': ['apple', 'banana', 'date']
 ```
 
+---
+
 ### iterator.find(cb)
 The `iterator.find(cb)` method returns the first node in the iterator that satisfies the provided callback function. If no node satisfies the condition, `undefined` is returned.
 
@@ -2060,6 +2244,8 @@ const foundNode = iterator.find(node => node.text === 'banana');
 
 console.log(foundNode.text); // 'banana'
 ```
+
+---
 
 ### iterator.flatMap(cb)
 The `iterator.flatMap(cb)` method applies the provided callback function to each element in the iterator and flattens the resulting values into a single iterator. The callback function should return an iterable object, which will be flattened into the final result.
@@ -2089,6 +2275,8 @@ console.log([...textsIterator]);
 // Output: ['a', 'p', 'l', 'e', 'b', 'a', 'n', 'a', 'n', 'a', 'c', 'h', 'e', 'r', 'r', 'y']
 ```
 
+---
+
 ### iterator.forEach(cb)
 The `iterator.forEach(cb)` method executes the provided callback function once for each element in the iterator. It does not return a value.  
 **Parameters:**  
@@ -2112,6 +2300,8 @@ node.ls.forEach(n => console.log(n.text));
 // banana
 // cherry
 ```
+
+---
 
 ### iterator.map(cb)
 The `iterator.map(cb)` method creates a new iterator with the results of applying the provided callback function to each element in the original iterator.  
@@ -2138,6 +2328,8 @@ node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'});
 const upperCaseTexts = node.ls.map(n => n.text.toUpperCase());
 console.log([...upperCaseTexts]); // ['APPLE', 'BANANA', 'CHERRY']
 ```
+
+---
 
 ### iterator.reduce(cb, initValue)
 The `iterator.reduce(cb, initValue)` method applies a reducer function to each element of the iterator, accumulating the result into a single value.  
@@ -2167,6 +2359,8 @@ const combinedText = node.ls.reduce((acc, n) => acc + n.text, '');
 console.log(combinedText); // 'abc'
 ```
 
+---
+
 ### iterator.some(cb)
 The `iterator.some(cb)` method checks if at least one element in the iterator satisfies the given callback function.  
 
@@ -2194,6 +2388,8 @@ const hasBanana = node.ls.some(n => n.text === 'banana');
 console.log(hasBanana); // true
 ```
 
+---
+
 ### iterator.take(limit)
 The `iterator.take(limit)` method returns a new iterator containing only the first `limit` elements from the original iterator.  
 
@@ -2217,6 +2413,8 @@ const firstTwo = node.ls.take(2);
 console.log(firstTwo.toArray().map(n => n.text)); // ['apple', 'banana']
 ```
 
+---
+
 ### iterator.toArray()
 The `iterator.toArray()` method converts the iterator into a standard JavaScript array.  
 
@@ -2237,6 +2435,8 @@ const array = node.ls.toArray();
 console.log(array.map(n => n.text)); // ['apple', 'banana', 'cherry']
 ```
 
+---
+
 ### iterator.count()
 The `iterator.count()` method returns the number of elements in the iterator.  
 
@@ -2256,6 +2456,8 @@ node.append({text: 'apple'}, {text: 'banana'}, {text: 'cherry'});
 console.log(node.ls.count()); // 3
 console.log(node.ls.filter(n => n.text.startsWith('b')).count()); // 1
 ```
+
+---
 
 ### iterator.depth()
 The `iterator.depth()` method returns the maximum depth of nested child elements within the iterator.  
@@ -2286,6 +2488,8 @@ console.log(node.ls.filter(n => n.tag === 'p').depth()); // 1
 console.log(node.ls.filter(n => n.tag === 'div').depth()); // 2
 ```
 
+---
+
 ### iterator.texts()
 The `iterator.texts()` method returns a standard JavaScript iterator that yields all text contents from the elements in the iterator.  
 
@@ -2310,6 +2514,8 @@ node.append(
 console.log([...node.ls.texts()]); // ["Hello", "World", "Bold", "Italic"]
 console.log([...node.ls.filter(n => n.tag === 'p').texts()]); // ["World"]
 ```
+
+---
 
 ### iterator.htmls()
 The `iterator.htmls()` method returns a standard JavaScript iterator that yields the inner HTML content of each node in the iterator.  
@@ -2376,14 +2582,22 @@ Triggers the specified event on each element in the iterator, invoking any liste
   
 Corresponds to [`node.emit(eventType)`](#nodeemiteventType).
 
+---
+
 ### iterator.show()
 The `iterator.show()` method is used to reveal all elements in the iterator by setting their `hidden` attribute to `false`.
+
+---
 
 ### iterator.hide()
 The `iterator.hide()` method is used to hide all elements in the iterator by setting their `hidden` attribute to `true`.
 
+---
+
 ### iterator.toggleDisplay()
 The `iterator.toggleDisplay()` method toggles the `hidden` attribute of all elements in the iterator. If an element is visible (i.e., the `hidden` attribute is not set), it will be hidden. If it is already hidden, it will be made visible again.
+
+---
 
 ### iterator.css(name, value)
 The `iterator.css(name, value)` method is used to set the specified CSS property for all elements in the iterator.
@@ -2411,6 +2625,8 @@ node.ls.css('color', 'red');
 // Set the background color for all elements
 node.ls.css('background-color', 'blue');
 ```
+
+---
 
 ### iterator.appendCSS(name, value)
 The `iterator.appendCSS(name, value)` method is used to append a new CSS rule to an element's existing inline style for properties that accept multiple values. This is particularly useful for properties like `box-shadow`, `background`, `font-family`, etc., where multiple values can be combined.
@@ -2443,6 +2659,8 @@ node.ls.appendCSS('background', 'url(image.png)');
 node.ls.appendCSS('font-family', 'Arial, sans-serif');
 ```
 
+---
+
 ### iterator.removeCSS(name)
 The `iterator.removeCSS(name)` method is used to remove a specific CSS property from the inline styles of all elements in the iterator.
 
@@ -2452,6 +2670,8 @@ The `iterator.removeCSS(name)` method is used to remove a specific CSS property 
 **Notes:**
 - This method only removes the specified CSS property if it exists. If the property is not set, it has no effect.
 - It does not remove the property from any external stylesheets or inherited styles; it only removes inline styles.
+
+---
 
 ### iterator.clearCSS()
 The `iterator.clearCSS()` method removes all inline CSS styles from all elements in the iterator.
@@ -2470,6 +2690,7 @@ The `iterator.addClass(...tokens)` method adds one or more CSS class names to al
 - If the class name already exists on an element, it will not be added again (no duplicates).
 - This method is often used for styling elements dynamically.
 
+---
 
 ### iterator.removeClass(... tokens)
 The `iterator.removeClass(...tokens)` method removes one or more CSS class names from all elements in the iterator.
@@ -2494,6 +2715,8 @@ The `iterator.toggleClass(token, force)` method toggles a CSS class on all eleme
   - If the class is absent, it is added.
 - If `force` is specified, the class will be added if `force` is `true`, or removed if `force` is `false`.
 
+---
+
 ### iterator.replaceClass(oldToken, newToken)
 The `iterator.replaceClass(oldToken, newToken)` method replaces an existing CSS class with a new one on all elements in the iterator.
 
@@ -2506,6 +2729,8 @@ The `iterator.replaceClass(oldToken, newToken)` method replaces an existing CSS 
 - If the `oldToken` class is not present on an element, no changes will be made to that element.
 - The replacement happens in all the elements contained in the iterator.
 
+---
+
 ### iterator.clearClasses()
 The `iterator.clearClasses()` method removes all CSS classes from the elements in the iterator.
 
@@ -2514,11 +2739,15 @@ The `iterator.clearClasses()` method removes all CSS classes from the elements i
 - It does not modify other attributes of the element.
 - After using this method, the elements will have no classes.
 
+---
+
 ### iterator.classes()
 The `iterator.classes()` method returns an iterator for the class names of the elements in the iterator.
 **Notes:**
 - The iterator returned by `iterator.classes()` provides each class name for each element in the iterator, one by one.
 - If an element has multiple classes, each class name is returned separately in the iterator.
+
+---
 
 ### iterator.attr(name, value)
 The `iterator.attr(name, value)` method sets the value of an attribute for each element in the iterator.
@@ -2543,6 +2772,8 @@ iterator.attr('alt', 'Image description');
 console.log(iterator.attr('alt'));  // Output: "Image description"
 ```
 
+---
+
 ### iterator.removeAttr(name)
 The `iterator.removeAttr(name)` method removes a specified attribute from each element in the iterator.
 
@@ -2553,6 +2784,8 @@ The `iterator.removeAttr(name)` method removes a specified attribute from each e
 - This method will remove the given attribute from all elements in the iterator.
 - If the specified attribute doesn't exist on an element, no changes are made to that element.
 - Commonly used for removing attributes like `disabled`, `readonly`, `checked`, etc.
+
+---
 
 ### iterator.toggleAttr(name, force)
 The `iterator.toggleAttr(name, force)` method toggles the presence of a specified attribute for each element in the iterator. If the attribute exists, it is removed; if it does not exist, it is added. The behavior can be controlled using the `force` argument.
@@ -2568,11 +2801,15 @@ The `iterator.toggleAttr(name, force)` method toggles the presence of a specifie
 - This method is useful for toggling attributes like `disabled`, `checked`, `readonly`, etc.
 - If the `force` parameter is not passed, it defaults to toggling the attribute.
 
+---
+
 ### iterator.clearAttrs()
 The `iterator.clearAttrs()` method removes all attributes from each element in the iterator.
 **Notes:**
 - This method clears all attributes (including `class`, `id`, `src`, `alt`, etc.) from the elements in the iterator.
 - Use this method when you need to completely remove attributes from the selected elements.
+
+---
 
 ### iterator.text(text)
 The `iterator.text(text)` method sets the text content for all elements in the iterator. The argument `text` can either be a string to set the text or a function that returns the new text value, taking the current text as an argument.
@@ -2588,6 +2825,8 @@ The `iterator.text(text)` method sets the text content for all elements in the i
 Node.query('#my').ls.text("New text content");
 Node.queryAll('a').text((currentText) => currentText.toUpperCase());
 ```
+
+---
 
 ### iterator.html(html)
 The `iterator.html(html)` method sets the HTML content for all elements in the iterator. The argument `html` can either be a string to set the HTML content or a function that returns the new HTML content, taking the current HTML as an argument.
@@ -2605,6 +2844,8 @@ node.ls.html("<div><p>New HTML content</p></div>");
 node.ls.html((currentHtml) => `<div><span>${currentHtml}</span></div>`);
 ```
 
+---
+
 ### iterator.add(config)
 The `iterator.add(config)` method adds a child element to each element in the iterator using the `node.add(config)` method. The `config` argument is typically an object or an instance of a `Node`, which will be appended as a child to the nodes in the iterator.
 
@@ -2618,8 +2859,12 @@ The `iterator.add(config)` method adds a child element to each element in the it
 node.ls.add({ tag: 'div', text: 'New child element' });
 ```
 
+---
+
 ### iterator.remove()
 The `iterator.remove()` method removes all the nodes in the iterator from the DOM tree. This operation will detach the nodes from their parent elements, effectively deleting them from the document.
+
+---
 
 ### iterator.indexOf(node)
 The `iterator.indexOf(node)` method returns the index of the specified node within the iterator. If the node is not found, it returns `-1`.
@@ -2630,12 +2875,16 @@ The `iterator.indexOf(node)` method returns the index of the specified node with
 **Returns:**
 - A number representing the index of the node in the iterator, or `-1` if the node is not found.
 
+---
+
 ### iterator.includes(node)
 The `iterator.includes(node)` method checks if the specified node exists within the iterator.
 **Parameters:**
 - `node` (Node): The node to check for existence within the iterator.
 **Returns:**
 - `true` if the node is found in the iterator, otherwise `false`.
+
+---
 
 ### iterator.contains(node)
 The `iterator.contains(node)` method checks if the specified node exists within the iterator or among its descendants.
@@ -2644,6 +2893,8 @@ The `iterator.contains(node)` method checks if the specified node exists within 
 **Returns:**
 - `true` if the node is found in the iterator or among its descendants, otherwise `false`.
 
+---
+
 ### iterator.match(selector)
 **Parameters:**
 - `selector` (string): A CSS selector to match nodes in the iterator.
@@ -2651,6 +2902,8 @@ The `iterator.contains(node)` method checks if the specified node exists within 
 - `Node | null`: Returns the first node that matches the selector, or `null` if no matching node is found.
 **Description:**
 This method searches for the first node in the iterator that matches the specified selector. If a matching element is found, it returns a `Node` object. If no match is found, it returns `null`.
+
+---
 
 ### iterator.matchAll(selector)
 **Parameters:**
@@ -2662,6 +2915,8 @@ This method searches for the first node in the iterator that matches the specifi
 **Description:**
 This method filters the current iterator and returns a new iterator containing only the nodes that match the specified selector. The returned iterator can be used for further operations on the filtered elements.
 
+---
+
 ### iterator.filterClass(token)
 **Parameters:**
 - `token` (string): The class name (or token) used to filter nodes in the iterator.
@@ -2671,6 +2926,8 @@ This method filters the current iterator and returns a new iterator containing o
 
 **Description:**
 This method filters the current iterator and returns a new iterator consisting only of nodes that have the specified class name. The returned iterator can be used for further operations on the filtered elements.
+
+---
 
 ### iterator.filterTag(name)
 **Parameters:**
@@ -2682,12 +2939,16 @@ This method filters the current iterator and returns a new iterator consisting o
 **Description:**
 This method filters the current iterator and returns a new iterator containing only the nodes that have the specified tag name. The returned iterator can be used for further operations on the filtered elements.
 
+---
+
 ### iterator.filterVisible()
 **Returns:**
 - `NodeIterator`: A new iterator containing only the nodes that are visible (i.e., those without `display: none` or `visibility: hidden`).
 
 **Description:**
 This method filters the current iterator and returns a new iterator containing only the visible nodes. It checks the nodes' `display` and `visibility` CSS properties to determine whether the node is visible. The returned iterator can be used for further operations on the visible elements.
+
+---
 
 
 
