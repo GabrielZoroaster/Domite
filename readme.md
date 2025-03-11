@@ -2054,34 +2054,28 @@ node.parent = Node.query('parent-element');
 
 // Example 1: Appending child nodes and converting to array
 node.append({text: 'banana'}, {name: 'p', text: 'orange'});
-const childrenArray = node.ls.toArray();  // All child nodes as an array
-console.log(childrenArray); // Outputs an array of child nodes
+node.ls.toArray();  // All child nodes as an array
 
 // Example 2: Converting all nodes (including the current one) to an array
-const allNodesArray = node.all.toArray();
-console.log(allNodesArray); // Outputs an array including the node itself and all descendants
+node.all.toArray(); // Outputs an array including the node itself and all descendants
 
 // Example 3: Accessing children of the children (grandchildren)
-const grandchildrenIterator = node.ls.ls;
-console.log(grandchildrenIterator); // Outputs an iterator of the children of the child nodes
+node.ls.ls; // Outputs an iterator of the children of the child nodes
 
 // Example 4: Filtering visible nodes and applying CSS
 node.ls.filterVisible().ls.css('border', '1px dashed blue');
 
 // Example 5: Querying specific elements and limiting results
-const queryResult = node.all.queryAll('div.my-class').take(10);
-console.log(queryResult); // Outputs the first 10 elements that match the query
+node.all.queryAll('div.my-class').take(10); // Outputs the first 10 elements that match the query
 
 // Example 6: Manipulating sibling nodes (hiding previous siblings)
 node.prevAll.ls.hide();
 
 // Example 7: Counting parent elements
-const parentCount = node.parentAll.count();
-console.log(parentCount); // Outputs the number of parent elements
+node.parentAll.count(); // Outputs the number of parent elements
 
 // Example 8: Querying all divs, getting their classes, and converting to array
-const divClasses = Node.queryAll('div').classes().toArray();
-console.log(divClasses); // Outputs an array of classes from all divs
+Node.queryAll('div').classes().toArray(); // Outputs an array of classes from all divs
 ```
 
 ---
@@ -2508,7 +2502,7 @@ const node = new Node();
 node.append(
   { tag: 'div', text: 'Hello' },
   { tag: 'p', text: 'World' },
-  { tag: 'span', children: [{ tag: 'b', text: 'Bold' }, { tag: 'i', text: 'Italic' }] }
+  { tag: 'span', ls: [{ tag: 'b', text: 'Bold' }, { tag: 'i', text: 'Italic' }] }
 );
 
 console.log([...node.ls.texts()]); // ["Hello", "World", "Bold", "Italic"]
