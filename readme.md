@@ -1799,10 +1799,6 @@ console.log(node.ls[1].text); // Logs one of the remaining nodes
 console.log(node.ls[2].text); // Logs the remaining node
 ```
 
-## class NodeIterator
-**Description:**  
-`NodeIterator` is a class that provides an iterator for a sequence of nodes, allowing you to traverse them one by one and perform various operations on each. It helps to work with the DOM tree using methods similar to array iteration, such as `slice()`, `splice()`, and others.
-
 ### node.ls.query(selector)
 **Parameters:**
 - `selector` (String): A CSS selector used to find a matching descendant element.
@@ -1822,8 +1818,6 @@ console.log(firstMatch.text); // Outputs: 'banana'
 ```
 
 ### node.ls.queryAll(selector)
-### `node.ls.queryAll(selector)`
-
 **Parameters:**
 - `selector` (String): A CSS selector used to find matching descendant elements.
 
@@ -1847,7 +1841,12 @@ matchingElements.toArray().forEach(element => {
 });
 ```
 
+## class NodeIterator
+**Description:**  
+`NodeIterator` is a class that provides an iterator for a sequence of nodes, allowing you to traverse them one by one and perform various operations on each. It helps to work with the DOM tree using methods similar to array iteration, such as `slice()`, `splice()`, and others.
+
 If the found node is not an instance of `Node` or its subclass, it is automatically wrapped into a new `Node` object with the parameter `{ tag: element }`.
+
 ---
 ### Where it's used:
 - **Creation:**
