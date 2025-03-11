@@ -8,6 +8,7 @@ Key features:
 - **Action aggregation**: the ability to apply operations or styles to an entire collection of elements at once.
 
 These features make the library perfect for dynamic interfaces and complex DOM structures.
+
 ---
 ## Contents
 - [Usage](#usage)
