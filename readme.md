@@ -297,51 +297,50 @@ console.log(noMatchNodes.count()); // 0, no nodes matched
 
 ---
 
-### Node.wrap(selector)
-This static method finds an element in the DOM matching the provided selector and wraps it with the specified class. If the element exists, it returns the wrapped element, otherwise, it returns `null`.
+### Node.wrap(target)
 
-- **Parameters**:
-  - `selector` (string): The CSS selector used to locate the element.
+Wraps the given element with the `Node` class or a subclass like `MyNode`, preserving its type.
 
-- **Returns**:  
-  The method returns an instance of the class that wraps the element, or `null` if the element is not found.
+#### Parameters
+- `target` **(string | Element | Node)** — The element to wrap. It can be:
+  - A **CSS selector** (string) to find an existing element in the document.
+  - An **Element** (DOM node) to wrap.
+  - An **existing Node instance** to rewrap.
 
-- **Example**:
-  ```javascript
-  class MyNode extends Node {}
+#### Returns
+- **Node | null** — A `Node` (or subclass) instance wrapping the element, or `null` if no matching element is found.
 
-  const myNode = MyNode.wrap('div#my-node'); // Wraps the element with id "my-node" in the Node class or subclass (e.g., MyNode)
-
-  if (myNode) {
-    console.log('Node found and wrapped:', myNode);
-  } else {
-    console.log('Node not found');
-  }
-	```
-
+#### Example
+```js
+class MyNode extends Node {}
+const wrapped1 = Node.wrap("#my-element"); // Wraps an existing element by ID
+const wrapped2 = Node.wrap(document.querySelector("div")); // Wraps a direct DOM element
+const wrapped3 = MyNode.wrap(".custom-class"); // Uses a subclass for wrapping
+```
 ---
 
-### Node.wrapAll(selector)
-This static method finds all elements in the DOM matching the provided selector and wraps them with the specified class. It returns a `NodeIterator` containing the wrapped elements.
+### Node.wrapAll(target)
 
-- **Syntax**:  
-  `Node.wrapAll(selector)`
+Wraps multiple elements with the `Node` class or a subclass like `MyNode`, preserving their types.
 
-- **Parameters**:
-  - `selector` (string): The CSS selector used to locate the elements.
+#### Parameters
+- `target` **(string | Iterable<Element | Node | string>)** — The elements to wrap. It can be:
+  - A **CSS selector** (string) to find multiple elements in the document.
+  - An **iterable collection** (e.g., `NodeList`, `Array`, `Set`), where each item is:
+    - A **CSS selector** (string) for an element.
+    - A **DOM Element**.
+    - An **existing Node instance**.
 
-- **Returns**:  
-  A `NodeIterator` containing wrapped elements.
+#### Returns
+- **NodeIterator** — An iterator containing `Node` (or subclass) instances wrapping the selected elements.
 
-- **Example**:
-	```javascript
-	class MyNode extends Node {}
-	const nodes = MyNode.wrapAll('div.my-node'); // Wraps all elements with class "my-node" in the Node class or subclass (e.g., MyNode)
-	nodes.forEach(node => {
-	  console.log('Wrapped node:', node);
-	});
-	```
-
+#### Example
+```js
+class MyNode extends Node {}
+const wrappedNodes1 = Node.wrapAll(".list-item"); // Wraps all matching elements
+const wrappedNodes2 = Node.wrapAll(document.querySelectorAll("div")); // Wraps all divs
+const wrappedNodes3 = MyNode.wrapAll(["#item1", document.getElementById("item2")]); // Uses a subclass for wrapping
+```
 ---
 
 ### Node.LS(node)
