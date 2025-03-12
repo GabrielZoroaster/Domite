@@ -211,8 +211,8 @@ const nodes2 = $(document.getElementById("header")); // Wraps an existing elemen
 const nodes3 = $(new Node("div")); // Uses an existing Node instance
 const nodes4 = $(document.body, "#footer", new Node({name: "span"})); // Mixed input
 const nodes5 = $({name: 'div'}); // new node
-const nodes4 = $([{text: 'Apple'}, "#header", document.getElementById("footer")]); // iterator
-const nodes5 = $(new MyNode("section")); // Uses a custom subclass
+const nodes6 = $([{text: 'Apple'}, "#header", document.getElementById("footer")]); // iterator
+const nodes7 = $(new MyNode("section")); // Uses a custom subclass
 ```
 
 ## class Node
@@ -428,7 +428,7 @@ node.ls.colorize('red'); // Colorize "child 1", "child 2
 This static method is used to retrieve an iterator for the attributes of a `Node`. Like `Node.LS`, this method is intended to be overridden in subclasses to provide a custom implementation of how attributes are retrieved or handled. Subclasses can return a specialized iterator that adds extra functionality or different behaviors when iterating over attributes.
 **Usage Example:**
 ```javascript
-class MyNodeAttrs extends NodeIterator {
+class MyNodeAttrs extends AttributeMap {
   constructor(node) {
     super(node);
     // Custom behavior for MyNodeAttrs
