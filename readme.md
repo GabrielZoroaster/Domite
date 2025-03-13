@@ -290,8 +290,9 @@ if (closestSection) closestSection.class.add("expanded");
 // 7. Finding the union and remove
 const all = $(".selected", document.getElementById('target'), "div#closed").
 all.remove();
----
 ```
+
+---
 
 <!-- ### 5. Iterators -->
 <!-- ```js -->
