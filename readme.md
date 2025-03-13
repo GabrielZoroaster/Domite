@@ -12,6 +12,11 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 ---
 ## Contents
 - [Usage](#usage)
+	- [1. Creating New Nodes](#1-Creating-New-Nodes)
+	- [2. Custom Node Classes](#2-Custom-Node-Classes)
+	- [3. Inserting into the Page](#3-Inserting-into-the-Page)
+	- [4. Finding Nodes on the Page](#4-Finding-Nodes-on-the-Page)
+	- [5. Iterators](#5-Iterators)
 - [function $()](#args)
 - [class Node](#class-node)
 	- [Node.of()](#nodeoftag)
@@ -170,26 +175,45 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 - [Methods Available through](#Methods-Available-through)
 
 ## Usage
-
+### 1. Creating New Nodes  
 ```js
-	import {Node} from './path-to-lib/node.js'
-	// Menu
-	const node = new Node({name: 'nav'}); // create dom element
-	node.add({name: 'a', text: 'Link 1'}); // add child 1
-	node.add({name: 'a', text: 'Link 2'}); // add child 2
-	...
-	node.ls.css('color', 'red'); // add style to children
-	node.ls.attr('href', '/'); // set attr to childrren
-	node.ls.clear(); // remove childern
+import {Node} from './node.js'
+// Create a new div node
+const node = new Node({name: "div"});
+
+// Set text content
+node.text = "Hello, World!";
+
+// Add CSS classes
+node.class.add("custom-class");
+
+// Append it to the body of the page
+document.body.append(node.tag);
 ```
 
+---
+
+### 2. Custom Node Classes
 ```js
-	// Body
-	const body = Node.query('body'); // get body element
-	body.all.count(); // count all elements in body with body
-	body.ls.query('.my-class').toArray(); // get all elements in body with class
 ```
-### $(...args)
+
+---
+
+### 3. Inserting into the Page
+```js
+```
+
+---
+
+### 4. Finding Nodes on the Page
+```js
+```
+
+---
+
+### 5. Iterators
+
+## $(...args)
 
 A flexible function that selects, wraps, or creates nodes and returns a `NodeIterator`. Each argument can be a reference to an existing node, a selector string, or an object that will be converted into a new node.
 
