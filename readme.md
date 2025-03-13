@@ -195,23 +195,109 @@ document.body.append(node.tag);
 
 ### 2. Custom Node Classes
 ```js
+// Define a custom node class with child elements
+class CardNode extends Node {
+  constructor(title, content) {
+    super({name: "div"});
+    this.class.add("card");
+
+    // Create title element
+    this.title = new Node("h2");
+    this.title.text = title;
+    this.title.class.add("card-title");
+
+    // Create content element
+    this.content = new Node("p");
+    this.content.text = content;
+    this.content.class.add("card-content");
+
+    // Append children to the card
+    this.append(this.title, this.content);
+  }
+}
+
+// Create a new card instance
+const card = new CardNode("Welcome!", "This is a simple card component.");
+
+// Add to the document
+document.body.append(card.tag);
 ```
 
 ---
 
 ### 3. Inserting into the Page
 ```js
+// 1. Directly appending to document.body
+const directNode = new Node({name: "div"});
+directNode.text = "Added directly to body";
+document.body.append(directNode.tag);
+
+// 2. Using node.parent to set document.body as parent
+const parentNode = new Node({name: "div"});
+parentNode.text = "Added using node.parent";
+parentNode.parent = document.body;
+
+// 3. Wrapping existing elements with a custom Node class
+class MyNode extends Node {
+    highlight() {
+        this.class.add("highlight");
+    }
+}
+
+// 3.1 Wrapping a single element
+const singleWrapped = MyNode.wrap(".existing");
+if (singleWrapped) {
+    singleWrapped.highlight();
+}
+
+// 3.2 Wrapping multiple elements
+const multipleWrapped = MyNode.wrapAll(".items");
+multipleWrapped.forEach(item => item.highlight());
 ```
 
 ---
 
 ### 4. Finding Nodes on the Page
 ```js
+// 1. Selecting elements by selector
+const items = $(".item"); // Finds all elements with class "item"
+items.addClass("selected");
+
+// 2. Wrapping a single DOM element
+const element = document.getElementById("myElement");
+const wrappedNodes = $(element);
+wrappedNodes.addClass("highlight"); // Works like a Node instance
+
+// 3. Wrapping a list of DOM elements
+const elements = document.querySelectorAll("p");
+const wrappedNodes = $(elements); // Wraps all <p> elements
+wrappedNodes.css("color", "blue");
+
+// 4. Finding the first matching element
+const firstItem = Node.query(".item");
+if (firstItem) firstItem.class.add("active");
+
+// 5. Searching within a specific parent
+const container = Node.query("#container");
+const childNodes = $(container?.findAll(".child"));
+childNodes.css("font-weight", "bold");
+
+// 6. Finding the closest ancestor
+const [deepElement] = $(".nested");
+const closestSection = $(deepElement?.closest("section"));
+if (closestSection) closestSection.class.add("expanded");
+
+// 7. Finding the union and remove
+const all = $(".selected", document.getElementById('target'), "div#closed").
+all.remove();
+---
 ```
 
----
+<!-- ### 5. Iterators -->
+<!-- ```js -->
+<!-- ``` -->
 
-### 5. Iterators
+---
 
 ## $(...args)
 
