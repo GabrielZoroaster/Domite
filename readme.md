@@ -12,13 +12,13 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 
 This library is supported in the latest versions of all major browsers:
 
-| Browser      | Version | Icon |
+|             | Browser      | Version |
 |-------------|---------|------|
-| **Chrome**  |  ✅ 134 | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_32x32.png) |
-| **Firefox** |  ✅ 136 | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_32x32.png) |
-| **Edge**    |  ✅ 134 | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_32x32.png) |
-| **Safari**  |  ✅ 18 | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_32x32.png) |
-| **Opera**   |  ✅ 117 | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_32x32.png) |
+| ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_32x32.png) |  **Chrome**  |  ✅ 134 |
+| ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_32x32.png) |  **Firefox** |  ✅ 136 |
+| ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_32x32.png) |  **Edge**    |  ✅ 134 |
+| ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_32x32.png) |  **Safari**  |  ✅ 18  |
+| ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_32x32.png) |  **Opera**   |  ✅ 117 |
 
 ---
 ## Contents
