@@ -3100,7 +3100,7 @@ This method filters the current iterator and returns a new iterator containing o
 
 ---
 
-### matchText(pattern)
+### iterator.matchText(pattern)
 
 **Parameters:**
 - `pattern` (string | RegExp): The pattern to match against the text content of the selected elements. A string will be treated as a literal match, while a regular expression allows for more flexible pattern matching.
@@ -3113,7 +3113,7 @@ The `matchText(pattern)` method filters the selected elements based on whether t
 
 ---
 
-### matchHTML(pattern)
+### iterator.matchHTML(pattern)
 
 **Parameters:**
 - `pattern` (string | RegExp): The pattern to match against the HTML content of the selected elements. A string will be treated as a literal match, while a regular expression allows for more flexible pattern matching.
