@@ -281,7 +281,7 @@ if (firstItem) firstItem.class.add("active");
 
 // 5. Searching within a specific parent
 const container = Node.query("#container");
-const childNodes = $(container?.findAll(".child"));
+const childNodes = $(container?.ls.queryAll(".child"));
 childNodes.css("font-weight", "bold");
 
 // 6. Finding the closest ancestor
