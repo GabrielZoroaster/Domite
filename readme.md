@@ -167,8 +167,10 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [iterator.indexOf()](#iteratorindexOfnode)
 	- [iterator.includes()](#iteratorincludesnode)
 	- [iterator.contains()](#iteratorcontainsnode)
-	- [iterator.queryAll()](#iteratorqueryAllselector)
-	- [iterator.query()](#iteratorqueryselector)
+	- [iterator.match()](#iteratormatchselector)
+	- [iterator.matchAll()](#iteratormatchAllselector)
+	- [iterator.matchText()](#iteratormatchTextpattern)
+	- [iterator.matchHTML()](#iteratormatchHTMLpattern)
 	- [iterator.filterClass()](#iteratorfilterClasstoken)
 	- [iterator.filterTag()](#iteratorfilterTagname)
 	- [iterator.filterVisible()](#iteratorfilterVisible)
@@ -346,9 +348,6 @@ $(document.body).queryAll('a').attr('target', '_blank');
 
 // 17. Select children of children (grandchildren) of <main>, filter by 'active' class, and wrap their content in <b> tags
 $('main').ls.ls.filterClass('active').html(html => `<b>${html}</b>`);
-
-// 18. Iterate over all <p> elements and retrieve their text content
-$('p').texts();
 
 ```
 ---
@@ -3098,6 +3097,32 @@ This method searches for the first node in the iterator that matches the specifi
 
 **Description:**
 This method filters the current iterator and returns a new iterator containing only the nodes that match the specified selector. The returned iterator can be used for further operations on the filtered elements.
+
+---
+
+### matchText(pattern)
+
+**Parameters:**
+- `pattern` (string | RegExp): The pattern to match against the text content of the selected elements. A string will be treated as a literal match, while a regular expression allows for more flexible pattern matching.
+
+**Returns:**
+- `NodeIterator`: Returns a `NodeIterator` that allows iterating over the elements whose text content matches the given pattern.
+
+**Description:**
+The `matchText(pattern)` method filters the selected elements based on whether their text content matches the provided `pattern`. It supports both exact string matching and regular expression matching. The method returns a `NodeIterator`, which can be used to iterate over the matching elements.
+
+---
+
+### matchHTML(pattern)
+
+**Parameters:**
+- `pattern` (string | RegExp): The pattern to match against the HTML content of the selected elements. A string will be treated as a literal match, while a regular expression allows for more flexible pattern matching.
+
+**Returns:**
+- `NodeIterator`: Returns a `NodeIterator` that allows iterating over the elements whose HTML content matches the given pattern.
+
+**Description:**
+The `matchHTML(pattern)` method filters the selected elements based on whether their HTML content matches the provided `pattern`. It supports both exact string matching and regular expression matching. The method returns a `NodeIterator`, which can be used to iterate over the matching elements.
 
 ---
 
