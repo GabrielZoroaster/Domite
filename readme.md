@@ -314,7 +314,7 @@ $('.item').ls.count();
 $('.item').all.filterClass('active').text('New Active Text');
 
 // 6. Select `.container`, get all its descendants that match `.child`, then get the maximum depth of these children.
-$('.container').queryAll('.child').depth();
+$('.container').all.matchAll('.child').depth();
 
 // 7. Select all `.item` elements, filter them based on some text condition, and then remove the selected ones from the DOM.
 $('.item').matchText('remove').remove();
@@ -344,7 +344,7 @@ $('.item').take(5).ls.all.count();
 $('.item').depth();
 
 // 16. Select all <a> elements in the document body and set their target to '_blank'
-$(document.body).queryAll('a').attr('target', '_blank');
+$(document.body).all.matchAll('a').attr('target', '_blank');
 
 // 17. Select children of children (grandchildren) of <main>, filter by 'active' class, and wrap their content in <b> tags
 $('main').ls.ls.filterClass('active').html(html => `<b>${html}</b>`);
