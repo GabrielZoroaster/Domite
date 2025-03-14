@@ -294,10 +294,61 @@ all.remove();
 
 ---
 
-<!-- ### 5. Iterators -->
-<!-- ```js -->
-<!-- ``` -->
-<!-- --- -->
+### 5. Iterators
+```js
+// Set width to 100% for .item and all its descendants.
+$(".item").ls.all.css("width", "100%");
+// Selects all second-level children (children of children) of .wrapper and changes their background color.
+$(".wrapper").ls.ls.css("background", "lightgray");  
+// Find #content and all .box elements inside it, update their text.
+$("#content").queryAll(".box").text("Updated");
+// Make active menu items bold, including .menu itself.
+$(".menu").all.matchAll(".active").css("font-weight", "bold");
+// Highlight all selected items inside .list.
+$(".list").ls.all.matchAll(".selected").css("background", "yellow");
+// Set blue text color for non-empty .title elements inside .card.
+$(".card").all.matchAll(".title").filter(n => n.text() !== "").css("color", "blue");
+// Make all elements before each <p> semi-transparent.
+$("body").all.matchAll("p").prevAll.css("opacity", "0.5");
+// Convert the container and all its descendants into an array.
+$(".container").all.toArray();
+// Add a red border to all parents of .block elements inside #wrapper.
+$("#wrapper").all.matchAll(".block").parentAll.css("border", "1px solid red");
+// Set text "Data" for all table cells, including table itself.
+$("table").all.matchAll("td").text("Data");
+// Hide all elements that come after each .image.
+$(".gallery").all.matchAll(".image").nextAll.css("display", "none");
+// Add a "Highlighted" tooltip to all .highlight elements inside #main.
+$("#main").ls.all.matchAll(".highlight").attr("title", "Highlighted");
+// Add shadow to all parents of .box.
+$(".box").parentAll.css("box-shadow", "0 0 10px rgba(0,0,0,0.5)");
+// Convert all .header elements inside .section to uppercase.
+$(".section").all.matchAll(".header").css("text-transform", "uppercase");
+// Add a red border to posts containing "Important".
+$(".posts").all.matchAll(".post").filter(n => n.text().includes("Important")).css("border", "2px solid red");
+// Set a light gray background for all tabs that come after each .tab.
+$(".tabs").all.matchAll(".tab").nextAll.css("background", "lightgray");
+// Change the background color of all parents of .sidebar.
+$(".sidebar").ls.parentAll.css("background", "#f0f0f0");
+// Set gray text color for all previous siblings of each <li>.
+$("ul").all.matchAll("li").prevAll.css("color", "gray");
+// Set text "Active Box" for active .box elements inside .content.
+$(".content").all.matchAll(".box.active").text("Active Box");
+// Add placeholder text to all .input fields inside .form.
+$(".form").all.matchAll(".input").attr("placeholder", "Enter text...");
+// Italicize all rows that follow each table row.
+$(".table").all.matchAll("tr").nextAll.css("font-style", "italic");
+// Change text color of all paragraphs inside node.
+node.queryAll("p").css("color", "blue");
+// Set background yellow for highlighted elements inside node.
+node.all.matchAll(".highlight").css("background", "yellow");
+// Add a black border to body and all div elements inside.
+$(document.body).queryAll("div").css("border", "1px solid black");
+// Increase font size for all headers in the body.
+$(document.body).ls.all.matchAll(".header").css("font-size", "24px");
+
+```
+---
 
 ## $(...args)
 
