@@ -14,11 +14,11 @@ This library is supported in the latest versions of all major browsers:
 
 | Browser      | Version | Icon |
 |-------------|---------|------|
-| **Chrome**  |  ✅ 134 | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_16x16.png) |
-| **Firefox** |  ✅ 136 | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_16x16.png) |
-| **Edge**    |  ✅ 134 | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_16x16.png) |
-| **Safari**  |  ✅ 18 | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_16x16.png) |
-| **Opera**   |  ✅ 117 | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_16x16.png) |
+| **Chrome**  |  ✅ 134 | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_32x32.png) |
+| **Firefox** |  ✅ 136 | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_32x32.png) |
+| **Edge**    |  ✅ 134 | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_32x32.png) |
+| **Safari**  |  ✅ 18 | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_32x32.png) |
+| **Opera**   |  ✅ 117 | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_32x32.png) |
 
 ---
 ## Contents
