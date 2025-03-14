@@ -265,9 +265,9 @@
 					node.style = {color: 'red', height: '10%'};
 					return (node.style.height === '10%') && (node.style.color === 'red') && !node.style.width;
 				},
-				"node.css"(){
-					return (new Node()).css instanceof StylePropertyMap;
-				},
+				// "node.css"(){
+					// return (new Node()).css instanceof StylePropertyMap;
+				// },
 				"node.dataset"(){
 					return (new Node()).dataset instanceof DOMStringMap;
 				},
@@ -472,9 +472,9 @@
 					node.requestFullscreen().catch(e=>{});
 					return true;
 				},
-				"node.cssAll()"(){
-					return (new Node()).cssAll() instanceof StylePropertyMapReadOnly;
-				},
+				// "node.cssAll()"(){
+					// return (new Node()).cssAll() instanceof StylePropertyMapReadOnly;
+				// },
 				"node.matches()"(){
 					const node = new Node({class: 'name'});
 					return node.matches('.name') && !node.matches('.error');
@@ -922,12 +922,12 @@
 					node.ls.css('width', '100px');
 					return node.ls.every(node => node.style.width==='100px');
 				},
-				"iterator.appendCSS()"(){
-					const node = new Node();
-					node.append({}, {}, {});
-					node.ls.appendCSS('background-image', 'url(/res/img.png)');
-					return node.ls.every(node => node.style.backgroundImage==='url("/res/img.png")');
-				},
+				// "iterator.appendCSS()"(){
+					// const node = new Node();
+					// node.append({}, {}, {});
+					// node.ls.appendCSS('background-image', 'url(/res/img.png)');
+					// return node.ls.every(node => node.style.backgroundImage==='url("/res/img.png")');
+				// },
 				"iterator.removeCSS()"(){
 					const node = new Node();
 					node.append({}, {}, {});

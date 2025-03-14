@@ -39,7 +39,6 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [node.hidden](#nodehidden)
 	- [node.class](#nodeclass)
 	- [node.style](#nodestyle)
-	- [node.css](#nodecss)
 	- [node.dataset](#nodedataset)
 	- [node.attrs](#nodeattrs)
 	- [node.text](#nodetext)
@@ -73,7 +72,6 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [node.scrollIntoView()](#nodescrollIntoView)
 	- [node.animate()](#nodeanimate)
 	- [node.requestFullscreen()](#noderequestFullscreen)
-	- [node.cssAll()](#nodecssAll)
 	- [node.matches()](#nodematchesselector)
 	- [node.closest()](#nodeclosestselector)
 	- [node.isEqual()](#nodeisEqualnode)
@@ -147,7 +145,6 @@ These features make the library perfect for dynamic interfaces and complex DOM s
 	- [iterator.hide()](#iteratorhide)
 	- [iterator.toggleDisplay()](#iteratortoggleDisplay)
 	- [iterator.css()](#iteratorcssname-value)
-	- [iterator.appendCSS()](#iteratorappendCSSname-value)
 	- [iterator.removeCSS()](#iteratorremoveCSS)
 	- [iterator.clearCSS()](#iteratorclearCSS)
 	- [iterator.addClass()](#iteratoraddClass-tokens)
@@ -785,28 +782,6 @@ console.log(node.style.border);  // Logs: "1px solid black"
 
 ---
 
-### node.css
-Gets or sets the styles of the node.
-#### Type:
-- **Get:** `StylePropertyMap` – A `StylePropertyMap` representing the computed styles of the node.
-- **Set:** Accepts the same types as [`node.style`](#node-style):
-
-#### Example:
-
-```javascript
-let node = new Node({ name: "div" });
-
-// Assigning a CSS string
-node.css = "font-size: 16px; background-color: blue;";
-console.log(node.css.get("font-size"));  // Logs: "16px"
-
-// Assigning an object
-node.css = { border: "1px solid black", padding: "10px" };
-console.log(node.css.get("border"));  // Logs: "1px solid black"
-```
-
----
-
 ### node.dataset
 
 Gets or sets custom data attributes.
@@ -1412,21 +1387,6 @@ node.requestFullscreen().then(() => {
 }).catch((error) => {
   console.error('Failed to enter fullscreen:', error);
 }); // Requests the node to enter fullscreen mode
-```
-
----
-
-### node.cssAll()
-Returns a `StylePropertyMap` object containing all the computed CSS properties of the node.
-#### Returns:
-- **`StylePropertyMap`** – A map of all the computed CSS properties and their values for the node.
-#### Description:
-- This method is a shorthand for accessing all the computed styles of the node, similar to the native [`Element.computedStyleMap()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/computedStyleMap) method.
-- Provides access to all of the CSS properties applied to the element, including those inherited from parent elements.
-#### Example:
-```javascript
-const computedStyles = node.cssAll();
-console.log(computedStyles.get('color')); // Logs the computed color of the node
 ```
 
 ---
@@ -2800,39 +2760,6 @@ node.ls.css('color', 'red');
 
 // Set the background color for all elements
 node.ls.css('background-color', 'blue');
-```
-
----
-
-### iterator.appendCSS(name, value)
-The `iterator.appendCSS(name, value)` method is used to append a new CSS rule to an element's existing inline style for properties that accept multiple values. This is particularly useful for properties like `box-shadow`, `background`, `font-family`, etc., where multiple values can be combined.
-
-**Parameters:**
-- `name`: The name of the CSS property (e.g., `'box-shadow'`, `'background'`, `'font-family'`, etc.).
-- `value`: The value of the CSS property to be appended (e.g., `'2px 2px 5px rgba(0,0,0,0.3)'`).
-
-**Notes:**
-- This method appends a new value to the existing property if the property allows multiple values. It does not overwrite the current values.
-- For other properties (like `color`, `font-size`, etc.), use the regular `css()` method instead, as this is meant for properties that accept single values.
-
-**Example Usage:**
-
-```javascript
-const node = new Node();
-node.append(
-  { tag: 'div', text: 'First' },
-  { tag: 'div', text: 'Second' },
-  { tag: 'div', text: 'Third' }
-);
-
-// Append a new box-shadow value
-node.ls.appendCSS('box-shadow', '2px 2px 5px rgba(0,0,0,0.3)');
-
-// Append a new background-image to the existing background property
-node.ls.appendCSS('background', 'url(image.png)');
-
-// Append a new font-family to the existing font-family
-node.ls.appendCSS('font-family', 'Arial, sans-serif');
 ```
 
 ---
