@@ -8,6 +8,17 @@ Key features:
 - **Action aggregation**: the ability to apply operations or styles to an entire collection of elements at once.
 
 These features make the library perfect for dynamic interfaces and complex DOM structures.
+## Browser Support
+
+This library is supported in the latest versions of all major browsers:
+
+| Browser      | Version | Icon |
+|-------------|---------|------|
+| **Chrome**  |  ✅ Latest | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/main/src/chrome/chrome_16x16.png) |
+| **Firefox** |  ✅ Latest | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/main/src/firefox/firefox_16x16.png) |
+| **Edge**    |  ✅ Latest | ![Edge](https://raw.githubusercontent.com/alrra/browser-logos/main/src/edge/edge_16x16.png) |
+| **Safari**  |  ✅ Latest | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/main/src/safari/safari_16x16.png) |
+| **Opera**   |  ✅ Latest | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/main/src/opera/opera_16x16.png) |
 
 ---
 ## Contents
