@@ -3086,15 +3086,18 @@ This method filters the current iterator and returns a new iterator containing o
 
 ---
 
-
-
-
-
-
 ### Methods Available through
 Methods in the DOM that do not have direct analogs in the current library but are available through `node.tag.xxx()
 
 These methods are native to the DOM and can be accessed through `node.tag.xxx()` but do not have direct equivalents in the custom iterator-based methods.
+
+- **`node.tag.attributeStyleMap`**  
+	Provides access to the element's inline styles as a `StylePropertyMap`.  
+	Unlike `element.style`, it allows working with typed values for better precision in properties like lengths, colors, and transforms.
+
+- **`node.tag.computedStyleMap()`**  
+	Returns a `StylePropertyMapReadOnly` object containing the computed styles of the element.  
+	This method provides typed values for style properties, improving accuracy over `getComputedStyle()`.  
 
 - **`node.tag.hasPointerCapture()`**  
   Returns a boolean indicating if the element currently has pointer capture. Pointer capture allows the element to receive all pointer events, even if the pointer moves outside the element's bounds.
