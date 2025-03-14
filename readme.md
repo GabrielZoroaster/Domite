@@ -317,7 +317,7 @@ $('.item').all.filterClass('active').text('New Active Text');
 $('.container').queryAll('.child').depth();
 
 // 7. Select all `.item` elements, filter them based on some text condition, and then remove the selected ones from the DOM.
-$('.item').filter(node => node.text.includes('remove')).remove();
+$('.item').matchText('remove').remove();
 
 // 8. Select all `.item` elements, change their CSS properties to 'color: red', and then count the total number of selected elements.
 $('.item').css('color', 'red').count();
@@ -326,13 +326,13 @@ $('.item').css('color', 'red').count();
 $('.item').attr('data-id', '123');
 
 // 10. Select `.parent`, get all descendants, filter by a condition, then take the first 2 that match.
-$('.parent').ls.all.filter(node => node.text.includes('important')).take(2);
+$('.parent').ls.all.matchText('important').take(2);
 
 // 11. Select all `.item` elements, get their descendants, and iterate over each descendant's text content.
 $('.item').ls.all.texts();
 
 // 12. Select all `.item` elements, filter them by some condition, and then get their HTML content.
-$('.item').filter((el) => el.textContent.includes('example')).htmls();
+$('.item').filter(node => node.text.includes('example')).htmls();
 
 // 13. Select `.item`, get all its descendants, and add new child elements to each of them.
 $('.item').ls.all.add({ html: '<div class="new-child">New Child</div>' });
