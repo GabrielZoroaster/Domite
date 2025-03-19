@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Domite UI</title>
+		<style>
+			@import url("index.css");
+		</style>
+		<script type="module">
+			import api from './api.js'
+			import {UI} from './ui.js'
+
+			const ui = new UI(api);
+			ui.parent = document.body;
+		</script>
+	</head>
+	<body></body>
+</html>

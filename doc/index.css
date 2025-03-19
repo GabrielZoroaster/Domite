@@ -1,0 +1,56 @@
+* {
+	font-family: monofur, arial;
+}
+
+body {
+	background-color: #eee;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+.index {
+	display: grid;
+	gap: 10px;
+}
+
+section.api {
+	display: grid;
+	gap: 10px;
+}
+
+section.api > h3 {
+	font-size: 28px;
+	border: 1px solid #eee;
+	padding: 20px;
+}
+
+section:not(.api) {
+	border: 2px solid #ccc;
+	border-radius: 8px;
+	background-color: #fff;
+	overflow: hidden;
+	display: grid;
+	grid-template-rows: auto 0px;
+	transition: all 0.3s;
+}
+
+section.expanded {
+	grid-template-rows: auto 1fr;
+}
+
+section:not(.api) > h3 {
+	padding: 12px 20px;
+	cursor: pointer;	
+}
+
+section > .content {
+	padding: 0px 10px;
+	transition: all 0.4s;
+	background-color: #eee;
+}
+section.expanded > .content {
+	padding: 10px;
+}
