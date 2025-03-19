@@ -212,12 +212,12 @@ class CardNode extends Node {
     this.class.add("card");
 
     // Create title element
-    this.title = new Node("h2");
+    this.title = new Node({name: "h2"});
     this.title.text = title;
     this.title.class.add("card-title");
 
     // Create content element
-    this.content = new Node("p");
+    this.content = new Node({name: "p"});
     this.content.text = content;
     this.content.class.add("card-content");
 
@@ -379,7 +379,7 @@ A flexible function that selects, wraps, or creates nodes and returns a `NodeIte
 ```js
 const nodes1 = $(".items", ".else"); // Selects elements matching ".items" and ".else"
 const nodes2 = $(document.getElementById("header")); // Wraps an existing element
-const nodes3 = $(new Node("div")); // Uses an existing Node instance
+const nodes3 = $(new Node({name: "div"})); // Uses an existing Node instance
 const nodes4 = $(document.body, "#footer", new Node({name: "span"})); // Mixed input
 const nodes5 = $({name: 'div'}); // new node
 const nodes6 = $([{text: 'Apple'}, "#header", document.getElementById("footer")]); // iterator
